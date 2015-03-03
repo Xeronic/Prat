@@ -9,15 +9,18 @@ import javax.swing.Icon;
 
 public class TestConnection {
 	private Socket socket;
-	public TestConnection(String ip, int port){
+	private String str;
+
+	public TestConnection(String ip, int port, String str) {
 		try {
+			this.str = str;
 			socket = new Socket(ip, port);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		new Connection().start();
 	}
-	
+
 	public class Connection extends Thread {
 		private Icon icon;
 		private ObjectOutputStream oos;
@@ -40,7 +43,7 @@ public class TestConnection {
 		public void run() {
 			while (true) {
 				try {
-					oos.writeUTF("Jonas");
+					oos.writeUTF(str);
 				} catch (Exception e) {
 				}
 			}
