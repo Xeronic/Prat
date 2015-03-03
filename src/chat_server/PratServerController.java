@@ -8,13 +8,15 @@ public class PratServerController {
 
 	public PratServerController(){
 		tempclient = null;
-		clients = null;
+		clients = new ArrayList<Client>();
 	}
 	public void addClient(Connection connection, String id){
-		Connection c1 = connection;
-		tempclient.setConnection(c1);
+		tempclient = new Client();
+//		Connection c1 = connection;
+		tempclient.setConnection(connection);
 		tempclient.setId(id);
 		clients.add(tempclient);
+		System.out.println("client created");
 	}
 	public void removeClient(Client c){
 		
