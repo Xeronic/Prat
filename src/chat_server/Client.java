@@ -1,7 +1,5 @@
 package chat_server;
 
-import java.net.Socket;
-
 public class Client {
 	private Connection connection;
 	private String id;

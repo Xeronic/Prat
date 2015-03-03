@@ -5,11 +5,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class Connection extends Thread{
+public class Connection extends Thread {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private String id;
-	
+
 	public Connection(Socket socket) {
 		try {
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -18,8 +18,8 @@ public class Connection extends Thread{
 		} catch (IOException e) {
 		}
 	}
-	
-	public String getID(){
-	return id;
+
+	public String getID() {
+		return id;
 	}
 }
