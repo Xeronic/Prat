@@ -7,12 +7,12 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class PratInputPanel extends JPanel {
+public class InputPanel extends JPanel {
 
 	private JTextField tfInput;
 	private JButton btnAddImage, btnSend;
 	
-	public PratInputPanel(ActionListener al) {
+	public InputPanel(ActionListener al) {
 		
 		tfInput = new JTextField();
 		btnAddImage = new JButton("Attach file...");

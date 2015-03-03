@@ -8,12 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-public class PratClientGUI implements ActionListener {
+public class ClientGUI implements ActionListener {
 	
-	private PratUsersPanel usersPanel = new PratUsersPanel();
-	private PratInputPanel inputPanel = new PratInputPanel(this);
+	private UsersPanel usersPanel = new UsersPanel();
+	private InputPanel inputPanel = new InputPanel(this);
 	
-	public PratClientGUI() {
+	public ClientGUI() {
 		JFrame window = new JFrame("Prat - klient");
 		window.setLayout(new BorderLayout());
 		

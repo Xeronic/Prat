@@ -11,12 +11,12 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public class PratUsersPanel extends JPanel {
+public class UsersPanel extends JPanel {
 	
 	private JList<String> list;
 	private DefaultListModel<String> listModel;
 	
-	public PratUsersPanel() {
+	public UsersPanel() {
 		
 		listModel = new DefaultListModel<String>();
 		list = new JList<String>(listModel);
