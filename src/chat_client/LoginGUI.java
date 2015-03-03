@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,7 +19,7 @@ public class LoginGUI extends JPanel{
 	private JTextField tfUserName;
 	private JButton btnEnter;
 	private JLabel lblText;
-	private Font font;
+	private Font lblFont, btnFont, txtFont;
 	
 	public LoginGUI() {
 		JFrame frame = new JFrame("UserName");
@@ -30,15 +31,20 @@ public class LoginGUI extends JPanel{
 	
 	public JPanel loginPanel(){
 		JPanel panel = new JPanel();
-		font = new Font("Monospaced", Font.BOLD, 22);
+		lblFont = new Font("Monospaced", Font.BOLD, 22);
+		btnFont = new Font("Sanserif", Font.ROMAN_BASELINE, 22);
+		txtFont = new Font("Sanserif", Font.BOLD, 16);
 		
 		panel.setPreferredSize(new Dimension(400,200));
 		panel.setLayout(new GridLayout(3,1,5,5));
+		panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 		
 		lblText = new JLabel("Select username!", JLabel.CENTER);
-		lblText.setFont(font);
-		tfUserName = new JTextField("type here..");
+		lblText.setFont(lblFont);
+		tfUserName = new JTextField();
+		tfUserName.setFont(txtFont);
 		btnEnter = new JButton("Enter username");
+		btnEnter.setFont(btnFont);
 		
 		panel.add(lblText);
 		panel.add(tfUserName);
