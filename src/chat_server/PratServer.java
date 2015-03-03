@@ -4,21 +4,22 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class PratServer extends Thread{
+public class PratServer extends Thread {
 	private PratServerController controller;
 	private ServerSocket serverSocket;
 	private String id = null;
-	
-	public PratServer(int port){
+
+	public PratServer(PratServerController controller, int port) {
 		try {
+			this.controller = controller;
 			serverSocket = new ServerSocket(port);
 			this.start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void run(){
+
+	public void run() {
 		System.out.println("Server running");
 		while (true) {
 			try {
