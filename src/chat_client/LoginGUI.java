@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -67,9 +68,11 @@ public class LoginGUI {
 	private class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			if (tfUserName.toString().length() > 0) {
-				controller.login(tfUserName.toString());
+			if ((getUserName() != null) && getUserName().length() > 0) {
+				controller.login(tfUserName.getText().toString());
 				frame.setVisible(false);
+			} else {
+				JOptionPane.showMessageDialog(null, "You must enter a username!");
 			}
 		}
 	}
