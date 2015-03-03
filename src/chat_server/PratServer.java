@@ -1,8 +1,6 @@
 package chat_server;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -28,6 +26,7 @@ public class PratServer extends Thread{
 				Connection connection = new Connection(socket);
 				id = connection.getID();
 				controller.addClient(connection, id);
+				System.out.println("Client " + id + " connected");
 			} catch (IOException e) {
 				System.err.println(e);
 			}
