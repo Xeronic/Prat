@@ -25,24 +25,11 @@ public class PratServer extends Thread{
 		while (true) {
 			try {
 				Socket socket = serverSocket.accept();
-				ClientHandler tempClient = new ClientHandler(socket);
-				id = tempClient.ois.readUTF();
-				controller.addClient(tempClient, id);
+				Connection connection = new Connection(socket);
+				id = connection.getID();
+				controller.addClient(connection, id);
 			} catch (IOException e) {
 				System.err.println(e);
-			}
-		}
-	}
-	
-	public class ClientHandler extends Thread{
-		private ObjectOutputStream oos;
-		private ObjectInputStream ois;
-		
-		public ClientHandler(Socket socket) {
-			try {
-				oos = new ObjectOutputStream(socket.getOutputStream());
-				ois = new ObjectInputStream(socket.getInputStream());
-			} catch (IOException e) {
 			}
 		}
 	}
