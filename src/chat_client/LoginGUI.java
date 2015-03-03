@@ -12,16 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class LoginGUI extends JPanel{
+public class LoginGUI {
 
 	private String userName;
 	private JTextField tfUserName;
 	private JButton btnEnter;
 	private JLabel lblText;
 	private Font font;
+	private ClientController controller;
+	private JFrame frame;
 	
-	public LoginGUI() {
-		JFrame frame = new JFrame("UserName");
+	public LoginGUI(ClientController controller) {
+		this.controller = controller;
+		frame = new JFrame("UserName");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(loginPanel());
 		frame.pack();	
@@ -57,15 +60,10 @@ public class LoginGUI extends JPanel{
 	private class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			if(btnEnter.isSelected()){
-				
+			if (tfUserName.toString().length() > 0) {
+				controller.login(tfUserName.toString());
+				frame.setVisible(false);
 			}
 		}
-		
 	}
-	public static void main(String[] args) {
-		LoginGUI gu = new LoginGUI();
-		
-	}
-	
 }
