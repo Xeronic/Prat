@@ -12,11 +12,10 @@ public class PratServerController {
 	}
 	public void addClient(Connection connection, String id){
 		tempclient = new Client();
-//		Connection c1 = connection;
 		tempclient.setConnection(connection);
 		tempclient.setId(id);
 		clients.add(tempclient);
-		System.out.println("client created");
+		System.out.println("Client added to client-list");
 	}
 	public void removeClient(Client c){
 		
