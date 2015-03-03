@@ -9,6 +9,7 @@ import java.net.Socket;
 public class PratServer extends Thread{
 	private PratServerController controller;
 	private ServerSocket serverSocket;
+	private String id = null;
 	
 	public PratServer(int port){
 		try {
@@ -24,7 +25,11 @@ public class PratServer extends Thread{
 		while (true) {
 			try {
 				Socket socket = serverSocket.accept();
-				controller.addClient(new ClientHandler(socket, id));
+				ClientHandler tempClient = new ClientHandler(socket);
+				while(id==null){
+					id = tempClient.id;
+				}
+				controller.addClient(socket, id);
 			} catch (IOException e) {
 				System.err.println(e);
 			}
@@ -34,14 +39,13 @@ public class PratServer extends Thread{
 	private class ClientHandler extends Thread{
 		private ObjectOutputStream oos;
 		private ObjectInputStream ois;
-		private String id;
+		private String id = null;
 		
-		public ClientHandler(Socket socket, String id) {
-			this.id = id;
+		public ClientHandler(Socket socket) {
 			try {
 				oos = new ObjectOutputStream(socket.getOutputStream());
 				ois = new ObjectInputStream(socket.getInputStream());
-				System.out.println("Client " + id + " connected");
+				id = ois.readUTF();
 			} catch (IOException e) {
 			}
 		}
