@@ -1,20 +1,21 @@
 package chat_server;
 
-import java.net.Socket;
 import java.util.ArrayList;
 
 public class PratServerController {
-	private ArrayList<Client> clients = null;
+	private ArrayList<Client> clients;
 	private Client tempclient;
 
 	public PratServerController(){
-		
+		tempclient = null;
+		clients = new ArrayList<Client>();
 	}
 	public void addClient(Connection connection, String id){
-		Connection c1 = connection;
-		tempclient.setConnection(c1);
+		tempclient = new Client();
+		tempclient.setConnection(connection);
 		tempclient.setId(id);
 		clients.add(tempclient);
+		System.out.println("Client added to client-list");
 	}
 	public void removeClient(Client c){
 		
