@@ -65,12 +65,7 @@ public class PratServer extends Thread {
 	}
 
 	public void removeClient(Client client) {
-		for (Client user : clients) {
-			if (user == client) {
-				clients.remove(user);
-			}
-		}
-
+		clients.remove(client);
 	}
 
 	public void sendMessage(Message m, ArrayList<Client> recipients) {
