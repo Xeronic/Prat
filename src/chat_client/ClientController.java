@@ -26,6 +26,19 @@ public class ClientController {
 		connect();
 	}
 	
+	public String[] getSelectedUsers() {
+		return client.getSelectedUsers();
+	}
+	
+	public void sendMessage(chat_server.Message message) {
+		try {
+			oos.writeObject(message);
+			oos.flush();
+		} catch (IOException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+	
 	public void connect() {
 		try {
 			socket = new Socket(loginGUI.getIpAddress(), 3520);

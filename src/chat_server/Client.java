@@ -8,10 +8,15 @@ public class Client extends Thread {
 	private Connection connection;
 	private String username;
 	private ArrayList<Message> messages;
+	private PratServer controller;
 	
 	public Client(Socket socket, ArrayList<Message> messages) {
 		this.messages = messages;
 		this.connection = new Connection(socket);
+	}
+	
+	public void setController(PratServer controller) {
+		this.controller = controller;
 	}
 	
 	public String waitForInitialMessage() {
@@ -45,6 +50,7 @@ public class Client extends Thread {
 			if (obj instanceof Message) {
 				Message m = (Message) obj;
 				messages.add(m);
+				controller.extractRecipients(m);
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();

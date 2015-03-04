@@ -31,6 +31,7 @@ public class PratServer extends Thread {
 			try {
 				Socket socket = serverSocket.accept();
 				Client client = new Client(socket, messages);
+				client.setController(this);
 				id = client.waitForInitialMessage();
 				addClient(client);
 				sendUserlist(client, clients);
@@ -78,6 +79,12 @@ public class PratServer extends Thread {
 			System.out.println("No client with the name " + id + " was found");
 		}
 	}
+	
+	public void sendMessageToAll(Message m) {
+		sendMessage(m, clients);
+	}
+	
+	
 
 	public void sendMessage(Message m, ArrayList<Client> recipients) {
 		for (Client recipient : recipients) {
@@ -100,7 +107,7 @@ public class PratServer extends Thread {
 
 	public void extractRecipients(Message m) {
 		if (m.all == true) {
-			sendMessage(m, clients);
+			sendMessageToAll(m);
 		} else {
 			for (String recipent : m.getRecipients()) {
 				for (Client client : clients) {

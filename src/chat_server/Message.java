@@ -12,8 +12,14 @@ public class Message implements Serializable{
 	private Icon pic;
 	public boolean all;
 	
-	public Message(String id) {
-		this.text = "User " + id + " has connected at ";
+	public Message(String text, ArrayList<String> recipients) {
+		this.recipients = recipients;
+		this.text = text;
+	}
+	
+	public Message(String text) {
+		this.text = text;
+		all = true;
 	}
 
 	/**

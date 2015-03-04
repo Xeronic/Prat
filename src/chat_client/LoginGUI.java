@@ -62,7 +62,7 @@ public class LoginGUI {
 		inputUserName.setOpaque(true);
 		tfUserName = new JTextField();
 		tfUserName.setSize(new Dimension(1009,2000));
-		tfIpAddress = new JTextField();
+		tfIpAddress = new JTextField("127.0.0.1");
 		centrePanel.setBorder(BorderFactory.createTitledBorder(null, "Login", TitledBorder.DEFAULT_JUSTIFICATION, 
 				TitledBorder.DEFAULT_POSITION, borderFont, Color.BLACK));
 		userNamePanel.add(inputUserName,BorderLayout.WEST);

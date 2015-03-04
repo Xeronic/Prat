@@ -13,12 +13,15 @@ import javax.swing.JTextPane;
 public class ClientGUI implements ActionListener {
 	
 	private UsersPanel usersPanel = new UsersPanel();
-	private InputPanel inputPanel = new InputPanel(this);
 	private JTextPane tpChatArea = new JTextPane();
 	private JScrollPane scroll;
 	private ClientController controller;
+	private InputPanel inputPanel;
 	
 	public ClientGUI(ClientController controller) {
+		this.controller = controller;
+		inputPanel = new InputPanel(controller);
+		
 		JFrame window = new JFrame("Prat - klient");
 		window.setLayout(new BorderLayout());
 		
@@ -28,9 +31,6 @@ public class ClientGUI implements ActionListener {
 		window.add(scroll, BorderLayout.CENTER);
 		window.add(usersPanel, BorderLayout.EAST);
 		window.add(inputPanel, BorderLayout.SOUTH);
-		
-		String[] users = {"Jerry", "Mårten", "Anton", "Jonas"};
-		usersPanel.updateList(users);
 		
 		window.pack();
 		window.setVisible(true);
@@ -45,6 +45,10 @@ public class ClientGUI implements ActionListener {
 	
 	public void appendText(String text) {
 		tpChatArea.setText(text);
+	}
+	
+	public String[] getSelectedUsers() {
+		return usersPanel.getSelectedUsers();
 	}
 
 	@Override
