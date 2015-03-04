@@ -39,6 +39,10 @@ public class ClientController {
 		}
 	}
 	
+	public String getUserName(){
+		return username;
+	}
+	
 	private class RecieveMessages extends Thread {
 		public void run() {
 			while (true) {
