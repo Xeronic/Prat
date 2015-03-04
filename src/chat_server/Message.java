@@ -14,4 +14,18 @@ public class Message {
 	public Message(String id) {
 		this.text = "User " + id + " has connected at " + Calendar.HOUR_OF_DAY;
 	}
+
+	/**
+	 * @return the recipients
+	 */
+	public ArrayList<String> getRecipients() {
+		return recipients;
+	}
+
+	/**
+	 * @param recipients the recipients to set
+	 */
+	public void setRecipients(ArrayList<String> recipients) {
+		this.recipients = recipients;
+	}
 }

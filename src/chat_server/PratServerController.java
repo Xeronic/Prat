@@ -55,10 +55,19 @@ public class PratServerController {
 	}
 
 	public void extractRecipients(Message m) {
+		ArrayList<String> templist = m.getRecipients();
 		if (m.all == true) {
 			sendMessage(m, clients);
 		} else {
-
+			ArrayList<Client> tempClient = null;
+			for (Client client : clients){
+				for (String user : templist){
+					if (user == client.getId()){
+						tempClient.add(client);
+					}
+				}
+			}
+			sendMessage(m, tempClient);
 		}
 	}
 
