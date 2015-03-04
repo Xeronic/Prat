@@ -12,6 +12,7 @@ public class Client extends Thread {
 	public Client(Socket socket, ArrayList<Message> messages) {
 		this.messages = messages;
 		this.connection = new Connection(socket);
+		this.start();
 	}
 	
 	public String waitForInitialMessage() {
@@ -37,6 +38,12 @@ public class Client extends Thread {
 	
 	public void setUsername(String id) {
 		this.username = id;
+	}
+	
+	public void run(){
+		while(true){
+			recieve();
+		}
 	}
 	
 	public void recieve() {
