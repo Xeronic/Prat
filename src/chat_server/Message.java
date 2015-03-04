@@ -29,4 +29,8 @@ public class Message implements Serializable{
 	public void setRecipients(ArrayList<String> recipients) {
 		this.recipients = recipients;
 	}
+	
+	public String toString(){
+		return text;
+	}
 }

@@ -33,9 +33,26 @@ public class PratServer extends Thread {
 				Client client = new Client(socket, messages);
 				id = client.waitForInitialMessage();
 				addClient(client);
+				sendUserlist(client, clients);
 				System.out.println("Client " + id + " connected");
 			} catch (IOException e) {
 				System.err.println(e);
+			}
+		}
+	}
+
+	private void sendUserlist(Client client, ArrayList<Client> clients2) {
+		String[] str = new String[clients.size()];
+		for (int i = 0; i < clients.size(); i++) {
+			str[i] = clients.get(i).getUsername();
+		}
+		for (Client user : clients) {
+			try {
+				user.getConnection().getOutputStream().writeObject(str);
+			} catch (IOException e) {
+				System.out.println("Could not send user list to "
+						+ user.getUsername());
+				e.printStackTrace();
 			}
 		}
 	}
@@ -67,7 +84,7 @@ public class PratServer extends Thread {
 			sendMessage(m, recipient);
 		}
 	}
-	
+
 	public void sendMessage(Message m, Client client) {
 		try {
 			client.send(m);
