@@ -34,7 +34,7 @@ public class PratServer extends Thread {
 				id = client.waitForInitialMessage();
 				client.start();
 				addClient(client);
-				sendUserlist(client, clients);
+				sendUserlist();
 				System.out.println("Client " + id + " connected");
 			} catch (IOException e) {
 				System.err.println(e);
@@ -42,7 +42,7 @@ public class PratServer extends Thread {
 		}
 	}
 
-	private void sendUserlist(Client client, ArrayList<Client> clients2) {
+	private void sendUserlist() {
 		String[] str = new String[clients.size()];
 		for (int i = 0; i < clients.size(); i++) {
 			str[i] = clients.get(i).getUsername();
@@ -66,6 +66,7 @@ public class PratServer extends Thread {
 
 	public void removeClient(Client client) {
 		clients.remove(client);
+		sendUserlist();
 	}
 
 	public void sendMessage(Message m, ArrayList<Client> recipients) {
