@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Connection extends Thread {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private String id;
+	ArrayList<Message> messages;
 
 	public Connection(Socket socket) {
 		try {
@@ -20,6 +22,10 @@ public class Connection extends Thread {
 		}
 	}
 
+	public void setMessagesRef(ArrayList<Message> messages){
+		this.messages = messages;
+	}
+	
 	public String getID() {
 		return id;
 	}
@@ -33,7 +39,7 @@ public class Connection extends Thread {
 	public void recieve() {
 		try {
 			Message m = (Message) ois.readObject();
-//			PratServerController.extractRecipients(m);
+			messages.add(m);
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}

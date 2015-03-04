@@ -3,6 +3,7 @@ package chat_server;
 import java.util.ArrayList;
 
 public class PratServerController {
+	private ArrayList<Message> messages;
 	private ArrayList<Client> clients;
 	private Client tempclient;
 
@@ -12,8 +13,7 @@ public class PratServerController {
 	}
 
 	public void addClient(Connection connection, String id) {
-		tempclient = new Client();
-		tempclient.setConnection(connection);
+		tempclient = new Client(connection, messages);
 		tempclient.setId(id);
 		clients.add(tempclient);
 		sendMessage(new Message(id), clients);

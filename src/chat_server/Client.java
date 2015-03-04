@@ -1,9 +1,15 @@
 package chat_server;
 
+import java.util.ArrayList;
+
 public class Client {
 	private Connection connection;
 	private String id;
 	
+	public Client(Connection connection, ArrayList<Message> messages) {
+		this.connection = connection;
+		connection.setMessagesRef(messages);
+	}
 	public Connection getConnection() {
 		return connection;
 	}
