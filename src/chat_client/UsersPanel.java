@@ -3,29 +3,28 @@ package chat_client;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-
-import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
-import javax.swing.DefaultListSelectionModel;
-import javax.swing.JList;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 public class UsersPanel extends JPanel {
 	
 	private JList<String> list;
 	private DefaultListModel<String> listModel;
+	private JScrollPane scrollPane;
 	
 	public UsersPanel() {
 		
 		listModel = new DefaultListModel<String>();
 		list = new JList<String>(listModel);
+		scrollPane = new JScrollPane(list);
+		
 		list.setFont(new Font("Sans-serif", Font.PLAIN, 16));
 		list.setPreferredSize(new Dimension(200, 768));
+		scrollPane.setPreferredSize(new Dimension(225,768));
 		Border border = BorderFactory.createMatteBorder(0,1,0,0, Color.GRAY);
 		this.setBorder(border);
 		this.setBackground(Color.WHITE);
-		add(list);
+		add(scrollPane, list);
 		list.setSelectionModel(new DefaultListSelectionModel() 
 		{
 		    @Override
