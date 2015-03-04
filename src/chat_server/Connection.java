@@ -15,6 +15,7 @@ public class Connection extends Thread {
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			id = ois.readUTF();
+			this.start();
 		} catch (IOException e) {
 		}
 	}
