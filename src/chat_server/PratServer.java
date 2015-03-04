@@ -24,9 +24,9 @@ public class PratServer extends Thread {
 		while (true) {
 			try {
 				Socket socket = serverSocket.accept();
-				Connection connection = new Connection(socket);
-				id = connection.getID();
-				controller.addClient(connection, id);
+				Client client = new Client(socket);
+				id = client.getConnection().getID();
+				addClient(client, id);
 				System.out.println("Client " + id + " connected");
 			} catch (IOException e) {
 				System.err.println(e);
