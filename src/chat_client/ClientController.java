@@ -49,7 +49,7 @@ public class ClientController {
 						client.updateList((String[]) obj);
 					} else if (obj instanceof chat_server.Message) {
 						chat_server.Message mess = (chat_server.Message) obj;
-						client.appendText(mess);
+						client.appendText(mess.toString());
 					}
 					
 				} catch (IOException ex2) {
