@@ -13,7 +13,6 @@ public class Client extends Thread {
 	public Client(Socket socket, ArrayList<Message> messages, PratServer pratServer) {
 		this.messages = messages;
 		this.connection = new Connection(socket);
-		this.start();
 		this.pratServer = pratServer;
 	}
 	
