@@ -12,12 +12,13 @@ public class ClientGUI implements ActionListener {
 	
 	private UsersPanel usersPanel = new UsersPanel();
 	private InputPanel inputPanel = new InputPanel(this);
+	private JTextArea taChatArea = new JTextArea();
 	
 	public ClientGUI() {
 		JFrame window = new JFrame("Prat - klient");
 		window.setLayout(new BorderLayout());
 		
-		window.add(new JTextArea(), BorderLayout.CENTER);
+		window.add(taChatArea, BorderLayout.CENTER);
 		
 		window.add(usersPanel, BorderLayout.EAST);
 		window.add(inputPanel, BorderLayout.SOUTH);
@@ -32,9 +33,12 @@ public class ClientGUI implements ActionListener {
 		
 	}
 	
-	
 	public void updateList(String[] users) {
 		usersPanel.updateList(users);
+	}
+	
+	public void appendText(String text) {
+		taChatArea.append(text);
 	}
 
 	@Override
