@@ -33,6 +33,6 @@ public class ClientController {
 		} catch (IOException ex) {
 			client.appendText("Could not connect to server");
 		}
-	}
-
+		client = new ClientGUI(this);
+		client.appendText("Trying to login...");
 }

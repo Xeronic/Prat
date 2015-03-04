@@ -13,8 +13,9 @@ public class ClientGUI implements ActionListener {
 	private UsersPanel usersPanel = new UsersPanel();
 	private InputPanel inputPanel = new InputPanel(this);
 	private JTextArea taChatArea = new JTextArea();
+	private ClientController controller;
 	
-	public ClientGUI() {
+	public ClientGUI(ClientController controller) {
 		JFrame window = new JFrame("Prat - klient");
 		window.setLayout(new BorderLayout());
 		

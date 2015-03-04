@@ -20,6 +20,11 @@ public class Connection extends Thread {
 	}
 
 	public String getID() {
-		return id;
+		try {
+			return ois.readUTF();
+		} catch (IOException ex) {
+			return null; 
+		}
+//		return id;
 	}
 }

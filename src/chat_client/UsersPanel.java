@@ -44,6 +44,7 @@ public class UsersPanel extends JPanel {
 	}
 	
 	public void updateList(String[] users) {
+		listModel.clear();
 		for (String user : users) {
 			listModel.addElement(user);
 		}
