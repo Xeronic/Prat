@@ -3,16 +3,22 @@ package chat_server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
+import java.util.ArrayList;
 
 public class PratServer extends Thread {
-	private PratServerController controller;
 	private ServerSocket serverSocket;
 	private String id = null;
+	private ArrayList<Message> pendingMessages, messages;
+	private ArrayList<Client> clients;
+	private Client tempclient;
 
-	public PratServer(PratServerController controller, int port) {
+	public PratServer(int port) {
+		pendingMessages = new ArrayList<Message>();
+		messages = new ArrayList<Message>();
 		try {
-			this.controller = controller;
 			serverSocket = new ServerSocket(port);
+			clients = new ArrayList<Client>();
 			this.start();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -24,13 +30,78 @@ public class PratServer extends Thread {
 		while (true) {
 			try {
 				Socket socket = serverSocket.accept();
-				Connection connection = new Connection(socket);
-				id = connection.getID();
-				controller.addClient(connection, id);
+				Client client = new Client(socket, messages);
+				id = client.waitForInitialMessage();
+				addClient(client);
 				System.out.println("Client " + id + " connected");
 			} catch (IOException e) {
 				System.err.println(e);
 			}
 		}
+	}
+
+	public void addClient(Client client) {
+		clients.add(client);
+		sendMessage(new Message(id), clients);
+		System.out.println("Client added to client-list");
+	}
+
+	public void removeClient(String id) {
+		boolean removed = false;
+		for (Client client : clients) {
+			if (client.getUsername() == id) {
+				clients.remove(client);
+				removed = true;
+			} else {
+			}
+		}
+		if (removed) {
+			System.out.println("Client " + id + " removed from connections");
+		} else {
+			System.out.println("No client with the name " + id + " was found");
+		}
+	}
+
+	public void sendMessage(Message m, ArrayList<Client> recipients) {
+		for (Client recipient : recipients) {
+			sendMessage(m, recipient);
+		}
+	}
+	
+	public void sendMessage(Message m, Client client) {
+		try {
+			client.send(m);
+
+		} catch (SocketException ex) {
+			pendingMessages.add(m);
+			clients.remove(client);
+		} catch (IOException ex) {
+			pendingMessages.add(m);
+			clients.remove(client);
+		}
+	}
+
+	public void extractRecipients(Message m) {
+		if (m.all == true) {
+			sendMessage(m, clients);
+		} else {
+			for (String recipent : m.getRecipients()) {
+				for (Client client : clients) {
+					if (recipent.equals(client.getUsername())) {
+						sendMessage(m, client);
+					}
+				}
+			}
+		}
+	}
+
+	public Client findUser(String id) {
+		for (Client client : clients) {
+			if (client.getUsername() == id) {
+				return client;
+			}
+		}
+		System.out.println("No client with the name " + id + " was found");
+		return null;
 	}
 }

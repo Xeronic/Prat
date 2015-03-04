@@ -42,9 +42,13 @@ public class TestConnection {
 		 */
 		public void run() {
 			while (true) {
-				try {
-					oos.writeUTF(str);
-				} catch (Exception e) {
+				if (socket.isConnected()) {
+					try {
+						oos.writeUTF(str);
+						break;
+					} catch (Exception e) {
+
+					}
 				}
 			}
 		}
