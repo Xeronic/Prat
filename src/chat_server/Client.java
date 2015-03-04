@@ -8,11 +8,13 @@ public class Client extends Thread {
 	private Connection connection;
 	private String username;
 	private ArrayList<Message> messages;
+	private PratServer pratServer;
 	
-	public Client(Socket socket, ArrayList<Message> messages) {
+	public Client(Socket socket, ArrayList<Message> messages, PratServer pratServer) {
 		this.messages = messages;
 		this.connection = new Connection(socket);
 		this.start();
+		this.pratServer = pratServer;
 	}
 	
 	public String waitForInitialMessage() {
@@ -55,6 +57,7 @@ public class Client extends Thread {
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
+			pratServer.removeClient(this);
 		}
 	}
 

@@ -30,7 +30,7 @@ public class PratServer extends Thread {
 		while (true) {
 			try {
 				Socket socket = serverSocket.accept();
-				Client client = new Client(socket, messages);
+				Client client = new Client(socket, messages, this);
 				id = client.waitForInitialMessage();
 				addClient(client);
 				sendUserlist(client, clients);
@@ -63,20 +63,13 @@ public class PratServer extends Thread {
 		System.out.println("Client added to client-list");
 	}
 
-	public void removeClient(String id) {
-		boolean removed = false;
-		for (Client client : clients) {
-			if (client.getUsername() == id) {
-				clients.remove(client);
-				removed = true;
-			} else {
+	public void removeClient(Client client) {
+		for (Client user : clients) {
+			if (user == client) {
+				clients.remove(user);
 			}
 		}
-		if (removed) {
-			System.out.println("Client " + id + " removed from connections");
-		} else {
-			System.out.println("No client with the name " + id + " was found");
-		}
+
 	}
 
 	public void sendMessage(Message m, ArrayList<Client> recipients) {
