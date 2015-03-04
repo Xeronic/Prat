@@ -47,7 +47,11 @@ public class ClientController {
 					Object obj = ois.readObject();
 					if (obj instanceof String[]) {
 						client.updateList((String[]) obj);
+					} else if (obj instanceof chat_server.Message) {
+						chat_server.Message mess = (chat_server.Message) obj;
+						client.appendText(mess);
 					}
+					
 				} catch (IOException ex2) {
 					ex2.printStackTrace();
 				} catch (ClassNotFoundException e) {
