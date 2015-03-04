@@ -48,7 +48,7 @@ public class PratServerController {
 	}
 
 	public void sendMessage(Message m, ArrayList<Client> recipients) {
-		for(Client recipient : recipients){
+		for (Client recipient : recipients) {
 			Connection connection = recipient.getConnection();
 			connection.send(m);
 		}
@@ -60,9 +60,9 @@ public class PratServerController {
 			sendMessage(m, clients);
 		} else {
 			ArrayList<Client> tempClient = null;
-			for (Client client : clients){
-				for (String user : templist){
-					if (user == client.getId()){
+			for (Client client : clients) {
+				for (String user : templist) {
+					if (user == client.getId()) {
 						tempClient.add(client);
 					}
 				}

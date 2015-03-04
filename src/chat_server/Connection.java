@@ -22,8 +22,23 @@ public class Connection extends Thread {
 	public String getID() {
 		return id;
 	}
-	
-	public void send(Message m){
+
+	public void run() {
+		while (true) {
+			recieve();
+		}
+	}
+
+	public void recieve() {
+		try {
+			Message m = (Message) ois.readObject();
+//			PratServerController.extractRecipients(m);
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void send(Message m) {
 		try {
 			oos.writeObject(m);
 			oos.flush();
