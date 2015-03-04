@@ -14,12 +14,13 @@ public class Client extends Thread {
 		this.connection = new Connection(socket);
 	}
 	
-	public void waitForInitialMessage() {
+	public String waitForInitialMessage() {
 		do {
 			try {
 				username = connection.getInputStream().readUTF();
 			} catch (IOException ex) {}
 		} while (username == null);
+		return username;
 	}
 	
 	public Connection getConnection() {
@@ -50,12 +51,8 @@ public class Client extends Thread {
 		}
 	}
 
-	public void send(Message m) {
-		try {
+	public void send(Message m) throws IOException {
 			connection.getOutputStream().writeObject(m);
 			connection.getOutputStream().flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }

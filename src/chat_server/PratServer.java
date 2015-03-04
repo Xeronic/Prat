@@ -3,16 +3,19 @@ package chat_server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 public class PratServer extends Thread {
 	private ServerSocket serverSocket;
 	private String id = null;
-	private ArrayList<Message> messages;
+	private ArrayList<Message> pendingMessages, messages;
 	private ArrayList<Client> clients;
 	private Client tempclient;
 
 	public PratServer(int port) {
+		pendingMessages = new ArrayList<Message>();
+		messages = new ArrayList<Message>();
 		try {
 			serverSocket = new ServerSocket(port);
 			clients = new ArrayList<Client>();
@@ -28,7 +31,7 @@ public class PratServer extends Thread {
 			try {
 				Socket socket = serverSocket.accept();
 				Client client = new Client(socket, messages);
-				id = client.getUsername();
+				id = client.waitForInitialMessage();
 				addClient(client);
 				System.out.println("Client " + id + " connected");
 			} catch (IOException e) {
@@ -61,24 +64,34 @@ public class PratServer extends Thread {
 
 	public void sendMessage(Message m, ArrayList<Client> recipients) {
 		for (Client recipient : recipients) {
-			recipient.send(m);
+			sendMessage(m, recipient);
+		}
+	}
+	
+	public void sendMessage(Message m, Client client) {
+		try {
+			client.send(m);
+
+		} catch (SocketException ex) {
+			pendingMessages.add(m);
+			clients.remove(client);
+		} catch (IOException ex) {
+			pendingMessages.add(m);
+			clients.remove(client);
 		}
 	}
 
 	public void extractRecipients(Message m) {
-		ArrayList<String> templist = m.getRecipients();
 		if (m.all == true) {
 			sendMessage(m, clients);
 		} else {
-			ArrayList<Client> tempClient = null;
-			for (Client client : clients) {
-				for (String user : templist) {
-					if (user == client.getUsername()) {
-						tempClient.add(client);
+			for (String recipent : m.getRecipients()) {
+				for (Client client : clients) {
+					if (recipent.equals(client.getUsername())) {
+						sendMessage(m, client);
 					}
 				}
 			}
-			sendMessage(m, tempClient);
 		}
 	}
 
