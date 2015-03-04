@@ -13,7 +13,7 @@ public class Message implements Serializable{
 	public boolean all;
 	
 	public Message(String id) {
-		this.text = "User " + id + " has connected at ";
+		this.text = "User " + id + " has connected at " + Calendar.HOUR_OF_DAY + ":" + Calendar.MINUTE + ":" + Calendar.SECOND;
 	}
 
 	/**
