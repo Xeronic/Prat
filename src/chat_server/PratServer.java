@@ -32,6 +32,7 @@ public class PratServer extends Thread {
 				Socket socket = serverSocket.accept();
 				Client client = new Client(socket, messages, this);
 				id = client.waitForInitialMessage();
+				client.start();
 				addClient(client);
 				sendUserlist(client, clients);
 				System.out.println("Client " + id + " connected");
