@@ -17,16 +17,14 @@ public class Connection {
 			ois = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e) {}
 	}
-<<<<<<< HEAD
 
 	public String getID() {
 		try {
 			return ois.readUTF();
 		} catch (IOException ex) {
-			return null; 
+			return null;
 		}
-//		return id;
-=======
+	}
 	
 	public ObjectOutputStream getOutputStream() {
 		return oos;
@@ -34,6 +32,5 @@ public class Connection {
 	
 	public ObjectInputStream getInputStream() {
 		return ois;
->>>>>>> jerry
 	}
 }

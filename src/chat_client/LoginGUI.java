@@ -88,13 +88,8 @@ public class LoginGUI {
 	private class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-<<<<<<< Updated upstream
 			if ((getUserName() != null) && getUserName().length() > 0) {
 				controller.login(tfUserName.getText().toString());
-=======
-			if (getUserName().length() > 0) {
-				controller.login(getUserName());
->>>>>>> Stashed changes
 				frame.setVisible(false);
 			} else {
 				JOptionPane.showMessageDialog(null, "You must enter a username!");

@@ -18,7 +18,7 @@ public class ClientController {
 	
 	public void login(String username) {
 		this.username = username;
-		client = new ClientGUI();
+		client = new ClientGUI(this);
 		client.appendText("Trying to login..");
 		connect();
 	}
@@ -35,4 +35,5 @@ public class ClientController {
 		}
 		client = new ClientGUI(this);
 		client.appendText("Trying to login...");
+	}
 }
