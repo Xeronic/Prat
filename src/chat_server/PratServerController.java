@@ -16,6 +16,7 @@ public class PratServerController {
 		tempclient.setConnection(connection);
 		tempclient.setId(id);
 		clients.add(tempclient);
+		sendMessage(new Message(id), clients);
 		System.out.println("Client added to client-list");
 	}
 
@@ -46,8 +47,11 @@ public class PratServerController {
 
 	}
 
-	public void sendMessage(Message m, ArrayList<Client> clients) {
-
+	public void sendMessage(Message m, ArrayList<Client> recipients) {
+		for(Client recipient : recipients){
+			Connection connection = recipient.getConnection();
+			connection.send(m);
+		}
 	}
 
 	public void extractRecipients(Message m) {

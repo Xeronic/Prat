@@ -22,4 +22,13 @@ public class Connection extends Thread {
 	public String getID() {
 		return id;
 	}
+	
+	public void send(Message m){
+		try {
+			oos.writeObject(m);
+			oos.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
