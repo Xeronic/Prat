@@ -1,26 +1,31 @@
 package chat_client;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 public class ClientGUI implements ActionListener {
 	
 	private UsersPanel usersPanel = new UsersPanel();
 	private InputPanel inputPanel = new InputPanel(this);
-	private JTextArea taChatArea = new JTextArea();
+	private JTextPane tpChatArea = new JTextPane();
+	private JScrollPane scroll;
 	private ClientController controller;
 	
 	public ClientGUI(ClientController controller) {
 		JFrame window = new JFrame("Prat - klient");
 		window.setLayout(new BorderLayout());
 		
-		window.add(taChatArea, BorderLayout.CENTER);
-		
+		tpChatArea.setEditable(false);
+		scroll = new JScrollPane(tpChatArea);
+		scroll.setPreferredSize(new Dimension(500,500));
+		window.add(scroll, BorderLayout.CENTER);
 		window.add(usersPanel, BorderLayout.EAST);
 		window.add(inputPanel, BorderLayout.SOUTH);
 		
@@ -39,7 +44,7 @@ public class ClientGUI implements ActionListener {
 	}
 	
 	public void appendText(String text) {
-		taChatArea.append(text);
+		tpChatArea.setText(text);
 	}
 
 	@Override
