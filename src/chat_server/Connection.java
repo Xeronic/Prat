@@ -10,9 +10,11 @@ public class Connection {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	ArrayList<Message> messages;
+	private Socket socket;
 
 	public Connection(Socket socket) {
 		try {
+			this.socket = socket;
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e) {}
@@ -32,5 +34,13 @@ public class Connection {
 	
 	public ObjectInputStream getInputStream() {
 		return ois;
+	}
+
+	public void socketClose() {
+		try {
+			this.socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

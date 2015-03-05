@@ -9,59 +9,59 @@ public class Client extends Thread {
 	private String username;
 	private ArrayList<Message> messages;
 	private PratServer pratServer;
-	
-	public Client(Socket socket, ArrayList<Message> messages, PratServer pratServer) {
+
+	public Client(Socket socket, ArrayList<Message> messages,
+			PratServer pratServer) {
 		this.messages = messages;
 		this.connection = new Connection(socket);
 		this.pratServer = pratServer;
 	}
-	
+
 	public String waitForInitialMessage() {
 		do {
 			try {
 				username = connection.getInputStream().readUTF();
-			} catch (IOException ex) {}
+			} catch (IOException ex) {
+			}
 		} while (username == null);
 		return username;
 	}
-	
+
 	public Connection getConnection() {
 		return connection;
 	}
-	
+
 	public void setConnection(Connection connection) {
 		this.connection = connection;
 	}
-	
+
 	public String getUsername() {
 		return this.username;
 	}
-	
+
 	public void setUsername(String id) {
 		this.username = id;
 	}
-	
-	public void run(){
-		while(true){
-			recieve();
-		}
+
+	public void run() {
+		recieve();
 	}
-	
+
 	public void recieve() {
 		try {
-			Object obj = connection.getInputStream().readObject();
-			if (obj instanceof Message) {
-				Message m = (Message) obj;
-				messages.add(m);
-			}
+			Message m = (Message) connection.getInputStream().readObject();
+			messages.add(m);
+			run();
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
+			connection.socketClose();
+			isInterrupted();
 			pratServer.removeClient(this);
 		}
 	}
 
 	public void send(Message m) throws IOException {
-			connection.getOutputStream().writeObject(m);
-			connection.getOutputStream().flush();
+		connection.getOutputStream().writeObject(m);
+		connection.getOutputStream().flush();
 	}
 }
