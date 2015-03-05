@@ -43,6 +43,19 @@ public class ClientController {
 		return username;
 	}
 	
+	public String[] getSelectedUsers() {
+		return client.getSelectedUsers();
+	}
+	
+	public void send(chat_server.Message m) {
+		try {
+			oos.writeObject(m);
+			oos.flush();
+		} catch (IOException e) {
+			System.out.println("Could not send file: " + e.getMessage());
+		}
+	}
+	
 	private class RecieveMessages extends Thread {
 		public void run() {
 			while (true) {
@@ -51,6 +64,7 @@ public class ClientController {
 					if (obj instanceof String[]) {
 						client.updateList((String[]) obj);
 					} else if (obj instanceof chat_server.Message) {
+						System.out.println("MEssage recieved");
 						chat_server.Message mess = (chat_server.Message) obj;
 						client.appendText(mess.toString());
 					}

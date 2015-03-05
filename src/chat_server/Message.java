@@ -7,7 +7,7 @@ import java.util.Calendar;
 import javax.swing.Icon;
 
 public class Message implements Serializable{
-	private ArrayList<String> recipients;
+	private String[] recipients;
 	private String text;
 	private Icon pic;
 	public boolean all;
@@ -15,18 +15,23 @@ public class Message implements Serializable{
 	public Message(String id) {
 		this.text = "User " + id + " has connected at ";
 	}
+	
+	public Message(String text, String[] recipients) {
+		this.text = text;
+		this.recipients = recipients;
+	}
 
 	/**
 	 * @return the recipients
 	 */
-	public ArrayList<String> getRecipients() {
+	public String[] getRecipients() {
 		return recipients;
 	}
 
 	/**
 	 * @param recipients the recipients to set
 	 */
-	public void setRecipients(ArrayList<String> recipients) {
+	public void setRecipients(String[] recipients) {
 		this.recipients = recipients;
 	}
 	

@@ -11,8 +11,10 @@ public class UsersPanel extends JPanel {
 	private JList<String> list;
 	private DefaultListModel<String> listModel;
 	private JScrollPane scrollPane;
+	private ClientController controller;
 	
-	public UsersPanel() {
+	public UsersPanel(ClientController controller) {
+		this.controller = controller;
 		
 		listModel = new DefaultListModel<String>();
 		list = new JList<String>(listModel);
