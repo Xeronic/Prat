@@ -4,6 +4,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Client extends Thread {
 	private Connection connection;
@@ -53,7 +54,8 @@ public class Client extends Thread {
 			Object obj = connection.getInputStream().readObject();
 			if (obj instanceof Message) {
 				Message m = (Message) obj;
-				messages.add(m);
+				m.setSender(this.username);
+				m.setRecievedAtServer(new Date());
 				controller.sendMessage(m);
 				// Temp code below
 				System.out.println(m.toString());

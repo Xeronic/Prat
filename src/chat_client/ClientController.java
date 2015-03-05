@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 
 public class ClientController {
 	
@@ -56,6 +57,12 @@ public class ClientController {
 		}
 	}
 	
+	public void appendText(chat_server.Message m) {
+		
+		m.setText((m.getSender() != null) ? (new SimpleDateFormat("HH:mm:ss").format(m.getRecievedAtServer()) + " " + m.getSender() + "> " + m.getText()) : m.getText());
+		client.appendText(m.getText());
+	}
+	
 	private class RecieveMessages extends Thread {
 		public void run() {
 			while (true) {
@@ -64,9 +71,8 @@ public class ClientController {
 					if (obj instanceof String[]) {
 						client.updateList((String[]) obj);
 					} else if (obj instanceof chat_server.Message) {
-						System.out.println("MEssage recieved");
-						chat_server.Message mess = (chat_server.Message) obj;
-						client.appendText(mess.toString());
+						chat_server.Message m = (chat_server.Message) obj;
+						appendText(m);
 					}
 					
 				} catch (IOException ex2) {
