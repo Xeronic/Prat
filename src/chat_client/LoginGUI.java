@@ -3,6 +3,8 @@ package chat_client;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -68,6 +70,7 @@ public class LoginGUI {
 		tfUserName = new JTextField();
 		tfUserName.setSize(new Dimension(1009,2000));
 		tfIpAddress = new JTextField("127.0.0.1");
+		tfIpAddress.addFocusListener(new FocusTextListener());
 		centrePanel.setBorder(BorderFactory.createTitledBorder(null, "Login", TitledBorder.DEFAULT_JUSTIFICATION, 
 				TitledBorder.DEFAULT_POSITION, borderFont, Color.BLACK));
 		userNamePanel.add(inputUserName,BorderLayout.WEST);
@@ -118,5 +121,21 @@ public class LoginGUI {
 				actionEvent();
 			}	
 		}
+	}
+	
+	private class FocusTextListener implements FocusListener {
+
+		@Override
+		public void focusGained(FocusEvent e) {
+			tfIpAddress.selectAll();
+			
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }
