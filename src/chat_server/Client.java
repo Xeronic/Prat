@@ -53,9 +53,7 @@ public class Client extends Thread {
 			messages.add(m);
 			run();
 		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
 			connection.socketClose();
-			isInterrupted();
 			pratServer.removeClient(this);
 		}
 	}

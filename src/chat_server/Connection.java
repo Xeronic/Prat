@@ -17,7 +17,8 @@ public class Connection {
 			this.socket = socket;
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-		} catch (IOException e) {}
+		} catch (IOException e) {
+		}
 	}
 
 	public String getID() {
@@ -27,11 +28,11 @@ public class Connection {
 			return null;
 		}
 	}
-	
+
 	public ObjectOutputStream getOutputStream() {
 		return oos;
 	}
-	
+
 	public ObjectInputStream getInputStream() {
 		return ois;
 	}
