@@ -54,6 +54,7 @@ public class Client extends Thread {
 			if (obj instanceof Message) {
 				Message m = (Message) obj;
 				messages.add(m);
+				controller.sendMessage(m);
 				// Temp code below
 				System.out.println(m.toString());
 			}
