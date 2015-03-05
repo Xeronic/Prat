@@ -36,9 +36,6 @@ public class ClientGUI implements ActionListener {
 		window.add(usersPanel, BorderLayout.EAST);
 		window.add(inputPanel, BorderLayout.SOUTH);
 		
-		String[] users = {"Jerry", "Mårten", "Anton", "Jonas"};
-		usersPanel.updateList(users);
-		
 		window.pack();
 		window.setVisible(true);
 		window.setSize(824, 568);

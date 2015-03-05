@@ -46,7 +46,6 @@ public class ClientController {
 	private class RecieveMessages extends Thread {
 		public void run() {
 			while (true) {
-				System.out.println("hej");
 				try {
 					Object obj = ois.readObject();
 					if (obj instanceof String[]) {
