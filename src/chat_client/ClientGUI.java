@@ -54,7 +54,6 @@ public class ClientGUI implements ActionListener {
 	}
 	
 	public void appendText(String text) {
-		tpChatArea.setForeground(Color.ORANGE);
 		String temp = tpChatArea.getText();
 		tpChatArea.setText(temp + "\n" + text);
 	}
