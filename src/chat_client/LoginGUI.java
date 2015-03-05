@@ -3,6 +3,8 @@ package chat_client;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -12,11 +14,11 @@ public class LoginGUI {
 	private String userName, ipAddress;
 	private JTextField tfUserName, tfIpAddress;
 	private JButton btnEnter;
-	private JLabel lblText;
 	private ClientController controller;
 	private JFrame frame;
 	private Font btnFont, borderFont;
 	private JLabel inputIpAddress, inputUserName;
+	private Dimension dim;
 	
 	public LoginGUI(ClientController controller) {
 		this.controller = controller;
@@ -25,7 +27,8 @@ public class LoginGUI {
 		frame.add(loginPanel());
 		frame.pack();	
 		frame.setVisible(true);
-		frame.setLocation(400, 200);
+		dim = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setLocation(dim.width/2-frame.getSize().width/2 , dim.height/2-frame.getSize().height/2);
 	}
 	
 	public JPanel loginPanel(){
@@ -42,7 +45,9 @@ public class LoginGUI {
 		panel.add(btnEnter, BorderLayout.SOUTH);
 		panel.add(centrePanel(), BorderLayout.CENTER);
 		panel.setBackground(Color.ORANGE);
-	
+		
+		tfUserName.addKeyListener(new EnterPress());
+		tfIpAddress.addKeyListener(new EnterPress());
 		btnEnter.addActionListener(new ButtonListener());
 		
 		return panel;
@@ -62,7 +67,7 @@ public class LoginGUI {
 		inputUserName.setOpaque(true);
 		tfUserName = new JTextField();
 		tfUserName.setSize(new Dimension(1009,2000));
-		tfIpAddress = new JTextField();
+		tfIpAddress = new JTextField("127.0.0.1");
 		centrePanel.setBorder(BorderFactory.createTitledBorder(null, "Login", TitledBorder.DEFAULT_JUSTIFICATION, 
 				TitledBorder.DEFAULT_POSITION, borderFont, Color.BLACK));
 		userNamePanel.add(inputUserName,BorderLayout.WEST);
@@ -85,15 +90,33 @@ public class LoginGUI {
 		return ipAddress;
 	}
 	
+	public void actionEvent(){
+		if ((getUserName() != null) && getUserName().length() > 0) {
+			controller.login(tfUserName.getText().toString());
+			frame.setVisible(false);
+		} else {
+			JOptionPane.showMessageDialog(null, "You must enter a username!");
+		}
+	}
+	
 	private class ButtonListener implements ActionListener {
-
+	
 		public void actionPerformed(ActionEvent e) {
-			if ((getUserName() != null) && getUserName().length() > 0) {
-				controller.login(tfUserName.getText().toString());
-				frame.setVisible(false);
-			} else {
-				JOptionPane.showMessageDialog(null, "You must enter a username!");
+			if(e.getSource() == btnEnter){
+				actionEvent();
 			}
+		}
+	}
+	
+	private class EnterPress implements KeyListener {
+		public void keyTyped(KeyEvent e) {}
+		public void keyReleased(KeyEvent e) {}
+		
+		public void keyPressed(KeyEvent e) {
+			int key = e.getKeyCode();
+			if(key == KeyEvent.VK_ENTER){
+				actionEvent();
+			}	
 		}
 	}
 }
