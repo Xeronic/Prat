@@ -1,6 +1,7 @@
 package chat_client;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +20,7 @@ public class ClientGUI implements ActionListener {
 	private ClientController controller;
 	
 	public ClientGUI(ClientController controller) {
+		this.controller = controller;
 		JFrame window = new JFrame("Prat - klient");
 		window.setLayout(new BorderLayout());
 		
@@ -36,7 +38,6 @@ public class ClientGUI implements ActionListener {
 		window.setVisible(true);
 		window.setSize(1024, 768);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 	}
 	
 	public void updateList(String[] users) {
@@ -44,10 +45,11 @@ public class ClientGUI implements ActionListener {
 	}
 	
 	public void appendText(String text) {
-		tpChatArea.setText(text);
+		tpChatArea.setForeground(Color.ORANGE);
+		String temp = tpChatArea.getText();
+		tpChatArea.setText(temp + "\n" + text);
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		String[] users = usersPanel.getSelectedUsers();
@@ -60,7 +62,4 @@ public class ClientGUI implements ActionListener {
 		}
 		JOptionPane.showMessageDialog(null, usersPanel.getSelectedUsers());
 	}
-	
-	
-
 }
