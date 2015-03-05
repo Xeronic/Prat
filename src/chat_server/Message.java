@@ -11,9 +11,11 @@ public class Message implements Serializable{
 	private String text;
 	private Icon pic;
 	public boolean all;
+	public Calendar cal = Calendar.getInstance();
 	
 	public Message(String id) {
-		this.text = "User " + id + " has connected at " + Calendar.HOUR_OF_DAY + ":" + Calendar.MINUTE + ":" + Calendar.SECOND;
+		this.text = "User " + id + " has connected at " + cal.get(Calendar.HOUR_OF_DAY) + ":" + 
+							cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
 	}
 
 	/**
