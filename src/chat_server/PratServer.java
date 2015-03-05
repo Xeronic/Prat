@@ -103,6 +103,11 @@ public class PratServer extends Thread {
 		}
 	}
 
+	public void sendMessage(Message m) {
+		sendMessage(m, clients);
+	}
+			
+	
 	public void extractRecipients(Message m) {
 		if (m.all == true) {
 			sendMessage(m, clients);

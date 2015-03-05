@@ -64,6 +64,7 @@ public class ClientController {
 					if (obj instanceof String[]) {
 						client.updateList((String[]) obj);
 					} else if (obj instanceof chat_server.Message) {
+						System.out.println("MEssage recieved");
 						chat_server.Message mess = (chat_server.Message) obj;
 						client.appendText(mess.toString());
 					}
