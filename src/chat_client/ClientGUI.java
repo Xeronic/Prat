@@ -15,8 +15,8 @@ import javax.swing.JTextPane;
 
 public class ClientGUI implements ActionListener {
 	
-	private UsersPanel usersPanel = new UsersPanel();
-	private InputPanel inputPanel = new InputPanel(this);
+	private UsersPanel usersPanel;
+	private InputPanel inputPanel;
 	private JTextPane tpChatArea;
 	private JScrollPane scroll;
 	private Dimension dim;
@@ -24,6 +24,9 @@ public class ClientGUI implements ActionListener {
 	
 	public ClientGUI(ClientController controller) {
 		this.controller = controller;
+		usersPanel = new UsersPanel(controller);
+		inputPanel = new InputPanel(controller);
+		
 		JFrame window = new JFrame("Prat - klient");
 		window.setLayout(new BorderLayout());
 		
@@ -54,6 +57,10 @@ public class ClientGUI implements ActionListener {
 		tpChatArea.setForeground(Color.ORANGE);
 		String temp = tpChatArea.getText();
 		tpChatArea.setText(temp + "\n" + text);
+	}
+	
+	public String[] getSelectedUsers() {
+		return usersPanel.getSelectedUsers();
 	}
 
 	public void actionPerformed(ActionEvent e) {

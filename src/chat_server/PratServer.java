@@ -24,16 +24,21 @@ public class PratServer extends Thread {
 			e.printStackTrace();
 		}
 	}
+	
+	public void removeClient(Client client) {
+		clients.remove(client);
+	}
 
 	public void run() {
 		System.out.println("Server running");
 		while (true) {
 			try {
 				Socket socket = serverSocket.accept();
-				Client client = new Client(socket, messages);
+				Client client = new Client(socket, messages, this);
 				id = client.waitForInitialMessage();
 				addClient(client);
 				sendUserlist(client, clients);
+				client.start();
 				System.out.println("Client " + id + " connected");
 			} catch (IOException e) {
 				System.err.println(e);
