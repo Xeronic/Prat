@@ -5,15 +5,17 @@ import java.util.Date;
 
 import javax.swing.Icon;
 
-public class Message implements Serializable{
+public class Message implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private String[] recipients;
 	private String text, sender;
 	private Date recievedAtServer;
-	private Icon pic;
+	private Icon image;
 	public boolean all;
 	
-	public Message(String id) {
-		this.text = "User " + id + " has connected at ";
+	public Message(String text) {
+		this.text = text;
 	}
 	
 	public Message(String text, String[] recipients) {

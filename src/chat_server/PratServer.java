@@ -4,21 +4,21 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PratServer extends Thread {
 	private ServerSocket serverSocket;
 	private String id = null;
-	private ArrayList<Message> pendingMessages, messages;
+	private ArrayList<Message> pendingMessages;
 	private ArrayList<Client> clients;
-	private Client tempclient;
 
 	public PratServer(int port) {
 		pendingMessages = new ArrayList<Message>();
-		messages = new ArrayList<Message>();
+		clients = new ArrayList<Client>();
 		try {
 			serverSocket = new ServerSocket(port);
-			clients = new ArrayList<Client>();
 			this.start();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -27,6 +27,9 @@ public class PratServer extends Thread {
 	
 	public void removeClient(Client client) {
 		clients.remove(client);
+		sendMessage(new Message(client.getUsername() + " disconnected"));
+		sendUserlist();
+		client = null; 
 	}
 
 	public void run() {
@@ -34,38 +37,38 @@ public class PratServer extends Thread {
 		while (true) {
 			try {
 				Socket socket = serverSocket.accept();
-				Client client = new Client(socket, messages, this);
+				Client client = new Client(socket, this);
 				id = client.waitForInitialMessage();
 				addClient(client);
-				sendUserlist(client, clients);
-				client.start();
-				System.out.println("Client " + id + " connected");
 			} catch (IOException e) {
 				System.err.println(e);
 			}
 		}
 	}
 
-	private void sendUserlist(Client client, ArrayList<Client> clients2) {
-		String[] str = new String[clients.size()];
+	public void sendUserlist() {
+		String[] clientList = new String[clients.size()];
 		for (int i = 0; i < clients.size(); i++) {
-			str[i] = clients.get(i).getUsername();
+			clientList[i] = clients.get(i).getUsername();
 		}
-		for (Client user : clients) {
+		
+		for (Client client : clients) {
 			try {
-				user.getConnection().getOutputStream().writeObject(str);
+				client.getConnection().getOutputStream().writeObject(clientList);
 			} catch (IOException e) {
 				System.out.println("Could not send user list to "
-						+ user.getUsername());
+						+ client.getUsername());
 				e.printStackTrace();
 			}
 		}
 	}
 
 	public void addClient(Client client) {
+		sendMessage(new Message(client.getUsername() + " connected at " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())), clients);
 		clients.add(client);
-		sendMessage(new Message(id), clients);
-		System.out.println("Client added to client-list");
+		sendUserlist();
+		client.start();
+		System.out.println("Client " + id + " connected");
 	}
 
 	public void removeClient(String id) {
@@ -93,7 +96,6 @@ public class PratServer extends Thread {
 	public void sendMessage(Message m, Client client) {
 		try {
 			client.send(m);
-
 		} catch (SocketException ex) {
 			pendingMessages.add(m);
 			clients.remove(client);

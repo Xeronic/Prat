@@ -3,18 +3,15 @@ package chat_server;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Client extends Thread {
 	private Connection connection;
 	private String username;
-	private ArrayList<Message> messages;
 	private PratServer controller;
 	
-	public Client(Socket socket, ArrayList<Message> messages, PratServer controller) {
+	public Client(Socket socket, PratServer controller) {
 		this.controller = controller;
-		this.messages = messages;
 		this.connection = new Connection(socket);
 	}
 	
@@ -57,8 +54,6 @@ public class Client extends Thread {
 				m.setSender(this.username);
 				m.setRecievedAtServer(new Date());
 				controller.sendMessage(m);
-				// Temp code below
-				System.out.println(m.toString());
 			}
 		} catch (EOFException e) {
 			controller.removeClient(this);

@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 public class InputPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private JTextField tfInput;
 	private JButton btnAddImage, btnSend;
 	private ClientController controller;
