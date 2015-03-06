@@ -64,11 +64,14 @@ public class PratServer extends Thread {
 	}
 
 	public void addClient(Client client) {
+		ArrayList<Client> temp= new ArrayList<Client>();
 		sendMessage(new Message(client.getUsername() + " connected at " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())), clients);
 		clients.add(client);
 		sendUserlist();
 		client.start();
 		System.out.println("Client " + id + " connected");
+		temp.add(client);
+		sendMessage(new Message("Connected"),temp);
 	}
 
 	public void removeClient(String id) {
