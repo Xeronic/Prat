@@ -1,8 +1,6 @@
 package chat_client;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -24,7 +22,7 @@ public class InputPanel extends JPanel {
 		tfInput.addKeyListener(new EnterPressListener());
 		btnAddImage = new JButton("Attach file...");
 		btnSend = new JButton("Send message");
-		btnSend.addActionListener(new ButtonListener());
+		btnSend.addActionListener((e) -> actionEvent());
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(btnAddImage);
@@ -44,12 +42,6 @@ public class InputPanel extends JPanel {
 			String[] recipients = controller.getSelectedUsers();
 			controller.send(new chat_server.Message(tfInput.getText(), recipients));
 			tfInput.setText("");
-		}
-	}
-	
-	private class ButtonListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			actionEvent();
 		}
 	}
 	
