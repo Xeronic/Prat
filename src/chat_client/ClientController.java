@@ -7,26 +7,26 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 
 public class ClientController {
-	
+
 	private Socket socket;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private ClientGUI client;
 	private String username;
 	private LoginGUI loginGUI;
-	
+
 	public ClientController() {
 		loginGUI = new LoginGUI(this);
-		
+
 	}
-	
+
 	public void login(String username) {
 		this.username = username;
 		client = new ClientGUI(this);
 		client.appendText("Trying to login..");
 		connect();
 	}
-	
+
 	public void connect() {
 		try {
 			socket = new Socket(loginGUI.getIpAddress(), 3520);
@@ -39,15 +39,15 @@ public class ClientController {
 			client.appendText("Could not connect to server");
 		}
 	}
-	
-	public String getUserName(){
+
+	public String getUserName() {
 		return username;
 	}
-	
+
 	public String[] getSelectedUsers() {
 		return client.getSelectedUsers();
 	}
-	
+
 	public void send(chat_server.Message m) {
 		try {
 			oos.writeObject(m);
@@ -56,13 +56,15 @@ public class ClientController {
 			System.out.println("Could not send file: " + e.getMessage());
 		}
 	}
-	
+
 	public void appendText(chat_server.Message m) {
-		
-		m.setText((m.getSender() != null) ? (new SimpleDateFormat("HH:mm:ss").format(m.getRecievedAtServer()) + " " + m.getSender() + "> " + m.getText()) : m.getText());
+
+		m.setText((m.getSender() != null) ? (new SimpleDateFormat("HH:mm:ss")
+				.format(m.getRecievedAtServer()) + " " + m.getSender() + "> " + m
+				.getText()) : m.getText());
 		client.appendText(m.getText());
 	}
-	
+
 	private class RecieveMessages extends Thread {
 		public void run() {
 			while (true) {
@@ -74,14 +76,14 @@ public class ClientController {
 						chat_server.Message m = (chat_server.Message) obj;
 						appendText(m);
 					}
-					
+
 				} catch (IOException ex2) {
 					ex2.printStackTrace();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 			}
 		}
 	}
