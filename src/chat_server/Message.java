@@ -23,6 +23,11 @@ public class Message implements Serializable {
 		this.recipients = recipients;
 	}
 
+	public Message(String text, boolean all) {
+		this.text = text;
+		this.all = all;
+	}
+
 	public void setRecievedAtServer(Date date) {
 		this.recievedAtServer = date;
 	}
