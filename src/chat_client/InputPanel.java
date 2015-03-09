@@ -39,9 +39,9 @@ public class InputPanel extends JPanel {
 	
 	public void actionEvent() {
 		if (tfInput.getText().length() > 0) {
-			if(controller.getSelectedUsers().length > 0){
-			String[] recipients = controller.getSelectedUsers();
-			controller.send(new chat_server.Message(tfInput.getText(), recipients));
+			if(controller.getSelectedUsers() != null){
+				String[] recipients = controller.getSelectedUsers();
+				controller.send(new chat_server.Message(tfInput.getText(), recipients));
 			}else{
 				controller.send(new chat_server.Message(tfInput.getText(), true));
 			}
