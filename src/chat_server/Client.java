@@ -53,7 +53,7 @@ public class Client extends Thread {
 				Message m = (Message) obj;
 				m.setSender(this.username);
 				m.setRecievedAtServer(new Date());
-				controller.sendMessage(m);
+				controller.extractRecipients(m);
 			}
 		} catch (EOFException e) {
 			controller.removeClient(this);
