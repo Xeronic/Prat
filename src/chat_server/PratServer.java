@@ -22,7 +22,7 @@ public class PratServer extends Thread {
 	public PratServer(int port) {		
 		try {
 		String filename = "logfile_" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-		FileHandler fh = new FileHandler("src/chat_server/"+ filename + ".txt");//Kom ihåg att ändra filedestination
+		FileHandler fh = new FileHandler("./loggs/"+ filename + ".txt");//Kom ihåg att ändra filedestination
 		LOGGER.setUseParentHandlers(false);
 		LOGGER.addHandler(fh);
         SimpleFormatter formatter = new SimpleFormatter();  
