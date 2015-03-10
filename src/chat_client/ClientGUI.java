@@ -57,12 +57,14 @@ public class ClientGUI {
 	public void appendText(String text) {
 		String temp = tpChatArea.getText();
 		tpChatArea.setText(temp + "\n" + text);
+		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
 	}
 
 	public void appendTextAndImage(String text, Icon image) {
 		String temp = tpChatArea.getText();
 		tpChatArea.setText(temp + "\n" + text);
 		tpChatArea.insertIcon(image);
+		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
 	}
 	
 	public String[] getSelectedUsers() {

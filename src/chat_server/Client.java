@@ -54,10 +54,6 @@ public class Client extends Thread {
 				Message m = (Message) obj;
 				m.setSender(this.username);
 				m.setRecievedAtServer(new Date());
-				System.out.println();
-				if (m.getImage() != null) {
-					System.out.println("Server got image");
-				}
 				controller.extractRecipients(m);
 			}
 		} catch (EOFException e) {
