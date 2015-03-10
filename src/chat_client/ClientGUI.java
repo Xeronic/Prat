@@ -36,7 +36,7 @@ public class ClientGUI {
 		tpChatArea.setContentType("text/html");
 		StringBuilder buildSomething = new StringBuilder();
 		buildSomething.append("<html>");
-		 buildSomething.append("<span style=\"color:red\">" + "Hej" + "</span>");
+		buildSomething.append("<span style=\"color:red\">" + "Hej" + "</span>");
 		tpChatArea.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
 		tpChatArea.setEditable(false);
 		scroll = new JScrollPane(tpChatArea);
