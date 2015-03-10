@@ -3,6 +3,7 @@ package chat_client;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -57,13 +58,14 @@ public class UsersPanel extends JPanel {
 			return null;
 		}
 		
-		String[] users = new String[listModel.getSize()];
+		ArrayList<String> users = new ArrayList<String>();
 		
-		for (int i = 0; i < listModel.getSize() - 1; i++) {
+		for (int i = 0; i < listModel.getSize(); i++) {
 			if (list.isSelectedIndex(i)) {
-				users[i] = listModel.get(i);
+				users.add(listModel.get(i));
 			}
 		}
-		return (users.length > 0) ? users : null;
+
+		return (users.size() > 0) ? users.toArray(new String[users.size()]) : null;
 	}
 }

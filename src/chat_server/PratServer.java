@@ -116,6 +116,7 @@ public class PratServer extends Thread {
 					if (recipent.equals(client.getUsername())) {
 						sendMessage(m, client);
 					}
+					System.out.println("1 " + recipent + " " + client.getUsername());
 				}
 			}
 		}
