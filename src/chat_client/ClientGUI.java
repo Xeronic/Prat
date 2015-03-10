@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-public class ClientGUI implements ActionListener {
+public class ClientGUI {
 	
 	private UsersPanel usersPanel;
 	private InputPanel inputPanel;
@@ -66,18 +66,5 @@ public class ClientGUI implements ActionListener {
 	
 	public String[] getSelectedUsers() {
 		return usersPanel.getSelectedUsers();
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		
-		String[] users = usersPanel.getSelectedUsers();
-		
-		if (users == null) {
-			System.out.println("HEJ");
-			// boolean ska sättas till true i meddelande
-		} else {
-			// Sätt recipeints till users
-		}
-		JOptionPane.showMessageDialog(null, usersPanel.getSelectedUsers());
 	}
 }
