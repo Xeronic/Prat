@@ -64,6 +64,6 @@ public class UsersPanel extends JPanel {
 				users[i] = listModel.get(i);
 			}
 		}
-		return users;
+		return (users.length > 0) ? users : null;
 	}
 }
