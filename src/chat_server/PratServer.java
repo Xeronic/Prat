@@ -116,8 +116,19 @@ public class PratServer extends Thread {
 					if (recipent.equals(client.getUsername())) {
 						sendMessage(m, client);
 					}
+					System.out.println("1 " + recipent + " " + client.getUsername());
 				}
 			}
+			sendMessage(m, findUser(m.getSender()));
 		}
+	}
+
+	private Client findUser(String sender) {
+		for(Client client : clients){
+			if(client.getUsername().equals(sender)){
+				return client;
+			}
+		}	
+		return null;
 	}
 }
