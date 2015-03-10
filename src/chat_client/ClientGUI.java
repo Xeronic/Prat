@@ -7,6 +7,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.*;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 
 public class ClientGUI {
 	
@@ -16,7 +18,7 @@ public class ClientGUI {
 	private JScrollPane scroll;
 	private Dimension dim;
 	private ClientController controller;
-	
+
 	public ClientGUI(ClientController controller) {
 		this.controller = controller;
 		usersPanel = new UsersPanel(controller);
@@ -27,7 +29,6 @@ public class ClientGUI {
 		
 		tpChatArea = new JTextPane();
 		tpChatArea.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
-		tpChatArea.setEditable(false);
 		scroll = new JScrollPane(tpChatArea);
 		
 		window.add(scroll, BorderLayout.CENTER);

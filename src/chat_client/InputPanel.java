@@ -53,12 +53,13 @@ public class InputPanel extends JPanel {
 				message.setImage(this.image);
 				this.image = null;
 			}
-
+			message.setText(tfInput.getText());
 			if(controller.getSelectedUsers() != null){
-				String[] recipients = controller.getSelectedUsers();
-				controller.send(new chat_server.Message(tfInput.getText(), recipients));
+				message.setRecipients(controller.getSelectedUsers());
+				controller.send(message);
 			}else{
-				controller.send(new chat_server.Message(tfInput.getText(), true));
+				message.setAll(true);
+				controller.send(message);
 			}
 			tfInput.setText("");
 		}

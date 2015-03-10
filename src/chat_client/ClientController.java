@@ -65,8 +65,10 @@ public class ClientController {
 
 		if (m.getImage() == null) {
 			client.appendText(m.getText());
+			System.out.println(m.getText());
 		} else {
 			client.appendTextAndImage(m.getText(), m.getImage());
+			System.out.println(m.getText());
 		}
 	}
 
