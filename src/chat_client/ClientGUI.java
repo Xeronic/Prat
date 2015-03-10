@@ -21,6 +21,7 @@ public class ClientGUI implements ActionListener {
 	private JTextPane tpChatArea;
 	private JScrollPane scroll;
 	private Dimension dim;
+	private StringBuilder buildSomething;
 	private ClientController controller;
 	
 	public ClientGUI(ClientController controller) {
@@ -32,6 +33,10 @@ public class ClientGUI implements ActionListener {
 		window.setLayout(new BorderLayout());
 		
 		tpChatArea = new JTextPane();
+		tpChatArea.setContentType("text/html");
+		StringBuilder buildSomething = new StringBuilder();
+		buildSomething.append("<html>");
+		 buildSomething.append("<span style=\"color:red\">" + "Hej" + "</span>");
 		tpChatArea.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
 		tpChatArea.setEditable(false);
 		scroll = new JScrollPane(tpChatArea);
