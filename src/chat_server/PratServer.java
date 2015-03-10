@@ -7,12 +7,14 @@ import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class PratServer extends Thread {
 	private ServerSocket serverSocket;
 	private String id = null;
 	private ArrayList<Message> pendingMessages;
 	private ArrayList<Client> clients;
+	private final static Logger LOGGER  = Logger.getLogger("PratServerLogg");
 
 	public PratServer(int port) {
 		pendingMessages = new ArrayList<Message>();
