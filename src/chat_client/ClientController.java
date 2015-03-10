@@ -62,7 +62,12 @@ public class ClientController {
 		m.setText((m.getSender() != null) ? (new SimpleDateFormat("HH:mm:ss")
 				.format(m.getRecievedAtServer()) + " " + m.getSender() + "> " + m
 				.getText()) : m.getText());
-		client.appendText(m.getText());
+
+		if (m.getImage() == null) {
+			client.appendText(m.getText());
+		} else {
+			client.appendTextAndImage(m.getText(), m.getImage());
+		}
 	}
 
 	private class RecieveMessages extends Thread {

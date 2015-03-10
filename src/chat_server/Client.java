@@ -1,5 +1,6 @@
 package chat_server;
 
+import javax.swing.*;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;

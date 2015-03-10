@@ -4,9 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class InputPanel extends JPanel {
 
@@ -14,6 +13,7 @@ public class InputPanel extends JPanel {
 	private JTextField tfInput;
 	private JButton btnAddImage, btnSend;
 	private ClientController controller;
+	private ImageIcon image;
 	
 	public InputPanel(ClientController controller) {
 		this.controller = controller;
@@ -21,6 +21,7 @@ public class InputPanel extends JPanel {
 		tfInput = new JTextField();
 		tfInput.addKeyListener(new EnterPressListener());
 		btnAddImage = new JButton("Attach file...");
+		btnAddImage.addActionListener(e -> addImage());
 		btnSend = new JButton("Send message");
 		btnSend.addActionListener((e) -> actionEvent());
 		
@@ -31,18 +32,34 @@ public class InputPanel extends JPanel {
 		add(tfInput, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.EAST);
 	}
-	
+
+	private void addImage() {
+		JFileChooser fc = new JFileChooser();
+		fc.setFileFilter(new FileNameExtensionFilter("JPEG, PNG & GIF Images", "jpg", "gif", "jpeg", "png"));
+		fc.showDialog(null, "Välj en bildfil");
+		if (fc.getSelectedFile() != null) {
+			this.image = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+		}
+	}
+
 	public JTextField getInputField() {
 		return this.tfInput;
 	}
 	
 	public void actionEvent() {
 		if (tfInput.getText().length() > 0) {
+			chat_server.Message message = new chat_server.Message();
+			if (this.image != null) {
+				message.setImage(this.image);
+				this.image = null;
+			}
+			message.setText(tfInput.getText());
 			if(controller.getSelectedUsers() != null){
-				String[] recipients = controller.getSelectedUsers();
-				controller.send(new chat_server.Message(tfInput.getText(), recipients));
+				message.setRecipients(controller.getSelectedUsers());
+				controller.send(message);
 			}else{
-				controller.send(new chat_server.Message(tfInput.getText(), true));
+				message.setAll(true);
+				controller.send(message);
 			}
 			tfInput.setText("");
 		}

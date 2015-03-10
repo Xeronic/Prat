@@ -3,7 +3,7 @@ package chat_server;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.swing.Icon;
+import javax.swing.*;
 
 public class Message implements Serializable {
 	
@@ -11,9 +11,19 @@ public class Message implements Serializable {
 	private String[] recipients;
 	private String text, sender;
 	private Date recievedAtServer;
-	private Icon image;
-	public boolean all = false;
-	
+	private ImageIcon image;
+
+	public boolean getAll() {
+		return all;
+	}
+
+	public void setAll(boolean all) {
+		this.all = all;
+	}
+
+	public boolean all;
+
+	public Message() {}
 	public Message(String text) {
 		this.text = text;
 	}
@@ -27,6 +37,7 @@ public class Message implements Serializable {
 		this.text = text;
 		this.all = all;
 	}
+
 
 	public void setRecievedAtServer(Date date) {
 		this.recievedAtServer = date;
@@ -59,6 +70,13 @@ public class Message implements Serializable {
 		this.text = text;
 	}
 
+	public void setImage(ImageIcon image) {
+		this.image = image;
+	}
+
+	public ImageIcon getImage() {
+		return this.image;
+	}
 	/**
 	 * @param recipients the recipients to set
 	 */

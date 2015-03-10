@@ -1,18 +1,14 @@
 package chat_client;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
+import javax.swing.*;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 
 public class ClientGUI {
 	
@@ -23,7 +19,7 @@ public class ClientGUI {
 	private Dimension dim;
 	private StringBuilder buildSomething;
 	private ClientController controller;
-	
+
 	public ClientGUI(ClientController controller) {
 		this.controller = controller;
 		usersPanel = new UsersPanel(controller);
@@ -38,7 +34,6 @@ public class ClientGUI {
 		buildSomething.append("<html>");
 		buildSomething.append("<span style=\"color:red\">" + "Hej" + "</span>");
 		tpChatArea.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
-		tpChatArea.setEditable(false);
 		scroll = new JScrollPane(tpChatArea);
 		
 		window.add(scroll, BorderLayout.CENTER);
@@ -68,6 +63,16 @@ public class ClientGUI {
 		String temp = tpChatArea.getText();
 		tpChatArea.setText(temp + "\n" + text);
 		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
+<<<<<<< HEAD
+=======
+	}
+
+	public void appendTextAndImage(String text, Icon image) {
+		String temp = tpChatArea.getText();
+		tpChatArea.setText(temp + "\n" + text);
+		tpChatArea.insertIcon(image);
+		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
+>>>>>>> master
 	}
 	
 	public String[] getSelectedUsers() {

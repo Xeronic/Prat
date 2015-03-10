@@ -59,11 +59,11 @@ public class UsersPanel extends JPanel {
 		
 		String[] users = new String[listModel.getSize()];
 		
-		for (int i = 0; i < listModel.getSize(); i++) {
+		for (int i = 0; i < listModel.getSize() - 1; i++) {
 			if (list.isSelectedIndex(i)) {
 				users[i] = listModel.get(i);
 			}
 		}
-		return users;
+		return (users.length > 0) ? users : null;
 	}
 }
