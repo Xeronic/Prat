@@ -1,18 +1,12 @@
 package chat_client;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
+import javax.swing.*;
 
 public class ClientGUI {
 	
@@ -62,6 +56,12 @@ public class ClientGUI {
 	public void appendText(String text) {
 		String temp = tpChatArea.getText();
 		tpChatArea.setText(temp + "\n" + text);
+	}
+
+	public void appendTextAndImage(String text, Icon image) {
+		String temp = tpChatArea.getText();
+		tpChatArea.setText(temp + "\n" + text);
+		tpChatArea.insertIcon(image);
 	}
 	
 	public String[] getSelectedUsers() {
