@@ -27,7 +27,7 @@ public class PratServer extends Thread {
 	
 	public void removeClient(Client client) {
 		clients.remove(client);
-		sendMessage(new Message(client.getUsername() + " disconnected"));
+		sendMessage(new Message(client.getUsername() + " disconnected"), clients);
 		sendUserlist();
 		client = null; 
 	}
@@ -74,22 +74,6 @@ public class PratServer extends Thread {
 		sendMessage(new Message("Connected"),temp);
 	}
 
-	public void removeClient(String id) {
-		boolean removed = false;
-		for (Client client : clients) {
-			if (client.getUsername() == id) {
-				clients.remove(client);
-				removed = true;
-			} else {
-			}
-		}
-		if (removed) {
-			System.out.println("Client " + id + " removed from connections");
-		} else {
-			System.out.println("No client with the name " + id + " was found");
-		}
-	}
-
 	public void sendMessage(Message m, ArrayList<Client> recipients) {
 		for (Client recipient : recipients) {
 			sendMessage(m, recipient);
@@ -108,11 +92,6 @@ public class PratServer extends Thread {
 		}
 	}
 
-	public void sendMessage(Message m) {
-		sendMessage(m, clients);
-	}
-			
-	
 	public void extractRecipients(Message m) {
 		if (m.all) {
 			sendMessage(m, clients);
@@ -125,15 +104,5 @@ public class PratServer extends Thread {
 				}
 			}
 		}
-	}
-
-	public Client findUser(String id) {
-		for (Client client : clients) {
-			if (client.getUsername() == id) {
-				return client;
-			}
-		}
-		System.out.println("No client with the name " + id + " was found");
-		return null;
 	}
 }

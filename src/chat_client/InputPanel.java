@@ -27,7 +27,6 @@ public class InputPanel extends JPanel {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(btnAddImage);
 		buttonPanel.add(btnSend);
-		
 		setLayout(new BorderLayout());
 		add(tfInput, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.EAST);
