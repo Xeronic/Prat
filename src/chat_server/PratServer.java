@@ -27,7 +27,7 @@ public class PratServer extends Thread {
 	
 	public void removeClient(Client client) {
 		clients.remove(client);
-		sendMessage(new Message(client.getUsername() + " disconnected"));
+		extractRecipients(new Message(client.getUsername() + " disconnected"));
 		sendUserlist();
 		client = null; 
 	}
@@ -106,12 +106,7 @@ public class PratServer extends Thread {
 			pendingMessages.add(m);
 			clients.remove(client);
 		}
-	}
-
-	public void sendMessage(Message m) {
-		sendMessage(m, clients);
-	}
-			
+	}		
 	
 	public void extractRecipients(Message m) {
 		if (m.all) {
