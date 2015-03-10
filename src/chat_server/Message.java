@@ -13,7 +13,8 @@ public class Message implements Serializable {
 	private Date recievedAtServer;
 	private Icon image;
 	public boolean all = false;
-	
+
+	public Message() {}
 	public Message(String text) {
 		this.text = text;
 	}
@@ -59,6 +60,13 @@ public class Message implements Serializable {
 		this.text = text;
 	}
 
+	public void setImage(Icon image) {
+		this.image = image;
+	}
+
+	public Icon getImage() {
+		return this.image;
+	}
 	/**
 	 * @param recipients the recipients to set
 	 */
