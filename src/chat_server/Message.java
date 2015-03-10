@@ -12,7 +12,7 @@ public class Message implements Serializable {
 	private String text, sender;
 	private Date recievedAtServer;
 	private Icon image;
-	public boolean all;
+	public boolean all = false;
 	
 	public Message(String text) {
 		this.text = text;

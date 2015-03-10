@@ -1,23 +1,36 @@
 package chat_server;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class PratServer extends Thread {
 	private ServerSocket serverSocket;
 	private String id = null;
 	private ArrayList<Message> pendingMessages;
 	private ArrayList<Client> clients;
+	private final static Logger LOGGER  = Logger.getLogger("PratServerLogg");
 
-	public PratServer(int port) {
+	public PratServer(int port) {		
+		try {
+		String filename = "logfile_" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+//		PrintWriter writer = new PrintWriter(filename, "UTF-8");
+		FileHandler fh = new FileHandler("src/chat_server/"+ filename + ".txt");//Kom ihåg att ändra filedestination
+		LOGGER.setUseParentHandlers(false);
+		LOGGER.addHandler(fh);
+        SimpleFormatter formatter = new SimpleFormatter();  
+        fh.setFormatter(formatter);
+        
 		pendingMessages = new ArrayList<Message>();
 		clients = new ArrayList<Client>();
-		try {
 			serverSocket = new ServerSocket(port);
 			this.start();
 		} catch (IOException e) {
@@ -27,7 +40,8 @@ public class PratServer extends Thread {
 	
 	public void removeClient(Client client) {
 		clients.remove(client);
-		sendMessage(new Message(client.getUsername() + " disconnected"));
+		sendMessage(new Message(client.getUsername() + " disconnected"), clients);
+		LOGGER.info(client.getUsername() + " DISCONNECTED");
 		sendUserlist();
 		client = null; 
 	}
@@ -72,22 +86,7 @@ public class PratServer extends Thread {
 		System.out.println("Client " + id + " connected");
 		temp.add(client);
 		sendMessage(new Message("Connected"),temp);
-	}
-
-	public void removeClient(String id) {
-		boolean removed = false;
-		for (Client client : clients) {
-			if (client.getUsername() == id) {
-				clients.remove(client);
-				removed = true;
-			} else {
-			}
-		}
-		if (removed) {
-			System.out.println("Client " + id + " removed from connections");
-		} else {
-			System.out.println("No client with the name " + id + " was found");
-		}
+		LOGGER.info(id + " CONNECTED");
 	}
 
 	public void sendMessage(Message m, ArrayList<Client> recipients) {
@@ -99,6 +98,7 @@ public class PratServer extends Thread {
 	public void sendMessage(Message m, Client client) {
 		try {
 			client.send(m);
+			LOGGER.info(m.getSender() + ": " + m.toString());
 		} catch (SocketException ex) {
 			pendingMessages.add(m);
 			clients.remove(client);
@@ -108,11 +108,6 @@ public class PratServer extends Thread {
 		}
 	}
 
-	public void sendMessage(Message m) {
-		sendMessage(m, clients);
-	}
-			
-	
 	public void extractRecipients(Message m) {
 		if (m.all) {
 			sendMessage(m, clients);
@@ -125,15 +120,5 @@ public class PratServer extends Thread {
 				}
 			}
 		}
-	}
-
-	public Client findUser(String id) {
-		for (Client client : clients) {
-			if (client.getUsername() == id) {
-				return client;
-			}
-		}
-		System.out.println("No client with the name " + id + " was found");
-		return null;
 	}
 }
