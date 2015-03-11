@@ -1,5 +1,6 @@
 package chat_server;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -17,32 +18,45 @@ public class PratServer extends Thread {
 	private String id = null;
 	private ArrayList<Message> pendingMessages;
 	private ArrayList<Client> clients;
-	private final static Logger LOGGER  = Logger.getLogger("PratServerLogg");
+	private final static Logger LOGGER = Logger.getLogger("PratServerLogg");
 
-	public PratServer(int port) {		
+	public PratServer(int port) {
 		try {
-		String filename = "logfile_" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-		FileHandler fh = new FileHandler("./loggs/"+ filename + ".txt");//Kom ihåg att ändra filedestination
-		LOGGER.setUseParentHandlers(false);
-		LOGGER.addHandler(fh);
-        SimpleFormatter formatter = new SimpleFormatter();  
-        fh.setFormatter(formatter);
-        
-		pendingMessages = new ArrayList<Message>();
-		clients = new ArrayList<Client>();
+			createLoggFile();
+			pendingMessages = new ArrayList<Message>();
+			clients = new ArrayList<Client>();
 			serverSocket = new ServerSocket(port);
 			this.start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
+	public void createLoggFile() throws IOException{
+		String filename = "logfile_"
+				+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+						.format(new Date());
+		File f = new File("./loggs/" + filename);
+		if (!f.getParentFile().exists()) {
+			f.getParentFile().mkdirs();
+		}
+		if (!f.exists()) {
+			f.createNewFile();
+		}
+		FileHandler fh = new FileHandler("./loggs/" + filename + ".txt");// Kom ihåg att ändra fildestination
+		LOGGER.setUseParentHandlers(false);
+		LOGGER.addHandler(fh);
+		SimpleFormatter formatter = new SimpleFormatter();
+		fh.setFormatter(formatter);
+	}
 	
 	public void removeClient(Client client) {
 		clients.remove(client);
-		sendMessage(new Message(client.getUsername() + " disconnected"), clients);
+		sendMessage(new Message(client.getUsername() + " disconnected"),
+				clients);
 		LOGGER.info(client.getUsername() + " DISCONNECTED");
 		sendUserlist();
-		client = null; 
+		client = null;
 	}
 
 	public void run() {
@@ -64,10 +78,11 @@ public class PratServer extends Thread {
 		for (int i = 0; i < clients.size(); i++) {
 			clientList[i] = clients.get(i).getUsername();
 		}
-		
+
 		for (Client client : clients) {
 			try {
-				client.getConnection().getOutputStream().writeObject(clientList);
+				client.getConnection().getOutputStream()
+						.writeObject(clientList);
 			} catch (IOException e) {
 				System.out.println("Could not send user list to "
 						+ client.getUsername());
@@ -77,14 +92,19 @@ public class PratServer extends Thread {
 	}
 
 	public void addClient(Client client) {
-		ArrayList<Client> temp= new ArrayList<Client>();
-		sendMessage(new Message(client.getUsername() + " connected at " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())), clients);
+		ArrayList<Client> temp = new ArrayList<Client>();
+		sendMessage(
+				new Message(
+						client.getUsername()
+								+ " connected at "
+								+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+										.format(new Date())), clients);
 		clients.add(client);
 		sendUserlist();
 		client.start();
 		System.out.println("Client " + id + " connected");
 		temp.add(client);
-		sendMessage(new Message("Connected"),temp);
+		sendMessage(new Message("Connected"), temp);
 		LOGGER.info(id + " CONNECTED");
 	}
 
@@ -116,7 +136,8 @@ public class PratServer extends Thread {
 					if (recipent.equals(client.getUsername())) {
 						sendMessage(m, client);
 					}
-					System.out.println("1 " + recipent + " " + client.getUsername());
+					System.out.println("1 " + recipent + " "
+							+ client.getUsername());
 				}
 			}
 			sendMessage(m, findUser(m.getSender()));
@@ -124,11 +145,11 @@ public class PratServer extends Thread {
 	}
 
 	private Client findUser(String sender) {
-		for(Client client : clients){
-			if(client.getUsername().equals(sender)){
+		for (Client client : clients) {
+			if (client.getUsername().equals(sender)) {
 				return client;
 			}
-		}	
+		}
 		return null;
 	}
 }
