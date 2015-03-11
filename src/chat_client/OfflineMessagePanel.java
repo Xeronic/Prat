@@ -10,12 +10,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class OfflineMessagePanel extends JPanel {
 
 	private JPanel panel;
-	private Dimension dim;
 	private JButton btnSend, btnAttach, btnCancel;
 	private JFrame frame;
 	private JTextPane tpMessage;
-	private ImageIcon image;
-	private JScrollPane scroll;
 	private ClientController controller;
 	private JTextField tfToUser;
 	private ImageIcon icon;
@@ -27,7 +24,7 @@ public class OfflineMessagePanel extends JPanel {
 		frame.add(thePanel());
 		frame.pack();
 		frame.setVisible(true);
-		dim = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation(dim.width / 2 - panel.getSize().width / 2, dim.height
 				/ 2 - panel.getSize().height / 2);
 	}
@@ -71,7 +68,7 @@ public class OfflineMessagePanel extends JPanel {
 		JPanel centrePanel = new JPanel();
 		JLabel lblMessage = new JLabel("Message:");
 		tpMessage = new JTextPane();
-		scroll = new JScrollPane(tpMessage);
+		JScrollPane scroll = new JScrollPane(tpMessage);
 		centrePanel.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
 		lblMessage.setBorder(BorderFactory.createEmptyBorder(0, 0, 160, 10));
 		tpMessage.setBorder(BorderFactory.createEmptyBorder(5, 10, 0, 0));
@@ -100,15 +97,14 @@ public class OfflineMessagePanel extends JPanel {
 		return bottomPanel;
 	}
 
-	private ImageIcon addImage() {
+	private void addImage() {
 		JFileChooser fc = new JFileChooser();
 		fc.setFileFilter(new FileNameExtensionFilter("JPEG, PNG & GIF Images",
 				"jpg", "gif", "jpeg", "png"));
 		fc.showDialog(null, "Välj en bildfil");
 		if (fc.getSelectedFile() != null) {
-			image = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+			icon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
 		}
-		return image;
 	}
 	
 	public void sendEvent(){
@@ -129,7 +125,7 @@ public class OfflineMessagePanel extends JPanel {
 	}
 	
 	public void attachEvent(){
-		icon = addImage();
+		addImage();
 		if (icon != null) {
 			tpMessage.insertIcon(icon);
 		}
