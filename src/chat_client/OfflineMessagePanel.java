@@ -122,6 +122,7 @@ public class OfflineMessagePanel extends JPanel {
 			String[] person = new String[1];
 			person[0] = tfToUser.getText();
 			message.setRecipients(person);
+			message.setSender(controller.getUserName());
 			controller.send(message);
 		}
 		frame.setVisible(false);
