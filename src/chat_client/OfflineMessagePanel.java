@@ -17,6 +17,7 @@ public class OfflineMessagePanel extends JPanel {
 	private ImageIcon image;
 	private JScrollPane scroll;
 	private ClientController controller;
+	private JTextField tfToUser;
 	private ImageIcon icon;
 
 	public OfflineMessagePanel(ClientController controller) {
@@ -54,7 +55,7 @@ public class OfflineMessagePanel extends JPanel {
 
 		JPanel topPanel = new JPanel();
 		JLabel lblSendTo = new JLabel("Send to:");
-		JTextField tfToUser = new JTextField();
+		tfToUser = new JTextField();
 
 		lblSendTo.setBackground(Color.ORANGE);
 		lblSendTo.setOpaque(true);
@@ -117,11 +118,9 @@ public class OfflineMessagePanel extends JPanel {
 			this.icon = null;
 		}
 		message.setText(tpMessage.getText());
-		if (controller.getSelectedUsers() != null) {
-			message.setRecipients(controller.getSelectedUsers());
-			controller.send(message);
-		} else {
-			message.setAll(true);
+		if(tfToUser.getText() != null){
+			String[] person = new String[1];
+			message.setRecipients(person);
 			controller.send(message);
 		}
 		frame.setVisible(false);

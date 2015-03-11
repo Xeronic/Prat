@@ -140,9 +140,6 @@ public class PratServer extends Thread {
 					if (recipient.equals(client.getUsername())) {
 						sendMessage(m, client);
 					}
-					else{
-						pendingMessages.add(m);
-					}
 				}
 			}
 			sendMessage(m, findUser(m.getSender()));

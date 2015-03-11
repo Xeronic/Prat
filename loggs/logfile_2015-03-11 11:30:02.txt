@@ -1,0 +1,2 @@
+mar 11, 2015 11:30:13 FM chat_server.PratServer sendMessage
+INFO: null -> Morre: Connected

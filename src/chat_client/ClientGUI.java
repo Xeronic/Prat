@@ -22,11 +22,7 @@ public class ClientGUI {
 		JFrame window = new JFrame("Prat - klient");
 		window.setLayout(new BorderLayout());
 		
-		tpChatArea = new JTextPane();
-		tpChatArea.setContentType("text/html");
-		StringBuilder buildSomething = new StringBuilder();
-		buildSomething.append("<html>");
-		buildSomething.append("<span style=\"color:red\">" + "Hej" + "</span>");
+		tpChatArea = new JTextPane();;
 		tpChatArea.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
 		scroll = new JScrollPane(tpChatArea);
 		
