@@ -135,9 +135,9 @@ public class PratServer extends Thread {
 		if (m.all) {
 			sendMessage(m, clients);
 		} else {
-			for (String recipent : m.getRecipients()) {
+			for (String recipient : m.getRecipients()) {
 				for (Client client : clients) {
-					if (recipent.equals(client.getUsername())) {
+					if (recipient.equals(client.getUsername())) {
 						sendMessage(m, client);
 					}
 					else{
