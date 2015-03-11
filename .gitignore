@@ -2,4 +2,4 @@ bin/
 .settings
 Prat.iml
 .idea/
-src/chat_server/logfile*
+loggs/
