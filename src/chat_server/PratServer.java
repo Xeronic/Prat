@@ -40,9 +40,7 @@ public class PratServer extends Thread {
 		if (!f.getParentFile().exists()) {
 			f.getParentFile().mkdirs();
 		}
-		if (!f.exists()) {
-			f.createNewFile();
-		}
+		
 		FileHandler fh = new FileHandler("./loggs/" + filename + ".txt");// Kom ihåg att ändra fildestination
 		LOGGER.setUseParentHandlers(false);
 		LOGGER.addHandler(fh);
@@ -105,7 +103,6 @@ public class PratServer extends Thread {
 		System.out.println("Client " + id + " connected");
 		temp.add(client);
 		sendMessage(new Message("Connected"), temp);
-		LOGGER.info(id + " CONNECTED");
 	}
 
 	public void sendMessage(Message m, ArrayList<Client> recipients) {
@@ -117,7 +114,7 @@ public class PratServer extends Thread {
 	public void sendMessage(Message m, Client client) {
 		try {
 			client.send(m);
-			LOGGER.info(m.getSender() + ": " + m.toString());
+			LOGGER.info(m.getSender() + " -> " + client.getUsername() + ": " + m.toString());
 		} catch (SocketException ex) {
 			pendingMessages.add(m);
 			clients.remove(client);
