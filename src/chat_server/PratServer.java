@@ -75,10 +75,17 @@ public class PratServer extends Thread {
 		}
 	}
 
-	private void checkPendingMessages() {
+	private void checkPendingMessages(Client client) {
+		Message message_to_be_deleted = null;
 		for (Message pending : pendingMessages) {
-			extractRecipients(pending);
-			pendingMessages.remove(pending);
+			if (pending.getRecipients()[0].equals(client.getUsername())) {
+				sendMessage(pending, client);
+				message_to_be_deleted = pending;
+				break;
+			}
+		}
+		if (message_to_be_deleted != null) {
+			pendingMessages.remove(message_to_be_deleted);
 		}
 	}
 
@@ -114,7 +121,7 @@ public class PratServer extends Thread {
 		System.out.println("Client " + id + " connected");
 		temp.add(client);
 		sendMessage(new Message("Connected"), temp);
-		checkPendingMessages();
+		checkPendingMessages(client);
 	}
 
 	public void sendMessage(Message m, ArrayList<Client> recipients) {

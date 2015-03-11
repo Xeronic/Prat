@@ -1,0 +1,14 @@
+mar 11, 2015 1:39:22 EM chat_server.PratServer sendMessage
+INFO: null -> Jerry: Connected
+mar 11, 2015 1:40:17 EM chat_server.PratServer sendMessage
+INFO: Jerry -> Jerry: Tjena boss!
+mar 11, 2015 1:40:27 EM chat_server.PratServer sendMessage
+INFO: null -> Jerry: Jonas connected at 2015-03-11 13:40:27
+mar 11, 2015 1:40:27 EM chat_server.PratServer sendMessage
+INFO: null -> Jonas: Connected
+mar 11, 2015 1:40:27 EM chat_server.PratServer sendMessage
+INFO: Jerry -> Jonas: Tjena boss!
+mar 11, 2015 1:40:37 EM chat_server.PratServer sendMessage
+INFO: null -> Jerry: Jonas disconnected
+mar 11, 2015 1:40:37 EM chat_server.PratServer removeClient
+INFO: Jonas DISCONNECTED
