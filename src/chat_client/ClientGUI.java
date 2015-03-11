@@ -1,14 +1,9 @@
 package chat_client;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.*;
-import javax.swing.text.html.HTMLDocument;
-import javax.swing.text.html.HTMLEditorKit;
 
 public class ClientGUI {
 	
@@ -28,6 +23,10 @@ public class ClientGUI {
 		window.setLayout(new BorderLayout());
 		
 		tpChatArea = new JTextPane();
+		tpChatArea.setContentType("text/html");
+		StringBuilder buildSomething = new StringBuilder();
+		buildSomething.append("<html>");
+		buildSomething.append("<span style=\"color:red\">" + "Hej" + "</span>");
 		tpChatArea.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
 		scroll = new JScrollPane(tpChatArea);
 		
@@ -58,6 +57,7 @@ public class ClientGUI {
 		String temp = tpChatArea.getText();
 		tpChatArea.setText(temp + "\n" + text);
 		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
+
 	}
 
 	public void appendTextAndImage(String text, Icon image) {
@@ -65,6 +65,7 @@ public class ClientGUI {
 		tpChatArea.setText(temp + "\n" + text);
 		tpChatArea.insertIcon(image);
 		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
+
 	}
 	
 	public String[] getSelectedUsers() {

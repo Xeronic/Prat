@@ -48,7 +48,7 @@ public class ClientController {
 		return client.getSelectedUsers();
 	}
 
-	public void send(chat_server.Message m) {
+	public void send(chat_server.Message m) { // ANvänds denna någon gång?? 
 		try {
 			oos.writeObject(m);
 			oos.flush();

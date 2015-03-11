@@ -11,7 +11,7 @@ public class InputPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField tfInput;
-	private JButton btnAddImage, btnSend;
+	private JButton btnAddImage, btnSend, btnOffline;
 	private ClientController controller;
 	private ImageIcon image;
 	
@@ -24,10 +24,13 @@ public class InputPanel extends JPanel {
 		btnAddImage.addActionListener(e -> addImage());
 		btnSend = new JButton("Send message");
 		btnSend.addActionListener((e) -> actionEvent());
+		btnOffline = new JButton("Offline User");
+		btnOffline.addActionListener((e) -> new OfflineMessagePanel());
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(btnAddImage);
 		buttonPanel.add(btnSend);
+		buttonPanel.add(btnOffline);
 		setLayout(new BorderLayout());
 		add(tfInput, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.EAST);
