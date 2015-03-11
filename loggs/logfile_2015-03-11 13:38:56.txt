@@ -12,3 +12,5 @@ mar 11, 2015 1:40:37 EM chat_server.PratServer sendMessage
 INFO: null -> Jerry: Jonas disconnected
 mar 11, 2015 1:40:37 EM chat_server.PratServer removeClient
 INFO: Jonas DISCONNECTED
+mar 11, 2015 1:46:53 EM chat_server.PratServer removeClient
+INFO: Jerry DISCONNECTED

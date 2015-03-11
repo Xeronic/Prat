@@ -78,6 +78,10 @@ public class PratServer extends Thread {
 	private void checkPendingMessages(Client client) {
 		Message message_to_be_deleted = null;
 		for (Message pending : pendingMessages) {
+			if (pending.getRecipients() == null) {
+				message_to_be_deleted = pending;
+				break;
+			}
 			if (pending.getRecipients()[0].equals(client.getUsername())) {
 				sendMessage(pending, client);
 				message_to_be_deleted = pending;
@@ -141,6 +145,9 @@ public class PratServer extends Thread {
 		} catch (IOException ex) {
 			pendingMessages.add(m);
 			clients.remove(client);
+		} catch (NullPointerException ex) {
+			System.err.println(m.getRecipients().toString());
+			System.err.println(client.getUsername());
 		}
 	}
 
