@@ -1,8 +1,6 @@
 package chat_client;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 
@@ -30,8 +28,8 @@ public class ClientController {
 	public void connect() {
 		try {
 			socket = new Socket(loginGUI.getIpAddress(), 3520);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
+			oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+			ois = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
 			oos.writeUTF(username);
 			oos.flush();
 			new RecieveMessages().start();

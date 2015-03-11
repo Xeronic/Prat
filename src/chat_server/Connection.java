@@ -1,8 +1,6 @@
 package chat_server;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 
 public class Connection {
@@ -11,8 +9,8 @@ public class Connection {
 
 	public Connection(Socket socket) {
 		try {
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
+			oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+			ois = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
 		} catch (IOException e) {}
 	}
 
