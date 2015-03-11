@@ -1,11 +1,7 @@
 package chat_client;
 
 import java.awt.*;
-
 import javax.swing.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -21,6 +17,7 @@ public class OfflineMessagePanel extends JPanel {
 	private ImageIcon image;
 	private JScrollPane scroll;
 	private ClientController controller;
+	private ImageIcon icon;
 
 	public OfflineMessagePanel(ClientController controller) {
 		this.controller = controller;
@@ -45,9 +42,9 @@ public class OfflineMessagePanel extends JPanel {
 		panel.add(centrePanel(), BorderLayout.CENTER);
 		panel.add(bottomPanel(), BorderLayout.SOUTH);
 
-		btnSend.addActionListener(new ButtonListener());
-		btnAttach.addActionListener(new ButtonListener());
-		btnCancel.addActionListener(new ButtonListener());
+		btnSend.addActionListener(e -> sendEvent());
+		btnAttach.addActionListener(e -> attachEvent());
+		btnCancel.addActionListener(e -> cancelEvent());
 		tpMessage.addKeyListener(new EnterPressListener());
 
 		return panel;
@@ -112,37 +109,33 @@ public class OfflineMessagePanel extends JPanel {
 		}
 		return image;
 	}
-
-	private class ButtonListener implements ActionListener {
-		ImageIcon icon;
-
-		public void actionPerformed(ActionEvent e) {
-
-			if (e.getSource() == btnSend) {
-				chat_server.Message message = new chat_server.Message();
-				if (this.icon != null) {
-					message.setImage(this.icon);
-					this.icon = null;
-				}
-				message.setText(tpMessage.getText());
-				if (controller.getSelectedUsers() != null) {
-					message.setRecipients(controller.getSelectedUsers());
-					controller.send(message);
-				} else {
-					message.setAll(true);
-					controller.send(message);
-				}
-			}
-			if (e.getSource() == btnAttach) {
-				icon = addImage();
-				if (icon != null) {
-					tpMessage.insertIcon(icon);
-				}
-			}
-			if (e.getSource() == btnCancel) {
-				frame.setVisible(false);
-			}
+	
+	public void sendEvent(){
+		chat_server.Message message = new chat_server.Message();
+		if (this.icon != null) {
+			message.setImage(this.icon);
+			this.icon = null;
 		}
+		message.setText(tpMessage.getText());
+		if (controller.getSelectedUsers() != null) {
+			message.setRecipients(controller.getSelectedUsers());
+			controller.send(message);
+		} else {
+			message.setAll(true);
+			controller.send(message);
+		}
+		frame.setVisible(false);
+	}
+	
+	public void attachEvent(){
+		icon = addImage();
+		if (icon != null) {
+			tpMessage.insertIcon(icon);
+		}
+	}
+	
+	public void cancelEvent(){
+		frame.setVisible(false);
 	}
 
 	private class EnterPressListener implements KeyListener {
@@ -155,14 +148,8 @@ public class OfflineMessagePanel extends JPanel {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if (key == KeyEvent.VK_ENTER) {
-//				actionPerformed();
-				// Fyll in vad som ska stå här! När man slår på enterknappen!
+				sendEvent();
 			}
 		}
 	}
-	//
-	// public static void main(String[] args) {
-	// OfflineMessagePanel of = new OfflineMessagePanel();
-	//
-	// }
 }
