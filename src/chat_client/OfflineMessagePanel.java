@@ -120,6 +120,7 @@ public class OfflineMessagePanel extends JPanel {
 		message.setText(tpMessage.getText());
 		if(tfToUser.getText() != null){
 			String[] person = new String[1];
+			person[0] = tfToUser.getText();
 			message.setRecipients(person);
 			controller.send(message);
 		}

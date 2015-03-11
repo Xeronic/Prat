@@ -69,7 +69,6 @@ public class PratServer extends Thread {
 				Client client = new Client(socket, this);
 				id = client.waitForInitialMessage();
 				addClient(client);
-				checkPendingMessages();
 			} catch (IOException e) {
 				System.err.println(e);
 			}
@@ -115,6 +114,7 @@ public class PratServer extends Thread {
 		System.out.println("Client " + id + " connected");
 		temp.add(client);
 		sendMessage(new Message("Connected"), temp);
+		checkPendingMessages();
 	}
 
 	public void sendMessage(Message m, ArrayList<Client> recipients) {
@@ -138,20 +138,24 @@ public class PratServer extends Thread {
 	}
 
 	public void extractRecipients(Message m) {
+		boolean temp = false;
 		if (m.all) {
 			sendMessage(m, clients);
 		} else {
 			for (String recipient : m.getRecipients()) {
-				try {
+//				try {
 					for (Client client : clients) {
 						if (recipient.equals(client.getUsername())) {
 							sendMessage(m, client);
+							temp = true;
 						}
 					}
-				} catch (Exception e) {
-					pendingMessages.add(m);
-				}
+//				} catch (Exception e) {
+//					pendingMessages.add(m);
+//				}
 			}
+			if(!temp)
+				pendingMessages.add(m);
 			sendMessage(m, findUser(m.getSender()));
 		}
 	}
