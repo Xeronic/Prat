@@ -65,9 +65,16 @@ public class PratServer extends Thread {
 				Client client = new Client(socket, this);
 				id = client.waitForInitialMessage();
 				addClient(client);
+				checkPendingMessages();
 			} catch (IOException e) {
 				System.err.println(e);
 			}
+		}
+	}
+
+	private void checkPendingMessages() {
+		for(Message pending : pendingMessages){
+			extractRecipients(pending);
 		}
 	}
 
