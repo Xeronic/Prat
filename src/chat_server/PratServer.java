@@ -32,7 +32,7 @@ public class PratServer extends Thread {
 		}
 	}
 
-	public void createLoggFile() throws IOException{
+	public void createLoggFile() throws IOException {
 		String filename = "logfile_"
 				+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 						.format(new Date());
@@ -40,14 +40,18 @@ public class PratServer extends Thread {
 		if (!f.getParentFile().exists()) {
 			f.getParentFile().mkdirs();
 		}
-		
-		FileHandler fh = new FileHandler("./loggs/" + filename + ".txt");// Kom ihåg att ändra fildestination
+
+		FileHandler fh = new FileHandler("./loggs/" + filename + ".txt");// Kom
+																			// ihåg
+																			// att
+																			// ändra
+																			// fildestination
 		LOGGER.setUseParentHandlers(false);
 		LOGGER.addHandler(fh);
 		SimpleFormatter formatter = new SimpleFormatter();
 		fh.setFormatter(formatter);
 	}
-	
+
 	public void removeClient(Client client) {
 		clients.remove(client);
 		sendMessage(new Message(client.getUsername() + " disconnected"),
@@ -73,8 +77,9 @@ public class PratServer extends Thread {
 	}
 
 	private void checkPendingMessages() {
-		for(Message pending : pendingMessages){
+		for (Message pending : pendingMessages) {
 			extractRecipients(pending);
+			pendingMessages.remove(pending);
 		}
 	}
 
@@ -121,7 +126,8 @@ public class PratServer extends Thread {
 	public void sendMessage(Message m, Client client) {
 		try {
 			client.send(m);
-			LOGGER.info(m.getSender() + " -> " + client.getUsername() + ": " + m.toString());
+			LOGGER.info(m.getSender() + " -> " + client.getUsername() + ": "
+					+ m.toString());
 		} catch (SocketException ex) {
 			pendingMessages.add(m);
 			clients.remove(client);
@@ -136,10 +142,14 @@ public class PratServer extends Thread {
 			sendMessage(m, clients);
 		} else {
 			for (String recipient : m.getRecipients()) {
-				for (Client client : clients) {
-					if (recipient.equals(client.getUsername())) {
-						sendMessage(m, client);
+				try {
+					for (Client client : clients) {
+						if (recipient.equals(client.getUsername())) {
+							sendMessage(m, client);
+						}
 					}
+				} catch (Exception e) {
+					pendingMessages.add(m);
 				}
 			}
 			sendMessage(m, findUser(m.getSender()));
