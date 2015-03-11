@@ -1,0 +1,22 @@
+mar 11, 2015 12:25:49 EM chat_server.PratServer sendMessage
+INFO: null -> Mårten: Connected
+mar 11, 2015 12:25:57 EM chat_server.PratServer sendMessage
+INFO: Mårten -> Mårten: hej hej
+mar 11, 2015 12:26:07 EM chat_server.PratServer sendMessage
+INFO: null -> Mårten: Anton connected at 2015-03-11 12:26:07
+mar 11, 2015 12:26:07 EM chat_server.PratServer sendMessage
+INFO: null -> Anton: Connected
+mar 11, 2015 12:26:07 EM chat_server.PratServer sendMessage
+INFO: Mårten -> Anton: hej hej
+mar 11, 2015 12:26:07 EM chat_server.PratServer sendMessage
+INFO: Mårten -> Mårten: hej hej
+mar 11, 2015 12:27:06 EM chat_server.PratServer sendMessage
+INFO: Anton -> Mårten: Hej
+mar 11, 2015 12:27:06 EM chat_server.PratServer sendMessage
+INFO: Anton -> Anton: Hej
+mar 11, 2015 12:27:58 EM chat_server.PratServer sendMessage
+INFO: null -> Mårten: Anton disconnected
+mar 11, 2015 12:27:58 EM chat_server.PratServer removeClient
+INFO: Anton DISCONNECTED
+mar 11, 2015 12:28:01 EM chat_server.PratServer removeClient
+INFO: Mårten DISCONNECTED
