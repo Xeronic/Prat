@@ -2,7 +2,6 @@ package chat_server;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -13,6 +12,10 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+/**
+ * Represents the Server of the program. 
+ * @author Anton, Jerry, Mårten, Jonas
+ */
 public class PratServer extends Thread {
 	private ServerSocket serverSocket;
 	private String id = null;
@@ -20,6 +23,10 @@ public class PratServer extends Thread {
 	private ArrayList<ClientListener> clients;
 	private final static Logger LOGGER = Logger.getLogger("PratServerLogg");
 
+	/**
+	 * Constructor that takes a port to create a connection to the clients.
+	 * @param port port-number
+	 */
 	public PratServer(int port) {
 		try {
 			createLoggFile();
@@ -31,8 +38,11 @@ public class PratServer extends Thread {
 			e.printStackTrace();
 		}
 	}
-
-	public void createLoggFile() throws IOException {
+	/**
+	 * Creates a logfile to log all the information that runs through the server.
+	 * @throws IOException
+	 */
+	private void createLoggFile() throws IOException {
 		String filename = "logfile_"
 				+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 						.format(new Date());
@@ -40,18 +50,16 @@ public class PratServer extends Thread {
 		if (!f.getParentFile().exists()) {
 			f.getParentFile().mkdirs();
 		}
-
-		FileHandler fh = new FileHandler("./loggs/" + filename + ".txt");// Kom
-																			// ihåg
-																			// att
-																			// ändra
-																			// fildestination
+		FileHandler fh = new FileHandler("./loggs/" + filename + ".txt");
 		LOGGER.setUseParentHandlers(false);
 		LOGGER.addHandler(fh);
 		SimpleFormatter formatter = new SimpleFormatter();
 		fh.setFormatter(formatter);
 	}
-
+	/**
+	 * Removes a client from the Client-list.
+	 * @param client a client
+	 */
 	public void removeClient(ClientListener client) {
 		clients.remove(client);
 		sendMessage(new Message(client.getUsername() + " disconnected"),
@@ -60,7 +68,9 @@ public class PratServer extends Thread {
 		sendUserlist();
 		client = null;
 	}
-
+	/**
+	 * Accepts connection and stores the users.
+	 */
 	public void run() {
 		System.out.println("Server running");
 		while (true) {
@@ -74,7 +84,10 @@ public class PratServer extends Thread {
 			}
 		}
 	}
-
+	/**
+	 * Checks for pending messages for offline users.
+	 * @param client a client
+	 */
 	private void checkPendingMessages(ClientListener client) {
 		Message message_to_be_deleted = null;
 		for (Message pending : pendingMessages) {
@@ -92,7 +105,9 @@ public class PratServer extends Thread {
 			pendingMessages.remove(message_to_be_deleted);
 		}
 	}
-
+	/**
+	 * Sends the online-users to the GUI.
+	 */
 	public void sendUserlist() {
 		String[] clientList = new String[clients.size()];
 		for (int i = 0; i < clients.size(); i++) {
@@ -110,15 +125,15 @@ public class PratServer extends Thread {
 			}
 		}
 	}
-
+	/**
+	 * Adds a client to the client-list.
+	 * @param client a client connected
+	 */
 	public void addClient(ClientListener client) {
 		ArrayList<ClientListener> temp = new ArrayList<ClientListener>();
 		sendMessage(
-				new Message(
-						client.getUsername()
-								+ " connected at "
-								+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-										.format(new Date())), clients);
+				new Message(client.getUsername()	+ " connected at "
+							+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())), clients);
 		clients.add(client);
 		sendUserlist();
 		client.start();
@@ -127,13 +142,22 @@ public class PratServer extends Thread {
 		sendMessage(new Message("Connected"), temp);
 		checkPendingMessages(client);
 	}
-
+	
+	/**
+	 * Sends a message to the recipients in the list. 
+	 * @param m Message
+	 * @param recipients Receivers
+	 */
 	public void sendMessage(Message m, ArrayList<ClientListener> recipients) {
 		for (ClientListener recipient : recipients) {
 			sendMessage(m, recipient);
 		}
 	}
-
+	/**
+	 * Sends a message to a specific client.
+	 * @param m Messsage
+	 * @param client Receiver
+	 */
 	public void sendMessage(Message m, ClientListener client) {
 		try {
 			client.send(m);
@@ -150,30 +174,33 @@ public class PratServer extends Thread {
 			System.err.println(client.getUsername());
 		}
 	}
-
+	/**
+	 * Finds which users who will reciever the message. 
+	 * @param m Message
+	 */
 	public void extractRecipients(Message m) {
 		boolean temp = false;
 		if (m.getAll()) {
 			sendMessage(m, clients);
 		} else {
 			for (String recipient : m.getRecipients()) {
-//				try {
 					for (ClientListener client : clients) {
 						if (recipient.equals(client.getUsername())) {
 							sendMessage(m, client);
 							temp = true;
 						}
 					}
-//				} catch (Exception e) {
-//					pendingMessages.add(m);
-//				}
 			}
 			if(!temp)
 				pendingMessages.add(m);
 			sendMessage(m, findUser(m.getSender()));
 		}
 	}
-
+	/**
+	 * Locates a client based on the String that is received. 
+	 * @param sender the Sender
+	 * @return returns a client
+	 */
 	private ClientListener findUser(String sender) {
 		for (ClientListener client : clients) {
 			if (client.getUsername().equals(sender)) {
