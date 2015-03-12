@@ -38,6 +38,7 @@ public class PratServer extends Thread {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * Creates a logfile to log all the information that runs through the server.
 	 * @throws IOException
@@ -68,6 +69,7 @@ public class PratServer extends Thread {
 		sendUserlist();
 		client = null;
 	}
+
 	/**
 	 * Accepts connection and stores the users.
 	 */
@@ -84,6 +86,7 @@ public class PratServer extends Thread {
 			}
 		}
 	}
+
 	/**
 	 * Checks for pending messages for offline users.
 	 * @param client a client
@@ -105,6 +108,7 @@ public class PratServer extends Thread {
 			pendingMessages.remove(message_to_be_deleted);
 		}
 	}
+
 	/**
 	 * Sends the online-users to the GUI.
 	 */
@@ -125,6 +129,7 @@ public class PratServer extends Thread {
 			}
 		}
 	}
+
 	/**
 	 * Adds a client to the client-list.
 	 * @param client a client connected
@@ -153,6 +158,7 @@ public class PratServer extends Thread {
 			sendMessage(m, recipient);
 		}
 	}
+
 	/**
 	 * Sends a message to a specific client.
 	 * @param m Messsage
@@ -174,6 +180,7 @@ public class PratServer extends Thread {
 			System.err.println(client.getUsername());
 		}
 	}
+
 	/**
 	 * Finds which users who will reciever the message. 
 	 * @param m Message
@@ -196,6 +203,7 @@ public class PratServer extends Thread {
 			sendMessage(m, findUser(m.getSender()));
 		}
 	}
+
 	/**
 	 * Locates a client based on the String that is received. 
 	 * @param sender the Sender
