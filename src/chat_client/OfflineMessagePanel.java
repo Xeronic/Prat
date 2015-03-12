@@ -1,11 +1,15 @@
 package chat_client;
 
 import java.awt.*;
+
 import javax.swing.*;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import chat_server.Message;
 
 public class OfflineMessagePanel extends JPanel {
 

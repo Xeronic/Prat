@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
 public class ClientGUI {
 	
@@ -50,9 +52,15 @@ public class ClientGUI {
 	}
 	
 	public void appendText(String text) {
-		String temp = tpChatArea.getText();
-		tpChatArea.setText(temp + "\n" + text);
-		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
+		try {
+			StyledDocument doc = tpChatArea.getStyledDocument();
+			doc.insertString(doc.getLength(), text, null);
+		} catch (BadLocationException exe) {
+
+		}
+		//String temp = tpChatArea.getText();
+		//tpChatArea.setText(temp + "\n" + text);
+		//tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
 
 	}
 

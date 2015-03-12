@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import chat_server.Message;
+
 public class InputPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -75,7 +77,8 @@ public class InputPanel extends JPanel {
 				controller.send(message);
 			}
 			tfInput.setText("");
-		} else if (this.image != null) {
+		} 
+		else if (this.image != null) {
 			Message message = new Message();
 			message.setImage(this.image);
 			if (controller.getSelectedUsers() != null) {

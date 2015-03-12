@@ -9,8 +9,8 @@ public class Connection {
 
 	public Connection(Socket socket) {
 		try {
-			oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-			ois = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e) {}
 	}
 
