@@ -14,6 +14,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import chat_server.Message;
 
+/**
+ * This class represents the inputGUI "Send message, attach file, Offline User and
+ * a textField for writing messages.
+ * @author Mårten, Jonas, Jerry, Anton
+ */
 public class InputPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -21,7 +26,12 @@ public class InputPanel extends JPanel {
 	private JButton btnAddImage, btnSend, btnOffline;
 	private ClientController controller;
 	private ImageIcon image;
-
+	
+	/**
+	 * Constructor that create buttons and textfield. Also Creates a panel to place it on
+	 * and its layout. 
+	 * @param controller - ClientController
+	 */
 	public InputPanel(ClientController controller) {
 		this.controller = controller;
 
@@ -43,7 +53,11 @@ public class InputPanel extends JPanel {
 		add(tfInput, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.EAST);
 	}
-
+	
+	/**
+	 * This method uses JFileChooser to let the user choose a image
+	 * thats approved. Then scale it to fit the JTextPane that displays it.
+	 */
 	private void addImage() {
 		JFileChooser fc = new JFileChooser();
 		fc.setFileFilter(new FileNameExtensionFilter("JPEG, PNG & GIF Images",
@@ -62,11 +76,16 @@ public class InputPanel extends JPanel {
 			this.image = new ImageIcon(newimg);
 		}
 	}
+	
 
-	public JTextField getInputField() {
+	public JTextField getInputField() {		// KAN VI TA BOOOORT DETTAA?!?!?!?
 		return this.tfInput;
 	}
-
+	
+	/**
+	 * This method checks if there is a image in the message or if its only text,
+	 * also checks for who to send the message to.
+	 */
 	public void actionEvent() {
 		if (tfInput.getText().length() > 0) {
 			Message message = new Message();
@@ -98,11 +117,19 @@ public class InputPanel extends JPanel {
 			this.image = null;
 		}
 	}
-
+	
+	/**
+	 * InnerClass that listens for Keyboard buttons to be pressed.
+	 * @author Mårten, Jerry, Anton, Jonas
+	 */
 	private class EnterPressListener implements KeyListener {
 		public void keyTyped(KeyEvent e) {}
 		public void keyReleased(KeyEvent e) {}
-
+		
+		/**
+		 * If enter button is pressed on keyboard the actionEvent method
+		 * is called.
+		 */
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if (key == KeyEvent.VK_ENTER) {

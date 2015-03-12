@@ -9,6 +9,10 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+/**
+ * This class combine the panels to create one joint GUI. 
+ * @author Jerry, Anton, Mårten, Jonas
+ */
 public class ClientGUI {
 	
 	private UsersPanel usersPanel;
@@ -18,7 +22,12 @@ public class ClientGUI {
 	private Dimension dim;
 	private ClientController controller;
 	private StyledDocument document;
-
+	
+	/**
+	 * Creates a window to place panels at. sets size, layout and border.
+	 * Place the window in the middle of the screen. 
+	 * @param controller - ClientController
+	 */
 	public ClientGUI(ClientController controller) {
 		this.controller = controller;
 		usersPanel = new UsersPanel();
@@ -53,10 +62,19 @@ public class ClientGUI {
 		}); 
 	}
 	
+	/**
+	 * Calls the updateList in usersPanel to update the list with
+	 * online clients. 
+	 * @param users -String array with users.
+	 */
 	public void updateList(String[] users) {
 		usersPanel.updateList(users);
 	}
 	
+	/**
+	 * This method appends text to the textPane that displays conversations. 
+	 * @param text - text to be appended.
+	 */
 	public void appendText(String text) {
 		try {
 			document.insertString(document.getLength(), text + "\n", null);
@@ -65,7 +83,12 @@ public class ClientGUI {
 		}
 		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
 	}
-
+	
+	/**
+	 * This method is for appending both text and Image (Or only image).
+	 * @param text - text to be appended.
+	 * @param image - image to be appended.
+	 */
 	public void appendTextAndImage(String text, Icon image) {
 		try {
 			document.insertString(document.getLength(), text + "\n", null);
@@ -80,6 +103,10 @@ public class ClientGUI {
 		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
 	}
 	
+	/**
+	 * This method uses the getSelectedUsers method in the usersPanel class.
+	 * @return - returns a String array with the users that are selected.
+	 */
 	public String[] getSelectedUsers() {
 		return usersPanel.getSelectedUsers();
 	}

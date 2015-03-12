@@ -13,6 +13,10 @@ import chat_server.Message;
 
 import javax.swing.*;
 
+/**
+ * Controller class for Clients. 
+ * @author Jonas, Anton, Jerry, Mårten
+ */
 public class ClientController {
 
 	private ObjectOutputStream oos;
@@ -27,14 +31,24 @@ public class ClientController {
 	public ClientController() {
 		loginGUI = new LoginGUI(this);
 	}
-
+	
+	/**
+	 * Stores the userName for a client, then try to make a connection.
+	 * @param username - clients userName.
+	 */
 	public void login(String username) {
 		this.username = username;
 		client = new ClientGUI(this);
 		client.appendText("Trying to login..");
 		connect();
 	}
-
+	
+	/**
+	 * Creates a new socket with the ipAddress that the user enter in the
+	 * log in GUI, and a port thats available. Then uses the socket connection 
+	 * for input and outputStream. Then i writes the userName to the server and
+	 * then starts ReceiveMessage thread. 
+	 */
 	public void connect() {
 		try {
 			Socket socket = new Socket(loginGUI.getIpAddress(), 3520);
@@ -49,14 +63,26 @@ public class ClientController {
 		}
 	}
 
+	/**
+	 * Method for retrieving userName(s).
+	 * @return userName(s)
+	 */
 	public String getUserName() {
 		return username;
 	}
 
+	/**
+	 * Method for retrieving selectedUser(s).
+	 * @return selectedUser(s)
+	 */
 	public String[] getSelectedUsers() {
 		return client.getSelectedUsers();
 	}
 
+	/**
+	 * Sends a message object.
+	 * @param m - a object of the Message class
+	 */
 	public void send(Message m) {
 		try {
 			oos.writeObject(m);
@@ -66,6 +92,13 @@ public class ClientController {
 		}
 	}
 
+	/**
+	 * This method formats the message, it appends "sender + timeStamp + > ". 
+	 * Then the method checks if its only text to be appended after ">" or if there
+	 * is an image asWell. If there is an image in the message object it will be
+	 * directed to the "appendTextAndImage". 
+	 * @param m a object of the Message class
+	 */
 	public void appendText(Message m) {
 		m.setText((m.getSender() != null) ? (new SimpleDateFormat("HH:mm:ss")
 				.format(m.getRecievedAtServer()) + " " + m.getSender() + "> " + m
@@ -78,7 +111,18 @@ public class ClientController {
 		}
 	}
 
+	/**
+	 * This class receives messages from the server.
+	 * @author Mårten, Jerry, Anton, Jonas
+	 */
 	private class ReceiveMessages extends Thread {
+		
+		/**
+		 * The run method reads an object and checks if its a String array or
+		 * if its a Message object. If its a String array the method "updateList" 
+		 * if called, because then its a list of users. Else if its a Message object
+		 * the "appendText" method is called. 
+		 */
 		public void run() {
 			while (!Thread.interrupted()) {
 				try {
