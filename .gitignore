@@ -3,3 +3,5 @@ bin/
 Prat.iml
 .idea/
 loggs/
+src/chat_client/ClientFX.java
+src/chat_server/log*
