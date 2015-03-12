@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 
 import chat_server.Message;
 
+import javax.swing.*;
+
 public class ClientController {
 
 	private ObjectOutputStream oos;
@@ -78,7 +80,7 @@ public class ClientController {
 
 	private class ReceiveMessages extends Thread {
 		public void run() {
-			while (true) {
+			while (!Thread.interrupted()) {
 				try {
 					Object obj = ois.readObject();
 					if (obj instanceof String[]) {
@@ -89,6 +91,8 @@ public class ClientController {
 					}
 				} catch (IOException ex) {
 					System.err.println("Connection lost...");
+					JOptionPane.showMessageDialog(null, "Connection lost...");
+					this.interrupt();
 				} catch (ClassNotFoundException e) {
 					System.err.println("Can't find received class");
 				}
