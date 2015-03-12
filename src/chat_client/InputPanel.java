@@ -4,13 +4,36 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.awt.image.BufferedImage;
+ import java.awt.image.RenderedImage;
+ import java.io.ByteArrayInputStream;
+ import java.io.ByteArrayOutputStream;
+ import java.io.File;
+ import java.io.IOException;
+ import java.util.Iterator;
+  
+ import javax.imageio.IIOImage;
+ import javax.imageio.ImageIO;
+ import javax.imageio.ImageWriteParam;
+ import javax.imageio.ImageWriter;
+ import javax.imageio.stream.FileImageOutputStream;
+ import javax.imageio.stream.ImageOutputStream;
+ import javax.swing.JFrame;
 
 import chat_server.Message;
 
@@ -50,7 +73,16 @@ public class InputPanel extends JPanel {
 				"jpg", "gif", "jpeg", "png"));
 		fc.showDialog(null, "Välj en bildfil");
 		if (fc.getSelectedFile() != null) {
-			this.image = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+			String imageFile= fc.getSelectedFile().getAbsolutePath();		
+			
+			try {
+				BufferedImage i = ImageIO.read(new File(imageFile));
+			compressAndShow(i, 0.5f);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//			this.image = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
 			int width = image.getIconWidth();
 			int height = image.getIconHeight();
 			while(width > 500){
@@ -62,6 +94,33 @@ public class InputPanel extends JPanel {
 			this.image = new ImageIcon(newimg);
 		}
 	}
+	
+	public static void compressAndShow(BufferedImage image, float quality) throws IOException
+	       {
+	       // Get a ImageWriter for jpeg format.
+	       Iterator<ImageWriter> writers = ImageIO.getImageWritersBySuffix("jpeg");
+	       if (!writers.hasNext()) throw new IllegalStateException("No writers found");
+	       ImageWriter writer = (ImageWriter) writers.next();
+	       // Create the ImageWriteParam to compress the image.
+	       ImageWriteParam param = writer.getDefaultWriteParam();
+	       param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+	       param.setCompressionQuality(quality);
+	       // The output will be a ByteArrayOutputStream (in memory)
+	       ByteArrayOutputStream bos = new ByteArrayOutputStream(32768);
+	       ImageOutputStream ios = ImageIO.createImageOutputStream(bos);
+	       writer.setOutput(ios);
+	     writer.write(null, new IIOImage(image, null, null), param);
+	      ios.flush(); // otherwise the buffer size will be zero!
+	       // From the ByteArrayOutputStream create a RenderedImage.
+	       ByteArrayInputStream in = new ByteArrayInputStream(bos.toByteArray());
+	       RenderedImage out = ImageIO.read(in);
+	       int size = bos.toByteArray().length;
+	       image = ImageIO.read(in);
+	       // Uncomment code below to save the compressed files.
+	   //    File file = new File("compressed."+quality+".jpeg");
+//	       FileImageOutputStream output = new FileImageOutputStream(imgae);
+//	       writer.setOutput(output); writer.write(null, new IIOImage(image, null,null), param);
+	  }
 
 	public JTextField getInputField() {
 		return this.tfInput;
