@@ -4,15 +4,21 @@ import java.io.*;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 
+/**
+ * Controller class for the Client.
+ * @author Anton, Jerry, Jonas, Mårten
+ */
 public class ClientController {
 
-	private Socket socket;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private ClientGUI client;
 	private String username;
 	private LoginGUI loginGUI;
 
+	/**
+	 * Constructor. Creates and shows a Login screen.
+	 */
 	public ClientController() {
 		loginGUI = new LoginGUI(this);
 
@@ -27,12 +33,12 @@ public class ClientController {
 
 	public void connect() {
 		try {
-			socket = new Socket(loginGUI.getIpAddress(), 3520);
+			Socket socket = new Socket(loginGUI.getIpAddress(), 3520);
 			oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 			ois = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
 			oos.writeUTF(username);
 			oos.flush();
-			new RecieveMessages().start();
+			new ReceiveMessages().start();
 		} catch (IOException ex) {
 			client.appendText("Could not connect to server");
 		}
@@ -46,17 +52,16 @@ public class ClientController {
 		return client.getSelectedUsers();
 	}
 
-	public void send(Message m) { // ANvänds denna någon gång?? 
+	public void send(Message m) {
 		try {
 			oos.writeObject(m);
 			oos.flush();
 		} catch (IOException e) {
-			System.out.println("Could not send file: " + e.getMessage());
+			System.err.println("Couldn't send message...");
 		}
 	}
 
 	public void appendText(Message m) {
-
 		m.setText((m.getSender() != null) ? (new SimpleDateFormat("HH:mm:ss")
 				.format(m.getRecievedAtServer()) + " " + m.getSender() + "> " + m
 				.getText()) : m.getText());
@@ -68,7 +73,7 @@ public class ClientController {
 		}
 	}
 
-	private class RecieveMessages extends Thread {
+	private class ReceiveMessages extends Thread {
 		public void run() {
 			while (true) {
 				try {
@@ -79,12 +84,10 @@ public class ClientController {
 						Message m = (Message) obj;
 						appendText(m);
 					}
-
-				} catch (IOException ex2) {
-					ex2.printStackTrace();
+				} catch (IOException ex) {
+					System.err.println("Connection lost...");
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.err.println("Can't find received class");
 				}
 
 			}

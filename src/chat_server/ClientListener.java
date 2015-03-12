@@ -1,6 +1,5 @@
 package chat_server;
 
-import javax.swing.*;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
@@ -32,7 +31,7 @@ public class ClientListener extends Thread {
 	public String getUsername() {
 		return this.username;
 	}
-	
+
 	public void run() {
 		while(!Thread.interrupted()) {
 			recieve();
