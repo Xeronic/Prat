@@ -51,8 +51,14 @@ public class InputPanel extends JPanel {
 		fc.showDialog(null, "Välj en bildfil");
 		if (fc.getSelectedFile() != null) {
 			this.image = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+			int width = image.getIconWidth();
+			int height = image.getIconHeight();
+			while(width > 500){
+				width/=2;
+				height/=2;
+			}
 			Image img = image.getImage();
-			Image newimg = img.getScaledInstance(((int)(image.getIconHeight() * 0.5)) , ((int)(image.getIconWidth() * 0.5)), java.awt.Image.SCALE_SMOOTH);
+			Image newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 			this.image = new ImageIcon(newimg);
 		}
 	}
