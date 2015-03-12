@@ -1,16 +1,15 @@
 package chat_client;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
+/**
+ * This class represents the loginPanelGUI for the system.
+ * @author Mårten, Anton, Jonas, Jerry
+ *
+ */
 public class LoginGUI {
 
 	private String userName, ipAddress;
@@ -23,6 +22,10 @@ public class LoginGUI {
 	private Dimension dim;
 	private Color ORANGE = Color.ORANGE;
 	
+	/**
+	 * Creates a frame to place panels at. And set to display at center of the screen.
+	 * @param controller - ClientController
+	 */
 	public LoginGUI(ClientController controller) {
 		this.controller = controller;
 		frame = new JFrame("Login window");
@@ -35,6 +38,10 @@ public class LoginGUI {
 				dim.height/2-frame.getSize().height/2); //Place window center of screen.
 	}
 	
+	/**
+	 * This method creates a panel and set size and layout. Creates border and font.
+	 * @return JPanel
+	 */
 	public JPanel loginPanel(){
 		JPanel panel = new JPanel();
 		btnFont = new Font("Sanserif", Font.ROMAN_BASELINE, 22);
@@ -57,6 +64,10 @@ public class LoginGUI {
 		return panel;
 	}
 	
+	/**
+	 * Creates a panel that is to be placed at center of a window. 
+	 * @return JPanel
+	 */
 	public JPanel centrePanel(){
 		JPanel centrePanel = new JPanel();
 		JPanel userNamePanel = new JPanel(new BorderLayout());
@@ -84,16 +95,29 @@ public class LoginGUI {
 		return centrePanel;
 	}
 	
+	/**
+	 * Method for retrieving userNames.
+	 * @return userName
+	 */
 	public String getUserName(){
 		userName = tfUserName.getText();
 		return userName;
 	}
 	
+	/**
+	 * Method for retrieving ipAddresses.
+	 * @return ipAddress
+	 */
 	public String getIpAddress(){
 		ipAddress = tfIpAddress.getText();
 		return ipAddress;
 	}
 	
+	/**
+	 * Checks if a userName is written if a name is written the login method in
+	 * the controller class will be called. Else a JOptionPane will be displayed
+	 * and ask the user for a userName.
+	 */
 	public void actionEvent(){
 		if ((getUserName() != null) && getUserName().length() > 0) {
 			controller.login(tfUserName.getText().toString());
@@ -103,8 +127,15 @@ public class LoginGUI {
 		}
 	}
 	
+	/**
+	 * InnerClass that listens if the button is clicked.
+	 * @author Mårten, Jerry, Jonas, Anton
+	 */
 	private class ButtonListener implements ActionListener {
-	
+		
+		/**
+		 * If enter button is clicked, run the actionEvent method.
+		 */
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == btnEnter){
 				actionEvent();
@@ -112,10 +143,18 @@ public class LoginGUI {
 		}
 	}
 	
+	/**
+	 * InnerClass that listens for the keyboard button Enter is pressed.
+	 * @author Mårten, Anton, Jonas, Jerry
+	 */
 	private class EnterPress implements KeyListener {
 		public void keyTyped(KeyEvent e) {}
 		public void keyReleased(KeyEvent e) {}
 		
+		/**
+		 * This method is performed if the enter button on the keyboard is pressed
+		 * then the actionEvent method is called. 
+		 */
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeyEvent.VK_ENTER){
@@ -124,9 +163,17 @@ public class LoginGUI {
 		}
 	}
 	
+	/**
+	 * InnerClass that listen for a textField to be focused.
+	 * @author Jonas, Anton, Jerry, Mårten
+	 */
 	private class FocusTextListener implements FocusListener {
 		public void focusLost(FocusEvent e) {}
-
+		
+		/**
+		 * If a textField get activated the textField calls selectAll method
+		 * and if there is any text in the textField it will be marked.
+		 */
 		public void focusGained(FocusEvent e) {
 			tfIpAddress.selectAll();			
 		}
