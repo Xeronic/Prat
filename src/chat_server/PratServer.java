@@ -153,7 +153,7 @@ public class PratServer extends Thread {
 
 	public void extractRecipients(Message m) {
 		boolean temp = false;
-		if (m.all) {
+		if (m.getAll()) {
 			sendMessage(m, clients);
 		} else {
 			for (String recipient : m.getRecipients()) {
