@@ -1,0 +1,350 @@
+mar 10, 2015 1:52:53 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 1:52:53 EM chat_server.PratServer addClient
+INFO: Mårten CONNECTED
+mar 10, 2015 1:52:57 EM chat_server.PratServer sendMessage
+INFO: Mårten: Hej
+mar 10, 2015 1:52:59 EM chat_server.PratServer sendMessage
+INFO: Mårten: Hejejeje
+mar 10, 2015 1:53:00 EM chat_server.PratServer sendMessage
+INFO: Mårten: e
+mar 10, 2015 1:53:04 EM chat_server.PratServer sendMessage
+INFO: Mårten: Heje
+mar 10, 2015 1:53:09 EM chat_server.PratServer sendMessage
+INFO: Mårten: nehee
+mar 10, 2015 1:53:15 EM chat_server.PratServer removeClient
+INFO: Mårten DISCONNECTED
+mar 10, 2015 1:56:00 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 1:56:00 EM chat_server.PratServer addClient
+INFO: Mråte CONNECTED
+mar 10, 2015 1:56:07 EM chat_server.PratServer sendMessage
+INFO: Mråte: llll
+mar 10, 2015 1:56:11 EM chat_server.PratServer removeClient
+INFO: Mråte DISCONNECTED
+mar 10, 2015 1:56:39 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 1:56:39 EM chat_server.PratServer addClient
+INFO: HEee CONNECTED
+mar 10, 2015 1:56:42 EM chat_server.PratServer sendMessage
+INFO: HEee: hehe
+mar 10, 2015 1:56:43 EM chat_server.PratServer sendMessage
+INFO: HEee: he
+mar 10, 2015 1:56:43 EM chat_server.PratServer sendMessage
+INFO: HEee: ehe
+mar 10, 2015 1:56:43 EM chat_server.PratServer sendMessage
+INFO: HEee: eh
+mar 10, 2015 1:56:44 EM chat_server.PratServer sendMessage
+INFO: HEee: eh
+mar 10, 2015 1:56:44 EM chat_server.PratServer sendMessage
+INFO: HEee: eh
+mar 10, 2015 1:56:44 EM chat_server.PratServer sendMessage
+INFO: HEee: ehe
+mar 10, 2015 1:56:44 EM chat_server.PratServer sendMessage
+INFO: HEee: he
+mar 10, 2015 1:56:44 EM chat_server.PratServer sendMessage
+INFO: HEee: he
+mar 10, 2015 1:56:45 EM chat_server.PratServer sendMessage
+INFO: HEee: eh
+mar 10, 2015 1:56:45 EM chat_server.PratServer sendMessage
+INFO: HEee: eh
+mar 10, 2015 1:56:48 EM chat_server.PratServer removeClient
+INFO: HEee DISCONNECTED
+mar 10, 2015 1:57:01 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 1:57:01 EM chat_server.PratServer addClient
+INFO: Hej CONNECTED
+mar 10, 2015 1:57:02 EM chat_server.PratServer sendMessage
+INFO: Hej: ke
+mar 10, 2015 1:57:05 EM chat_server.PratServer removeClient
+INFO: Hej DISCONNECTED
+mar 10, 2015 1:58:23 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 1:58:23 EM chat_server.PratServer addClient
+INFO: HEj CONNECTED
+mar 10, 2015 1:58:29 EM chat_server.PratServer sendMessage
+INFO: HEj: Heje
+mar 10, 2015 1:58:29 EM chat_server.PratServer sendMessage
+INFO: HEj: ke
+mar 10, 2015 1:58:30 EM chat_server.PratServer sendMessage
+INFO: HEj: ek
+mar 10, 2015 1:58:30 EM chat_server.PratServer sendMessage
+INFO: HEj: ke
+mar 10, 2015 1:58:30 EM chat_server.PratServer sendMessage
+INFO: HEj: ke
+mar 10, 2015 1:58:30 EM chat_server.PratServer sendMessage
+INFO: HEj: ke
+mar 10, 2015 1:58:31 EM chat_server.PratServer sendMessage
+INFO: HEj: ke
+mar 10, 2015 1:58:33 EM chat_server.PratServer removeClient
+INFO: HEj DISCONNECTED
+mar 10, 2015 2:02:38 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:02:38 EM chat_server.PratServer addClient
+INFO: Hej CONNECTED
+mar 10, 2015 2:02:39 EM chat_server.PratServer sendMessage
+INFO: Hej: ke
+mar 10, 2015 2:02:40 EM chat_server.PratServer sendMessage
+INFO: Hej: k
+mar 10, 2015 2:02:40 EM chat_server.PratServer sendMessage
+INFO: Hej: ke
+mar 10, 2015 2:02:40 EM chat_server.PratServer sendMessage
+INFO: Hej: ke
+mar 10, 2015 2:02:40 EM chat_server.PratServer sendMessage
+INFO: Hej: ke
+mar 10, 2015 2:02:40 EM chat_server.PratServer sendMessage
+INFO: Hej: ke
+mar 10, 2015 2:02:42 EM chat_server.PratServer removeClient
+INFO: Hej DISCONNECTED
+mar 10, 2015 2:04:34 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:04:34 EM chat_server.PratServer addClient
+INFO: hej CONNECTED
+mar 10, 2015 2:04:41 EM chat_server.PratServer sendMessage
+INFO: hej: Hej
+mar 10, 2015 2:04:46 EM chat_server.PratServer sendMessage
+INFO: hej: Hej
+mar 10, 2015 2:05:36 EM chat_server.PratServer sendMessage
+INFO: null: Hej connected at 2015-03-10 14:05:36
+mar 10, 2015 2:05:36 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:05:36 EM chat_server.PratServer addClient
+INFO: Hej CONNECTED
+mar 10, 2015 2:05:38 EM chat_server.PratServer sendMessage
+INFO: Hej: hehe
+mar 10, 2015 2:05:38 EM chat_server.PratServer sendMessage
+INFO: Hej: hehe
+mar 10, 2015 2:05:40 EM chat_server.PratServer sendMessage
+INFO: null: Hej disconnected
+mar 10, 2015 2:05:40 EM chat_server.PratServer removeClient
+INFO: Hej DISCONNECTED
+mar 10, 2015 2:05:41 EM chat_server.PratServer removeClient
+INFO: hej DISCONNECTED
+mar 10, 2015 2:06:13 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:06:13 EM chat_server.PratServer addClient
+INFO: Hej CONNECTED
+mar 10, 2015 2:06:15 EM chat_server.PratServer sendMessage
+INFO: Hej: he
+mar 10, 2015 2:06:17 EM chat_server.PratServer sendMessage
+INFO: Hej: jeje
+mar 10, 2015 2:06:18 EM chat_server.PratServer sendMessage
+INFO: Hej: jej
+mar 10, 2015 2:06:18 EM chat_server.PratServer sendMessage
+INFO: Hej: eke
+mar 10, 2015 2:06:18 EM chat_server.PratServer sendMessage
+INFO: Hej: ke
+mar 10, 2015 2:06:19 EM chat_server.PratServer sendMessage
+INFO: Hej: k
+mar 10, 2015 2:06:19 EM chat_server.PratServer sendMessage
+INFO: Hej: ke
+mar 10, 2015 2:06:19 EM chat_server.PratServer sendMessage
+INFO: Hej: ek
+mar 10, 2015 2:06:20 EM chat_server.PratServer sendMessage
+INFO: Hej: ke
+mar 10, 2015 2:06:20 EM chat_server.PratServer sendMessage
+INFO: Hej: k
+mar 10, 2015 2:06:21 EM chat_server.PratServer sendMessage
+INFO: Hej: e
+mar 10, 2015 2:06:23 EM chat_server.PratServer removeClient
+INFO: Hej DISCONNECTED
+mar 10, 2015 2:08:48 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:08:48 EM chat_server.PratServer addClient
+INFO: hej CONNECTED
+mar 10, 2015 2:08:50 EM chat_server.PratServer sendMessage
+INFO: hej: Hej
+mar 10, 2015 2:08:52 EM chat_server.PratServer removeClient
+INFO: hej DISCONNECTED
+mar 10, 2015 2:09:28 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:09:28 EM chat_server.PratServer addClient
+INFO: Hej CONNECTED
+mar 10, 2015 2:09:30 EM chat_server.PratServer sendMessage
+INFO: Hej: je
+mar 10, 2015 2:09:31 EM chat_server.PratServer sendMessage
+INFO: Hej: je
+mar 10, 2015 2:09:31 EM chat_server.PratServer sendMessage
+INFO: Hej: e
+mar 10, 2015 2:09:34 EM chat_server.PratServer removeClient
+INFO: Hej DISCONNECTED
+mar 10, 2015 2:09:43 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:09:43 EM chat_server.PratServer addClient
+INFO: Hej CONNECTED
+mar 10, 2015 2:09:47 EM chat_server.PratServer sendMessage
+INFO: Hej: Hej
+mar 10, 2015 2:09:51 EM chat_server.PratServer sendMessage
+INFO: Hej: Hej
+mar 10, 2015 2:09:52 EM chat_server.PratServer sendMessage
+INFO: Hej: ¨e
+mar 10, 2015 2:09:55 EM chat_server.PratServer removeClient
+INFO: Hej DISCONNECTED
+mar 10, 2015 2:12:54 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:12:54 EM chat_server.PratServer addClient
+INFO: Hej CONNECTED
+mar 10, 2015 2:12:58 EM chat_server.PratServer removeClient
+INFO: Hej DISCONNECTED
+mar 10, 2015 2:17:16 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:17:16 EM chat_server.PratServer addClient
+INFO: hej CONNECTED
+mar 10, 2015 2:17:18 EM chat_server.PratServer sendMessage
+INFO: hej: Hej
+mar 10, 2015 2:17:20 EM chat_server.PratServer sendMessage
+INFO: hej: hej
+mar 10, 2015 2:17:20 EM chat_server.PratServer sendMessage
+INFO: hej: je
+mar 10, 2015 2:17:21 EM chat_server.PratServer sendMessage
+INFO: hej: je
+mar 10, 2015 2:17:21 EM chat_server.PratServer sendMessage
+INFO: hej: je
+mar 10, 2015 2:17:21 EM chat_server.PratServer sendMessage
+INFO: hej: je
+mar 10, 2015 2:17:22 EM chat_server.PratServer sendMessage
+INFO: hej: jkk
+mar 10, 2015 2:17:27 EM chat_server.PratServer removeClient
+INFO: hej DISCONNECTED
+mar 10, 2015 2:20:56 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:20:56 EM chat_server.PratServer addClient
+INFO: Hej CONNECTED
+mar 10, 2015 2:20:59 EM chat_server.PratServer sendMessage
+INFO: Hej: hej
+mar 10, 2015 2:20:59 EM chat_server.PratServer sendMessage
+INFO: Hej: je
+mar 10, 2015 2:21:00 EM chat_server.PratServer sendMessage
+INFO: Hej: e
+mar 10, 2015 2:21:03 EM chat_server.PratServer sendMessage
+INFO: Hej: he
+mar 10, 2015 2:21:03 EM chat_server.PratServer sendMessage
+INFO: Hej: je
+mar 10, 2015 2:21:04 EM chat_server.PratServer sendMessage
+INFO: Hej: eje
+mar 10, 2015 2:21:04 EM chat_server.PratServer sendMessage
+INFO: Hej: e
+mar 10, 2015 2:21:04 EM chat_server.PratServer sendMessage
+INFO: Hej: ke
+mar 10, 2015 2:21:04 EM chat_server.PratServer sendMessage
+INFO: Hej: k
+mar 10, 2015 2:21:05 EM chat_server.PratServer sendMessage
+INFO: Hej: ,e
+mar 10, 2015 2:21:07 EM chat_server.PratServer removeClient
+INFO: Hej DISCONNECTED
+mar 10, 2015 2:23:10 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:23:10 EM chat_server.PratServer addClient
+INFO: hej CONNECTED
+mar 10, 2015 2:23:12 EM chat_server.PratServer sendMessage
+INFO: hej: je
+mar 10, 2015 2:23:14 EM chat_server.PratServer removeClient
+INFO: hej DISCONNECTED
+mar 10, 2015 2:23:52 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:23:52 EM chat_server.PratServer addClient
+INFO: hej CONNECTED
+mar 10, 2015 2:23:54 EM chat_server.PratServer sendMessage
+INFO: hej: he
+mar 10, 2015 2:23:57 EM chat_server.PratServer sendMessage
+INFO: hej: je
+mar 10, 2015 2:23:59 EM chat_server.PratServer removeClient
+INFO: hej DISCONNECTED
+mar 10, 2015 2:24:46 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:24:46 EM chat_server.PratServer addClient
+INFO: Hej CONNECTED
+mar 10, 2015 2:24:56 EM chat_server.PratServer removeClient
+INFO: Hej DISCONNECTED
+mar 10, 2015 2:25:23 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:25:23 EM chat_server.PratServer addClient
+INFO: hej CONNECTED
+mar 10, 2015 2:25:26 EM chat_server.PratServer removeClient
+INFO: hej DISCONNECTED
+mar 10, 2015 2:29:37 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:29:37 EM chat_server.PratServer addClient
+INFO: Hej CONNECTED
+mar 10, 2015 2:29:41 EM chat_server.PratServer removeClient
+INFO: Hej DISCONNECTED
+mar 10, 2015 2:31:05 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 2:31:05 EM chat_server.PratServer addClient
+INFO: HEj CONNECTED
+mar 10, 2015 2:31:07 EM chat_server.PratServer sendMessage
+INFO: HEj: jeje
+mar 10, 2015 2:31:09 EM chat_server.PratServer sendMessage
+INFO: HEj: hjeje
+mar 10, 2015 2:31:33 EM chat_server.PratServer removeClient
+INFO: HEj DISCONNECTED
+mar 10, 2015 3:02:03 EM chat_server.PratServer sendMessage
+INFO: null: Connected
+mar 10, 2015 3:02:04 EM chat_server.PratServer addClient
+INFO: hej CONNECTED
+mar 10, 2015 3:02:07 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:07 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:07 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:07 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:07 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:07 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:08 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:08 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:08 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:08 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:09 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:09 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:12 EM chat_server.PratServer sendMessage
+INFO: hej: ee
+mar 10, 2015 3:02:13 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:13 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:13 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:13 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:14 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:14 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:14 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:14 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:15 EM chat_server.PratServer sendMessage
+INFO: hej: e
+mar 10, 2015 3:02:16 EM chat_server.PratServer sendMessage
+INFO: hej: Hej
+mar 10, 2015 3:02:16 EM chat_server.PratServer sendMessage
+INFO: hej: je
+mar 10, 2015 3:02:17 EM chat_server.PratServer sendMessage
+INFO: hej: aj
+mar 10, 2015 3:02:17 EM chat_server.PratServer sendMessage
+INFO: hej: ak
+mar 10, 2015 3:02:18 EM chat_server.PratServer sendMessage
+INFO: hej: lpegem
+mar 10, 2015 3:02:18 EM chat_server.PratServer sendMessage
+INFO: hej: ogemogem
+mar 10, 2015 3:02:18 EM chat_server.PratServer sendMessage
+INFO: hej: emo
+mar 10, 2015 3:02:19 EM chat_server.PratServer sendMessage
+INFO: hej: emge
+mar 10, 2015 3:02:19 EM chat_server.PratServer sendMessage
+INFO: hej: ogmeogme
+mar 10, 2015 3:02:19 EM chat_server.PratServer sendMessage
+INFO: hej: gom
+mar 10, 2015 3:02:24 EM chat_server.PratServer removeClient
+INFO: hej DISCONNECTED

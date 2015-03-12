@@ -21,6 +21,7 @@ public class LoginGUI {
 	private Font btnFont, borderFont;
 	private JLabel inputIpAddress, inputUserName;
 	private Dimension dim;
+	private Color ORANGE = Color.ORANGE;
 	
 	public LoginGUI(ClientController controller) {
 		this.controller = controller;
@@ -30,7 +31,8 @@ public class LoginGUI {
 		frame.pack();	
 		frame.setVisible(true);
 		dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation(dim.width/2-frame.getSize().width/2 , dim.height/2-frame.getSize().height/2);
+		frame.setLocation(dim.width/2-frame.getSize().width/2, 
+				dim.height/2-frame.getSize().height/2); //Place window center of screen.
 	}
 	
 	public JPanel loginPanel(){
@@ -46,7 +48,7 @@ public class LoginGUI {
 	
 		panel.add(btnEnter, BorderLayout.SOUTH);
 		panel.add(centrePanel(), BorderLayout.CENTER);
-		panel.setBackground(Color.ORANGE);
+		panel.setBackground(ORANGE);
 		
 		tfUserName.addKeyListener(new EnterPress());
 		tfIpAddress.addKeyListener(new EnterPress());
@@ -60,15 +62,14 @@ public class LoginGUI {
 		JPanel userNamePanel = new JPanel(new BorderLayout());
 		JPanel ipAddressPanel = new JPanel(new BorderLayout());
 		centrePanel.setLayout(new GridLayout(2,1));
-		centrePanel.setBackground(Color.ORANGE);
+		centrePanel.setBackground(ORANGE);
 		inputIpAddress = new JLabel("Ip address:");
-		inputIpAddress.setBackground(Color.ORANGE);
+		inputIpAddress.setBackground(ORANGE);
 		inputIpAddress.setOpaque(true);
 		inputUserName = new JLabel("UserName:");
-		inputUserName.setBackground(Color.ORANGE);
+		inputUserName.setBackground(ORANGE);
 		inputUserName.setOpaque(true);
 		tfUserName = new JTextField();
-		tfUserName.setSize(new Dimension(1009,2000));
 		tfIpAddress = new JTextField("127.0.0.1");
 		tfIpAddress.addFocusListener(new FocusTextListener());
 		centrePanel.setBorder(BorderFactory.createTitledBorder(null, "Login", TitledBorder.DEFAULT_JUSTIFICATION, 
@@ -124,18 +125,10 @@ public class LoginGUI {
 	}
 	
 	private class FocusTextListener implements FocusListener {
+		public void focusLost(FocusEvent e) {}
 
-		@Override
 		public void focusGained(FocusEvent e) {
-			tfIpAddress.selectAll();
-			
+			tfIpAddress.selectAll();			
 		}
-
-		@Override
-		public void focusLost(FocusEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
 	}
 }

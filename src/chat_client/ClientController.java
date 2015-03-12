@@ -26,7 +26,6 @@ public class ClientController {
 	 */
 	public ClientController() {
 		loginGUI = new LoginGUI(this);
-
 	}
 
 	public void login(String username) {
@@ -45,6 +44,7 @@ public class ClientController {
 			oos.flush();
 			new ReceiveMessages().start();
 		} catch (IOException ex) {
+			System.err.println(ex.getMessage());
 			client.appendText("Could not connect to server");
 		}
 	}
@@ -96,7 +96,6 @@ public class ClientController {
 				} catch (ClassNotFoundException e) {
 					System.err.println("Can't find received class");
 				}
-
 			}
 		}
 	}

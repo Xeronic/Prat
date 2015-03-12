@@ -20,6 +20,7 @@ public class OfflineMessagePanel extends JPanel {
 	private ClientController controller;
 	private JTextField tfToUser;
 	private ImageIcon icon;
+	private Color ORANGE = Color.ORANGE;
 
 	public OfflineMessagePanel(ClientController controller) {
 		this.controller = controller;
@@ -30,7 +31,7 @@ public class OfflineMessagePanel extends JPanel {
 		frame.setVisible(true);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation(dim.width / 2 - panel.getSize().width / 2, dim.height
-				/ 2 - panel.getSize().height / 2);
+				/ 2 - panel.getSize().height / 2);	// set window to centre of screen.
 	}
 
 	public JPanel thePanel() {
@@ -38,7 +39,7 @@ public class OfflineMessagePanel extends JPanel {
 		panel.setLayout(new BorderLayout());
 		panel.setPreferredSize(new Dimension(400, 300));
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 0, 20));
-		panel.setBackground(Color.ORANGE);
+		panel.setBackground(ORANGE);
 
 		panel.add(topPanel(), BorderLayout.NORTH);
 		panel.add(centrePanel(), BorderLayout.CENTER);
@@ -58,7 +59,7 @@ public class OfflineMessagePanel extends JPanel {
 		JLabel lblSendTo = new JLabel("Send to:");
 		tfToUser = new JTextField();
 
-		lblSendTo.setBackground(Color.ORANGE);
+		lblSendTo.setBackground(ORANGE);
 		lblSendTo.setOpaque(true);
 		topPanel.setLayout(new BorderLayout());
 		topPanel.add(lblSendTo, BorderLayout.WEST);
@@ -76,7 +77,7 @@ public class OfflineMessagePanel extends JPanel {
 		centrePanel.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
 		lblMessage.setBorder(BorderFactory.createEmptyBorder(0, 0, 160, 10));
 		tpMessage.setBorder(BorderFactory.createEmptyBorder(5, 10, 0, 0));
-		centrePanel.setBackground(Color.ORANGE);
+		centrePanel.setBackground(ORANGE);
 
 		centrePanel.setLayout(new BorderLayout());
 		centrePanel.add(lblMessage, BorderLayout.WEST);
@@ -92,7 +93,7 @@ public class OfflineMessagePanel extends JPanel {
 		btnAttach = new JButton("Attach file");
 		btnCancel = new JButton("Cancel");
 
-		bottomPanel.setBackground(Color.ORANGE);
+		bottomPanel.setBackground(ORANGE);
 		bottomPanel.setLayout(new GridLayout(1, 3, 5, 5));
 		bottomPanel.add(btnSend);
 		bottomPanel.add(btnAttach);
@@ -140,11 +141,8 @@ public class OfflineMessagePanel extends JPanel {
 	}
 
 	private class EnterPressListener implements KeyListener {
-		public void keyTyped(KeyEvent e) {
-		}
-
-		public void keyReleased(KeyEvent e) {
-		}
+		public void keyTyped(KeyEvent e) {}
+		public void keyReleased(KeyEvent e) {}
 
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
