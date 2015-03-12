@@ -46,7 +46,7 @@ public class ClientController {
 		return client.getSelectedUsers();
 	}
 
-	public void send(chat_server.Message m) { // ANvänds denna någon gång?? 
+	public void send(Message m) { // ANvänds denna någon gång?? 
 		try {
 			oos.writeObject(m);
 			oos.flush();
@@ -55,7 +55,7 @@ public class ClientController {
 		}
 	}
 
-	public void appendText(chat_server.Message m) {
+	public void appendText(Message m) {
 
 		m.setText((m.getSender() != null) ? (new SimpleDateFormat("HH:mm:ss")
 				.format(m.getRecievedAtServer()) + " " + m.getSender() + "> " + m
@@ -75,8 +75,8 @@ public class ClientController {
 					Object obj = ois.readObject();
 					if (obj instanceof String[]) {
 						client.updateList((String[]) obj);
-					} else if (obj instanceof chat_server.Message) {
-						chat_server.Message m = (chat_server.Message) obj;
+					} else if (obj instanceof Message) {
+						Message m = (Message) obj;
 						appendText(m);
 					}
 
