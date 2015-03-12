@@ -5,6 +5,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 public class ClientGUI {
@@ -15,6 +17,7 @@ public class ClientGUI {
 	private JScrollPane scroll;
 	private Dimension dim;
 	private ClientController controller;
+	private StyledDocument document;
 
 	public ClientGUI(ClientController controller) {
 		this.controller = controller;
@@ -27,7 +30,9 @@ public class ClientGUI {
 		tpChatArea = new JTextPane();;
 		tpChatArea.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
 		scroll = new JScrollPane(tpChatArea);
-		
+		document = tpChatArea.getStyledDocument();
+
+
 		window.add(scroll, BorderLayout.CENTER);
 		window.add(usersPanel, BorderLayout.EAST);
 		window.add(inputPanel, BorderLayout.SOUTH);
@@ -53,23 +58,24 @@ public class ClientGUI {
 	
 	public void appendText(String text) {
 		try {
-			StyledDocument doc = tpChatArea.getStyledDocument();
-			doc.insertString(doc.getLength(), text, null);
+			document.insertString(document.getLength(), text + "\n", null);
 		} catch (BadLocationException exe) {
 
 		}
-		//String temp = tpChatArea.getText();
-		//tpChatArea.setText(temp + "\n" + text);
-		//tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
+		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
 
 	}
 
 	public void appendTextAndImage(String text, Icon image) {
-		String temp = tpChatArea.getText();
-		tpChatArea.setText(temp + "\n" + text);
-		tpChatArea.insertIcon(image);
-		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
+		try {
+			document.insertString(document.getLength(), text + "\n", null);
 
+			Style style = document.addStyle("StyleName", null);
+			StyleConstants.setIcon(style, image);
+			document.insertString(document.getLength(), "\n", style);
+
+		} catch (BadLocationException exe) {}
+		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
 	}
 	
 	public String[] getSelectedUsers() {

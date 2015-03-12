@@ -4,15 +4,13 @@ import java.io.*;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 
-<<<<<<< HEAD
 /**
  * Controller class for the Client.
  * @author Anton, Jerry, Jonas, Mårten
  */
-=======
+
 import chat_server.Message;
 
->>>>>>> f7e80372e70bae4b4784a7312605cacda93e3ef5
 public class ClientController {
 
 	private ObjectOutputStream oos;
@@ -38,15 +36,9 @@ public class ClientController {
 
 	public void connect() {
 		try {
-<<<<<<< HEAD
 			Socket socket = new Socket(loginGUI.getIpAddress(), 3520);
-			oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-			ois = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
-=======
-			socket = new Socket(loginGUI.getIpAddress(), 3520);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
->>>>>>> f7e80372e70bae4b4784a7312605cacda93e3ef5
 			oos.writeUTF(username);
 			oos.flush();
 			new ReceiveMessages().start();
