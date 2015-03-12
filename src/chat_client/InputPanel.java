@@ -54,8 +54,8 @@ public class InputPanel extends JPanel {
 			int width = image.getIconWidth();
 			int height = image.getIconHeight();
 			while(width > 500){
-				width/=2;
-				height/=2;
+				width *= 0.9;
+				height *= 0.9;
 			}
 			Image img = image.getImage();
 			Image newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
