@@ -24,7 +24,7 @@ public class ClientGUI {
 		usersPanel = new UsersPanel(controller);
 		inputPanel = new InputPanel(controller);
 		
-		JFrame window = new JFrame("Prat - klient");
+		JFrame window = new JFrame(controller.getUserName() + " | Prat");
 		window.setLayout(new BorderLayout());
 		
 		tpChatArea = new JTextPane();;
