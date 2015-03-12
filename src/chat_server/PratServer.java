@@ -17,14 +17,14 @@ public class PratServer extends Thread {
 	private ServerSocket serverSocket;
 	private String id = null;
 	private ArrayList<Message> pendingMessages;
-	private ArrayList<Client> clients;
+	private ArrayList<ClientListener> clients;
 	private final static Logger LOGGER = Logger.getLogger("PratServerLogg");
 
 	public PratServer(int port) {
 		try {
 			createLoggFile();
 			pendingMessages = new ArrayList<Message>();
-			clients = new ArrayList<Client>();
+			clients = new ArrayList<ClientListener>();
 			serverSocket = new ServerSocket(port);
 			this.start();
 		} catch (IOException e) {
@@ -52,7 +52,7 @@ public class PratServer extends Thread {
 		fh.setFormatter(formatter);
 	}
 
-	public void removeClient(Client client) {
+	public void removeClient(ClientListener client) {
 		clients.remove(client);
 		sendMessage(new Message(client.getUsername() + " disconnected"),
 				clients);
@@ -66,7 +66,7 @@ public class PratServer extends Thread {
 		while (true) {
 			try {
 				Socket socket = serverSocket.accept();
-				Client client = new Client(socket, this);
+				ClientListener client = new ClientListener(socket, this);
 				id = client.waitForInitialMessage();
 				addClient(client);
 			} catch (IOException e) {
@@ -75,7 +75,7 @@ public class PratServer extends Thread {
 		}
 	}
 
-	private void checkPendingMessages(Client client) {
+	private void checkPendingMessages(ClientListener client) {
 		Message message_to_be_deleted = null;
 		for (Message pending : pendingMessages) {
 			if (pending.getRecipients() == null) {
@@ -99,7 +99,7 @@ public class PratServer extends Thread {
 			clientList[i] = clients.get(i).getUsername();
 		}
 
-		for (Client client : clients) {
+		for (ClientListener client : clients) {
 			try {
 				client.getConnection().getOutputStream()
 						.writeObject(clientList);
@@ -111,8 +111,8 @@ public class PratServer extends Thread {
 		}
 	}
 
-	public void addClient(Client client) {
-		ArrayList<Client> temp = new ArrayList<Client>();
+	public void addClient(ClientListener client) {
+		ArrayList<ClientListener> temp = new ArrayList<ClientListener>();
 		sendMessage(
 				new Message(
 						client.getUsername()
@@ -128,13 +128,13 @@ public class PratServer extends Thread {
 		checkPendingMessages(client);
 	}
 
-	public void sendMessage(Message m, ArrayList<Client> recipients) {
-		for (Client recipient : recipients) {
+	public void sendMessage(Message m, ArrayList<ClientListener> recipients) {
+		for (ClientListener recipient : recipients) {
 			sendMessage(m, recipient);
 		}
 	}
 
-	public void sendMessage(Message m, Client client) {
+	public void sendMessage(Message m, ClientListener client) {
 		try {
 			client.send(m);
 			LOGGER.info(m.getSender() + " -> " + client.getUsername() + ": "
@@ -158,7 +158,7 @@ public class PratServer extends Thread {
 		} else {
 			for (String recipient : m.getRecipients()) {
 //				try {
-					for (Client client : clients) {
+					for (ClientListener client : clients) {
 						if (recipient.equals(client.getUsername())) {
 							sendMessage(m, client);
 							temp = true;
@@ -174,8 +174,8 @@ public class PratServer extends Thread {
 		}
 	}
 
-	private Client findUser(String sender) {
-		for (Client client : clients) {
+	private ClientListener findUser(String sender) {
+		for (ClientListener client : clients) {
 			if (client.getUsername().equals(sender)) {
 				return client;
 			}

@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Date;
 
-public class Client extends Thread {
+public class ClientListener extends Thread {
 	private Connection connection;
 	private String username;
 	private PratServer controller;
 	
-	public Client(Socket socket, PratServer controller) {
+	public ClientListener(Socket socket, PratServer controller) {
 		this.controller = controller;
 		this.connection = new Connection(socket);
 	}
@@ -28,17 +28,9 @@ public class Client extends Thread {
 	public Connection getConnection() {
 		return connection;
 	}
-	
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
-	
+
 	public String getUsername() {
 		return this.username;
-	}
-	
-	public void setUsername(String id) {
-		this.username = id;
 	}
 	
 	public void run() {
