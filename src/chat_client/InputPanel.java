@@ -27,7 +27,7 @@ public class InputPanel extends JPanel {
 
 		tfInput = new JTextField();
 		tfInput.addKeyListener(new EnterPressListener());
-		btnAddImage = new JButton("Attach file...");
+		btnAddImage = new JButton("Attach file");
 		btnAddImage.addActionListener(e -> addImage());
 		btnSend = new JButton("Send message");
 		btnSend.addActionListener((e) -> actionEvent());
@@ -36,10 +36,10 @@ public class InputPanel extends JPanel {
 				.addActionListener((e) -> new OfflineMessagePanel(controller));
 
 		JPanel buttonPanel = new JPanel();
+		setLayout(new BorderLayout());
 		buttonPanel.add(btnAddImage);
 		buttonPanel.add(btnSend);
 		buttonPanel.add(btnOffline);
-		setLayout(new BorderLayout());
 		add(tfInput, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.EAST);
 	}
@@ -100,11 +100,8 @@ public class InputPanel extends JPanel {
 	}
 
 	private class EnterPressListener implements KeyListener {
-		public void keyTyped(KeyEvent e) {
-		}
-
-		public void keyReleased(KeyEvent e) {
-		}
+		public void keyTyped(KeyEvent e) {}
+		public void keyReleased(KeyEvent e) {}
 
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
