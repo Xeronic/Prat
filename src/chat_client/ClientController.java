@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 
+import chat_server.Message;
+
 public class ClientController {
 
 	private Socket socket;
@@ -28,8 +30,8 @@ public class ClientController {
 	public void connect() {
 		try {
 			socket = new Socket(loginGUI.getIpAddress(), 3520);
-			oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-			ois = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF(username);
 			oos.flush();
 			new RecieveMessages().start();
