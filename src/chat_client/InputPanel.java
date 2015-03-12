@@ -19,10 +19,10 @@ public class InputPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField tfInput;
 	private JButton btnAddImage, btnSend, btnOffline;
-	private ClientController controller;
+	private Controller controller;
 	private ImageIcon image;
 
-	public InputPanel(ClientController controller) {
+	public InputPanel(Controller controller) {
 		this.controller = controller;
 
 		tfInput = new JTextField();

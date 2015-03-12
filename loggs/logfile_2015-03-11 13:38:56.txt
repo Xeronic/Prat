@@ -1,16 +1,16 @@
-mar 11, 2015 1:39:22 EM chat_server.PratServer sendMessage
+mar 11, 2015 1:39:22 EM chat_server.Server sendMessage
 INFO: null -> Jerry: Connected
-mar 11, 2015 1:40:17 EM chat_server.PratServer sendMessage
+mar 11, 2015 1:40:17 EM chat_server.Server sendMessage
 INFO: Jerry -> Jerry: Tjena boss!
-mar 11, 2015 1:40:27 EM chat_server.PratServer sendMessage
+mar 11, 2015 1:40:27 EM chat_server.Server sendMessage
 INFO: null -> Jerry: Jonas connected at 2015-03-11 13:40:27
-mar 11, 2015 1:40:27 EM chat_server.PratServer sendMessage
+mar 11, 2015 1:40:27 EM chat_server.Server sendMessage
 INFO: null -> Jonas: Connected
-mar 11, 2015 1:40:27 EM chat_server.PratServer sendMessage
+mar 11, 2015 1:40:27 EM chat_server.Server sendMessage
 INFO: Jerry -> Jonas: Tjena boss!
-mar 11, 2015 1:40:37 EM chat_server.PratServer sendMessage
+mar 11, 2015 1:40:37 EM chat_server.Server sendMessage
 INFO: null -> Jerry: Jonas disconnected
-mar 11, 2015 1:40:37 EM chat_server.PratServer removeClient
+mar 11, 2015 1:40:37 EM chat_server.Server removeClient
 INFO: Jonas DISCONNECTED
-mar 11, 2015 1:46:53 EM chat_server.PratServer removeClient
+mar 11, 2015 1:46:53 EM chat_server.Server removeClient
 INFO: Jerry DISCONNECTED

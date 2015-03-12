@@ -13,19 +13,27 @@ import chat_server.Message;
 
 import javax.swing.*;
 
-public class ClientController {
+public class Controller {
 
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
-	private ClientGUI client;
+	private iClientGUI client;
 	private String username;
 	private LoginGUI loginGUI;
 
 	/**
 	 * Constructor. Creates and shows a Login screen.
 	 */
-	public ClientController() {
+	public Controller(iClientGUI client) {
+		this.client = client;
 		loginGUI = new LoginGUI(this);
+	}
+
+	public void login(String username, String address) {
+		this.username = username;
+		client = new ClientGUI(this);
+		client.appendText("Trying to login..");
+		connect(username, address);
 	}
 
 	public void login(String username) {
@@ -38,6 +46,20 @@ public class ClientController {
 	public void connect() {
 		try {
 			Socket socket = new Socket(loginGUI.getIpAddress(), 3520);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF(username);
+			oos.flush();
+			new ReceiveMessages().start();
+		} catch (IOException ex) {
+			System.err.println(ex.getMessage());
+			client.appendText("Could not connect to server");
+		}
+	}
+
+	public void connect(String username, String address) {
+		try {
+			Socket socket = new Socket(address, 3520);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF(username);

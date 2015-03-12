@@ -16,7 +16,7 @@ import java.util.logging.SimpleFormatter;
  * Represents the Server of the program. 
  * @author Anton, Jerry, Mårten, Jonas
  */
-public class PratServer extends Thread {
+public class Server extends Thread {
 	private ServerSocket serverSocket;
 	private String id = null;
 	private ArrayList<Message> pendingMessages;
@@ -27,7 +27,7 @@ public class PratServer extends Thread {
 	 * Constructor that takes a port to create a connection to the clients.
 	 * @param port port-number
 	 */
-	public PratServer(int port) {
+	public Server(int port) {
 		try {
 			createLoggFile();
 			pendingMessages = new ArrayList<Message>();

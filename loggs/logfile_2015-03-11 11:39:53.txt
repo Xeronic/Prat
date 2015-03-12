@@ -1,14 +1,14 @@
-mar 11, 2015 11:40:00 FM chat_server.PratServer sendMessage
+mar 11, 2015 11:40:00 FM chat_server.Server sendMessage
 INFO: null -> Morre: Connected
-mar 11, 2015 11:40:02 FM chat_server.PratServer sendMessage
+mar 11, 2015 11:40:02 FM chat_server.Server sendMessage
 INFO: Morre -> Morre: Hej
-mar 11, 2015 11:40:08 FM chat_server.PratServer sendMessage
+mar 11, 2015 11:40:08 FM chat_server.Server sendMessage
 INFO: Morre -> Morre: hej
-mar 11, 2015 11:40:08 FM chat_server.PratServer sendMessage
+mar 11, 2015 11:40:08 FM chat_server.Server sendMessage
 INFO: Morre -> Morre: hej
-mar 11, 2015 11:40:11 FM chat_server.PratServer sendMessage
+mar 11, 2015 11:40:11 FM chat_server.Server sendMessage
 INFO: Morre -> Morre: jaja
-mar 11, 2015 11:40:11 FM chat_server.PratServer sendMessage
+mar 11, 2015 11:40:11 FM chat_server.Server sendMessage
 INFO: Morre -> Morre: jaja
-mar 11, 2015 11:40:16 FM chat_server.PratServer sendMessage
+mar 11, 2015 11:40:16 FM chat_server.Server sendMessage
 INFO: Morre -> Morre: oke

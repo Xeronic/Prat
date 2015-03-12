@@ -15,7 +15,7 @@ public class LoginGUI {
 	private String userName, ipAddress;
 	private JTextField tfUserName, tfIpAddress;
 	private JButton btnEnter;
-	private ClientController controller;
+	private Controller controller;
 	private JFrame frame;
 	private Font btnFont, borderFont;
 	private JLabel inputIpAddress, inputUserName;
@@ -24,9 +24,9 @@ public class LoginGUI {
 	
 	/**
 	 * Creates a frame to place panels at. And set to display at center of the screen.
-	 * @param controller - ClientController
+	 * @param controller - Controller
 	 */
-	public LoginGUI(ClientController controller) {
+	public LoginGUI(Controller controller) {
 		this.controller = controller;
 		frame = new JFrame("Login window");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +72,7 @@ public class LoginGUI {
 		JPanel centrePanel = new JPanel();
 		JPanel userNamePanel = new JPanel(new BorderLayout());
 		JPanel ipAddressPanel = new JPanel(new BorderLayout());
-		centrePanel.setLayout(new GridLayout(2,1));
+		centrePanel.setLayout(new GridLayout(2, 1));
 		centrePanel.setBackground(ORANGE);
 		inputIpAddress = new JLabel("Ip address:");
 		inputIpAddress.setBackground(ORANGE);

@@ -12,14 +12,14 @@ import java.util.Date;
 public class ClientListener extends Thread {
 	private Connection connection;
 	private String username;
-	private PratServer controller;
+	private Server controller;
 	
 	/**
 	 * Constructs a "client" with a socket and a serverconnection.
 	 * @param socket Socket
 	 * @param controller Server
 	 */
-	public ClientListener(Socket socket, PratServer controller) {
+	public ClientListener(Socket socket, Server controller) {
 		this.controller = controller;
 		this.connection = new Connection(socket);
 	}

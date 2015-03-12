@@ -18,7 +18,7 @@ public class OfflineMessagePanel extends JPanel {
 	private JButton btnSend, btnAttach, btnCancel;
 	private JFrame frame;
 	private JTextPane tpMessage;
-	private ClientController controller;
+	private Controller controller;
 	private JTextField tfToUser;
 	private ImageIcon icon;
 	private Color ORANGE = Color.ORANGE;
@@ -26,9 +26,9 @@ public class OfflineMessagePanel extends JPanel {
 	/**
 	 * Creates a frame that is placed in the middle of the screen.
 	 * The frame display the placed panel(s).
-	 * @param controller - ClientController
+	 * @param controller - Controller
 	 */
-	public OfflineMessagePanel(ClientController controller) {
+	public OfflineMessagePanel(Controller controller) {
 		this.controller = controller;
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -147,7 +147,7 @@ public class OfflineMessagePanel extends JPanel {
 	 * method in the message object and add the icon. Extract the user that is to receive 
 	 * the message and set the given name as recipient, Also sets the sender so that the 
 	 * recipient can see from who the message i sent. Then finally use the send method in
-	 * the ClientController class.
+	 * the Controller class.
 	 */
 	public void sendEvent(){
 		Message message = new Message();

@@ -9,17 +9,17 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-public class ClientGUI {
+public class ClientGUI implements iClientGUI {
 	
 	private UsersPanel usersPanel;
 	private InputPanel inputPanel;
 	private JTextPane tpChatArea;
 	private JScrollPane scroll;
 	private Dimension dim;
-	private ClientController controller;
+	private Controller controller;
 	private StyledDocument document;
 
-	public ClientGUI(ClientController controller) {
+	public ClientGUI(Controller controller) {
 		this.controller = controller;
 		usersPanel = new UsersPanel();
 		inputPanel = new InputPanel(controller);
@@ -55,6 +55,10 @@ public class ClientGUI {
 	
 	public void updateList(String[] users) {
 		usersPanel.updateList(users);
+	}
+
+	public void showLogin() {
+		new LoginGUI(controller);
 	}
 	
 	public void appendText(String text) {
