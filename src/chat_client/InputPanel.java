@@ -87,6 +87,7 @@ public class InputPanel extends JPanel {
 		else if (this.image != null) {
 			Message message = new Message();
 			message.setImage(this.image);
+			message.setText("");
 			if (controller.getSelectedUsers() != null) {
 				message.setRecipients(controller.getSelectedUsers());
 				controller.send(message);
