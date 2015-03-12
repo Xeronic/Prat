@@ -108,7 +108,7 @@ public class OfflineMessagePanel extends JPanel {
 	}
 	
 	public void sendEvent(){
-		chat_server.Message message = new chat_server.Message();
+		Message message = new Message();
 		if (this.icon != null) {
 			message.setImage(this.icon);
 			this.icon = null;
