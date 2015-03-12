@@ -1,18 +1,14 @@
 package chat_client;
 
 import java.awt.*;
-
 import javax.swing.*;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import chat_server.Message;
 
 /**
- * Panel that appears when "Offline User" button is selected.
+ * PanelGUI that appears when "Offline User" button is selected.
  * @author Anton, Jerry, Jonas, Mårten
  *
  */
@@ -69,7 +65,8 @@ public class OfflineMessagePanel extends JPanel {
 	}
 
 	/**
-	 * Creates a panel and add one JLabel and one JTextField.
+	 * Creates a panel, a JLabel and a JTextField. And then adds the
+	 * JLabel and the JTextField on the panel.
 	 * @return - returns the panel that is to be placed in the north.
 	 */
 	public JPanel northPanel() {
@@ -88,8 +85,9 @@ public class OfflineMessagePanel extends JPanel {
 	}
 
 	/**
-	 * Creates a panel and add one JLabel and a JTextPane.
-	 * @return - returns the panel that is to be placed in the centre.
+	 * Creates a panel, a JLabel and JTextPane. And add JLabel and the JTextPane
+	 * on the panel.
+	 * @return - returns the panel that is to be placed center.
 	 */
 	public JPanel centrePanel() {
 
@@ -110,8 +108,8 @@ public class OfflineMessagePanel extends JPanel {
 	}
 	
 	/**
-	 * 
-	 * @return - returns 
+	 * Creates a panel and 3 JButtons. Then place the buttons on the panel.
+	 * @return - returns the panel that is to be placed south
 	 */
 	public JPanel southPanel() {
 
@@ -128,7 +126,11 @@ public class OfflineMessagePanel extends JPanel {
 
 		return southPanel;
 	}
-
+	
+	/**
+	 * This method creates a filechooser and determines what files are OK to 
+	 * use. And if the selected file is approved store in a ImageIcon variable.
+	 */
 	private void addImage() {
 		JFileChooser fc = new JFileChooser();
 		fc.setFileFilter(new FileNameExtensionFilter("JPEG, PNG & GIF Images",
@@ -139,6 +141,14 @@ public class OfflineMessagePanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * This method sends messages that are meant for offline clients. 
+	 * Creates a message object, and if the selected icon isn't null -> use the addImage
+	 * method in the message object and add the icon. Extract the user that is to receive 
+	 * the message and set the given name as recipient, Also sets the sender so that the 
+	 * recipient can see from who the message i sent. Then finally use the send method in
+	 * the ClientController class.
+	 */
 	public void sendEvent(){
 		Message message = new Message();
 		if (this.icon != null) {
@@ -156,6 +166,11 @@ public class OfflineMessagePanel extends JPanel {
 		frame.setVisible(false);
 	}
 	
+	/**
+	 * When the attachButton it selected Use the addImage method to use the 
+	 * fileChooser function. Then if the icon isn't null attach the icon to
+	 * the textPane. 
+	 */
 	public void attachEvent(){
 		addImage();
 		if (icon != null) {
@@ -163,14 +178,26 @@ public class OfflineMessagePanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Simply sets the window to disappear. 
+	 */
 	public void cancelEvent(){
 		frame.setVisible(false);
 	}
 
+	/**
+	 * InnerClass that listens for an action on the EnterButton.
+	 * @author Anton, Jerry, Jonas, Mårten
+	 *
+	 */
 	private class EnterPressListener implements KeyListener {
 		public void keyTyped(KeyEvent e) {}
 		public void keyReleased(KeyEvent e) {}
-
+		
+		/**
+		 * If enterButton is pressed use the sendEvent method to send message
+		 * this method is mainly used for convenience.
+		 */
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if (key == KeyEvent.VK_ENTER) {
