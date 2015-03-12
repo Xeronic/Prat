@@ -1,10 +1,15 @@
 package chat_client;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class InputPanel extends JPanel {
@@ -44,6 +49,9 @@ public class InputPanel extends JPanel {
 		fc.showDialog(null, "Välj en bildfil");
 		if (fc.getSelectedFile() != null) {
 			this.image = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+			Image img = image.getImage();
+			Image newimg = img.getScaledInstance(((int)(image.getIconHeight() * 0.5)) , ((int)(image.getIconWidth() * 0.5)), java.awt.Image.SCALE_SMOOTH);
+			this.image = new ImageIcon(newimg);
 		}
 	}
 
