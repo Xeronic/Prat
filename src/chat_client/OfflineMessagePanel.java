@@ -11,6 +11,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import chat_server.Message;
 
+/**
+ * Panel that appears when "Offline User" button is selected.
+ * @author Anton, Jerry, Jonas, Mårten
+ *
+ */
 public class OfflineMessagePanel extends JPanel {
 
 	private JPanel panel;
@@ -22,6 +27,11 @@ public class OfflineMessagePanel extends JPanel {
 	private ImageIcon icon;
 	private Color ORANGE = Color.ORANGE;
 
+	/**
+	 * Creates a frame that is placed in the middle of the screen.
+	 * The frame display the placed panel(s).
+	 * @param controller - ClientController
+	 */
 	public OfflineMessagePanel(ClientController controller) {
 		this.controller = controller;
 		frame = new JFrame();
@@ -34,6 +44,11 @@ public class OfflineMessagePanel extends JPanel {
 				/ 2 - panel.getSize().height / 2);	// set window to centre of screen.
 	}
 
+	/**
+	 * This is a method that place out panels. The mainpanel i created in this method
+	 * and the layout and preferedsize is set. Also border and color is set in this method.
+	 * @return - returns the mainpanel to be added on the frame.
+	 */
 	public JPanel thePanel() {
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -41,9 +56,9 @@ public class OfflineMessagePanel extends JPanel {
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 0, 20));
 		panel.setBackground(ORANGE);
 
-		panel.add(topPanel(), BorderLayout.NORTH);
+		panel.add(northPanel(), BorderLayout.NORTH);
 		panel.add(centrePanel(), BorderLayout.CENTER);
-		panel.add(bottomPanel(), BorderLayout.SOUTH);
+		panel.add(southPanel(), BorderLayout.SOUTH);
 
 		btnSend.addActionListener(e -> sendEvent());
 		btnAttach.addActionListener(e -> attachEvent());
@@ -53,21 +68,29 @@ public class OfflineMessagePanel extends JPanel {
 		return panel;
 	}
 
-	public JPanel topPanel() {
+	/**
+	 * Creates a panel and add one JLabel and one JTextField.
+	 * @return - returns the panel that is to be placed in the north.
+	 */
+	public JPanel northPanel() {
 
-		JPanel topPanel = new JPanel();
+		JPanel northPanel = new JPanel();
 		JLabel lblSendTo = new JLabel("Send to:");
 		tfToUser = new JTextField();
 
 		lblSendTo.setBackground(ORANGE);
 		lblSendTo.setOpaque(true);
-		topPanel.setLayout(new BorderLayout());
-		topPanel.add(lblSendTo, BorderLayout.WEST);
-		topPanel.add(tfToUser, BorderLayout.CENTER);
+		northPanel.setLayout(new BorderLayout());
+		northPanel.add(lblSendTo, BorderLayout.WEST);
+		northPanel.add(tfToUser, BorderLayout.CENTER);
 
-		return topPanel;
+		return northPanel;
 	}
 
+	/**
+	 * Creates a panel and add one JLabel and a JTextPane.
+	 * @return - returns the panel that is to be placed in the centre.
+	 */
 	public JPanel centrePanel() {
 
 		JPanel centrePanel = new JPanel();
@@ -85,21 +108,25 @@ public class OfflineMessagePanel extends JPanel {
 
 		return centrePanel;
 	}
+	
+	/**
+	 * 
+	 * @return - returns 
+	 */
+	public JPanel southPanel() {
 
-	public JPanel bottomPanel() {
-
-		JPanel bottomPanel = new JPanel();
+		JPanel southPanel = new JPanel();
 		btnSend = new JButton("Send");
 		btnAttach = new JButton("Attach file");
 		btnCancel = new JButton("Cancel");
 
-		bottomPanel.setBackground(ORANGE);
-		bottomPanel.setLayout(new GridLayout(1, 3, 5, 5));
-		bottomPanel.add(btnSend);
-		bottomPanel.add(btnAttach);
-		bottomPanel.add(btnCancel);
+		southPanel.setBackground(ORANGE);
+		southPanel.setLayout(new GridLayout(1, 3, 5, 5));
+		southPanel.add(btnSend);
+		southPanel.add(btnAttach);
+		southPanel.add(btnCancel);
 
-		return bottomPanel;
+		return southPanel;
 	}
 
 	private void addImage() {
