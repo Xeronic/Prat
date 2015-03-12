@@ -21,13 +21,13 @@ public class ClientGUI {
 
 	public ClientGUI(ClientController controller) {
 		this.controller = controller;
-		usersPanel = new UsersPanel(controller);
+		usersPanel = new UsersPanel();
 		inputPanel = new InputPanel(controller);
 		
 		JFrame window = new JFrame(controller.getUserName() + " | Prat");
 		window.setLayout(new BorderLayout());
 		
-		tpChatArea = new JTextPane();;
+		tpChatArea = new JTextPane();
 		tpChatArea.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
 		scroll = new JScrollPane(tpChatArea);
 		document = tpChatArea.getStyledDocument();
@@ -43,13 +43,14 @@ public class ClientGUI {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		dim = Toolkit.getDefaultToolkit().getScreenSize();
-		window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
+		window.setLocation(dim.width/2-window.getSize().width/2,
+				dim.height/2-window.getSize().height/2); //place window center of screen.
 		
 		window.addWindowListener(new WindowAdapter(){ 
 			  public void windowOpened( WindowEvent e){ 
-			    inputPanel.getInputField().requestFocus();
+				  inputPanel.getInputField().requestFocus();
 			  } 
-			}); 
+		}); 
 	}
 	
 	public void updateList(String[] users) {
@@ -60,10 +61,9 @@ public class ClientGUI {
 		try {
 			document.insertString(document.getLength(), text + "\n", null);
 		} catch (BadLocationException exe) {
-
+			System.err.println(exe.getMessage());
 		}
 		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
-
 	}
 
 	public void appendTextAndImage(String text, Icon image) {
@@ -74,7 +74,9 @@ public class ClientGUI {
 			StyleConstants.setIcon(style, image);
 			document.insertString(document.getLength(), "\n", style);
 
-		} catch (BadLocationException exe) {}
+		} catch (BadLocationException exe) {
+			System.err.println(exe.getMessage());
+		}
 		tpChatArea.setCaretPosition(tpChatArea.getDocument().getLength());
 	}
 	

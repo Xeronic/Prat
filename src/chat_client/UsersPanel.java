@@ -12,11 +12,8 @@ public class UsersPanel extends JPanel {
 	private JList<String> list;
 	private DefaultListModel<String> listModel;
 	private JScrollPane scrollPane;
-	private ClientController controller;
 	
-	public UsersPanel(ClientController controller) {
-		this.controller = controller;
-		
+	public UsersPanel() {
 		listModel = new DefaultListModel<String>();
 		list = new JList<String>(listModel);
 		scrollPane = new JScrollPane(list);
@@ -28,17 +25,13 @@ public class UsersPanel extends JPanel {
 		this.setBorder(border);
 		this.setBackground(Color.WHITE);
 		add(scrollPane, list);
-		list.setSelectionModel(new DefaultListSelectionModel() 
-		{
-		    @Override
-		    public void setSelectionInterval(int index0, int index1) 
-		    {
-		        if(list.isSelectedIndex(index0)) 
-		        {
+		
+		list.setSelectionModel(new DefaultListSelectionModel() {
+		    public void setSelectionInterval(int index0, int index1) {
+		        if(list.isSelectedIndex(index0)) {
 		            list.removeSelectionInterval(index0, index1);
 		        }
-		        else 
-		        {
+		        else {
 		            list.addSelectionInterval(index0, index1);
 		        }
 		    }
@@ -53,19 +46,17 @@ public class UsersPanel extends JPanel {
 	}
 
 	public String[] getSelectedUsers() {
+		ArrayList<String> users = new ArrayList<String>();
 		
 		if (list.isSelectionEmpty()) {
 			return null;
 		}
-		
-		ArrayList<String> users = new ArrayList<String>();
-		
+				
 		for (int i = 0; i < listModel.getSize(); i++) {
 			if (list.isSelectedIndex(i)) {
 				users.add(listModel.get(i));
 			}
 		}
-
 		return (users.size() > 0) ? users.toArray(new String[users.size()]) : null;
 	}
 }
