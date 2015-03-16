@@ -77,8 +77,11 @@ public class InputPanel extends JPanel {
 		}
 	}
 	
-
-	public JTextField getInputField() {		// KAN VI TA BOOOORT DETTAA?!?!?!?
+	/**
+	 * Method for retrieving textField.
+	 * @return - textField
+	 */
+	public JTextField getInputField() {
 		return this.tfInput;
 	}
 	
