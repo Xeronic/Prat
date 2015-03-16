@@ -42,8 +42,7 @@ public class InputPanel extends JPanel {
 		btnSend = new JButton("Send message");
 		btnSend.addActionListener((e) -> actionEvent());
 		btnOffline = new JButton("Offline User");
-		btnOffline
-				.addActionListener((e) -> new OfflineMessagePanel(controller));
+		btnOffline.addActionListener((e) -> new OfflineMessagePanel(controller));
 
 		JPanel buttonPanel = new JPanel();
 		setLayout(new BorderLayout());

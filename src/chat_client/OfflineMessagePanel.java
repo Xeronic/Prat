@@ -31,7 +31,6 @@ public class OfflineMessagePanel extends JPanel {
 	public OfflineMessagePanel(ClientController controller) {
 		this.controller = controller;
 		frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(thePanel());
 		frame.pack();
 		frame.setVisible(true);
