@@ -11,4 +11,5 @@ public interface iClientGUI {
 	public String[] getSelectedUsers();
 	public void updateList(String[] users);
 	public void showLogin();
+	public void showChatWindow();
 }

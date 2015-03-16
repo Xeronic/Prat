@@ -37,7 +37,11 @@ public class LoginGUI {
 		frame.setLocation(dim.width/2-frame.getSize().width/2, 
 				dim.height/2-frame.getSize().height/2); //Place window center of screen.
 	}
-	
+
+	public void hide() {
+		frame.setVisible(false);
+	}
+
 	/**
 	 * This method creates a panel and set size and layout. Creates border and font.
 	 * @return JPanel
@@ -120,7 +124,7 @@ public class LoginGUI {
 	 */
 	public void actionEvent(){
 		if ((getUserName() != null) && getUserName().length() > 0) {
-			controller.login(tfUserName.getText().toString());
+			controller.login(getUserName(), getIpAddress());
 			frame.setVisible(false);
 		} else {
 			JOptionPane.showMessageDialog(null, "You must enter a username!");

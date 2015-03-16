@@ -16,15 +16,18 @@ public class ClientGUI implements iClientGUI {
 	private JTextPane tpChatArea;
 	private JScrollPane scroll;
 	private Dimension dim;
-	private Controller controller;
 	private StyledDocument document;
+	private Controller controller;
+	private LoginGUI loginGUI;
+	private JFrame window;
 
-	public ClientGUI(Controller controller) {
-		this.controller = controller;
+	public ClientGUI() {
+		this.controller = new Controller(this);
+		controller.start();
 		usersPanel = new UsersPanel();
 		inputPanel = new InputPanel(controller);
 		
-		JFrame window = new JFrame(controller.getUserName() + " | Prat");
+		window = new JFrame("Not connected | Prat");
 		window.setLayout(new BorderLayout());
 		
 		tpChatArea = new JTextPane();
@@ -32,13 +35,12 @@ public class ClientGUI implements iClientGUI {
 		scroll = new JScrollPane(tpChatArea);
 		document = tpChatArea.getStyledDocument();
 
-
 		window.add(scroll, BorderLayout.CENTER);
 		window.add(usersPanel, BorderLayout.EAST);
 		window.add(inputPanel, BorderLayout.SOUTH);
 		
 		window.pack();
-		window.setVisible(true);
+
 		window.setSize(824, 568);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -50,7 +52,7 @@ public class ClientGUI implements iClientGUI {
 			  public void windowOpened( WindowEvent e){ 
 				  inputPanel.getInputField().requestFocus();
 			  } 
-		}); 
+		});
 	}
 	
 	public void updateList(String[] users) {
@@ -58,7 +60,12 @@ public class ClientGUI implements iClientGUI {
 	}
 
 	public void showLogin() {
-		new LoginGUI(controller);
+		loginGUI = new LoginGUI(this.controller);
+	}
+
+	public void showChatWindow() {
+		loginGUI.hide();
+		window.setVisible(true);
 	}
 	
 	public void appendText(String text) {
@@ -86,5 +93,13 @@ public class ClientGUI implements iClientGUI {
 	
 	public String[] getSelectedUsers() {
 		return usersPanel.getSelectedUsers();
+	}
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new ClientGUI();
+			}
+		});
 	}
 }

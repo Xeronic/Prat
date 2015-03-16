@@ -26,20 +26,21 @@ public class Controller {
 	 */
 	public Controller(iClientGUI client) {
 		this.client = client;
-		loginGUI = new LoginGUI(this);
+	}
+
+	public void start() {
+		client.showLogin();
 	}
 
 	public void login(String username, String address) {
 		this.username = username;
-		client = new ClientGUI(this);
-		client.appendText("Trying to login..");
+		client.appendText("Trying to login...");
 		connect(username, address);
 	}
 
 	public void login(String username) {
 		this.username = username;
-		client = new ClientGUI(this);
-		client.appendText("Trying to login..");
+		client.appendText("Trying to login...");
 		connect();
 	}
 
@@ -64,6 +65,7 @@ public class Controller {
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF(username);
 			oos.flush();
+			client.showChatWindow();
 			new ReceiveMessages().start();
 		} catch (IOException ex) {
 			System.err.println(ex.getMessage());
