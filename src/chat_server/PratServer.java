@@ -106,6 +106,7 @@ public class PratServer extends Thread {
 		}
 		if (message_to_be_deleted != null) {
 			pendingMessages.remove(message_to_be_deleted);
+			checkPendingMessages(client);
 		}
 	}
 
