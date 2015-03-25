@@ -111,6 +111,38 @@ public class ClientController {
 		}
 	}
 
+	public void sendMessage(String inputMessage, ImageIcon image) {
+		if (inputMessage.length() > 0) {
+			Message message = new Message();
+			if (image != null) {
+				message.setImage(image);
+				image = null;
+			}
+			message.setText(inputMessage);
+			if (this.getSelectedUsers() != null) {
+				message.setRecipients(this.getSelectedUsers());
+				this.send(message);
+			} else {
+				message.setAll(true);
+				this.send(message);
+			}
+			client.clearInputField();
+		}
+		else if (image != null) {
+			Message message = new Message();
+			message.setImage(image);
+			message.setText("");
+			if (this.getSelectedUsers() != null) {
+				message.setRecipients(this.getSelectedUsers());
+				this.send(message);
+			} else {
+				message.setAll(true);
+				this.send(message);
+			}
+			image = null;
+		}
+	}
+
 	/**
 	 * This class receives messages from the server.
 	 * @author Mårten, Jerry, Anton, Jonas

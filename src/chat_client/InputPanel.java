@@ -75,7 +75,11 @@ public class InputPanel extends JPanel {
 			this.image = new ImageIcon(newimg);
 		}
 	}
-	
+
+	public void clearInputField() {
+		tfInput.setText("");
+	}
+
 	/**
 	 * Method for retrieving textField.
 	 * @return - textField
@@ -89,35 +93,7 @@ public class InputPanel extends JPanel {
 	 * also checks for who to send the message to.
 	 */
 	public void actionEvent() {
-		if (tfInput.getText().length() > 0) {
-			Message message = new Message();
-			if (this.image != null) {
-				message.setImage(this.image);
-				this.image = null;
-			}
-			message.setText(tfInput.getText());
-			if (controller.getSelectedUsers() != null) {
-				message.setRecipients(controller.getSelectedUsers());
-				controller.send(message);
-			} else {
-				message.setAll(true);
-				controller.send(message);
-			}
-			tfInput.setText("");
-		} 
-		else if (this.image != null) {
-			Message message = new Message();
-			message.setImage(this.image);
-			message.setText("");
-			if (controller.getSelectedUsers() != null) {
-				message.setRecipients(controller.getSelectedUsers());
-				controller.send(message);
-			} else {
-				message.setAll(true);
-				controller.send(message);
-			}
-			this.image = null;
-		}
+		controller.sendMessage(tfInput.getText(), this.image);
 	}
 	
 	/**

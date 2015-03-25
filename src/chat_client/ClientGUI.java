@@ -110,4 +110,8 @@ public class ClientGUI {
 	public String[] getSelectedUsers() {
 		return usersPanel.getSelectedUsers();
 	}
+
+	public void clearInputField() {
+		inputPanel.clearInputField();
+	}
 }
