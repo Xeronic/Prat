@@ -111,6 +111,21 @@ public class ClientController {
 		}
 	}
 
+	public void sendOfflineMessage(String toUser, String inputMessage, ImageIcon icon) {
+		Message message = new Message();
+		if (icon != null) {
+			message.setImage(icon);
+		}
+		message.setText(inputMessage);
+		if(toUser != null){
+			String[] person = new String[1];
+			person[0] = toUser;
+			message.setRecipients(person);
+			message.setSender(this.getUserName());
+			this.send(message);
+		}
+	}
+
 	public void sendMessage(String inputMessage, ImageIcon image) {
 		if (inputMessage.length() > 0) {
 			Message message = new Message();

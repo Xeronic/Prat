@@ -149,19 +149,8 @@ public class OfflineMessagePanel extends JPanel {
 	 * the ClientController class.
 	 */
 	public void sendEvent(){
-		Message message = new Message();
-		if (this.icon != null) {
-			message.setImage(this.icon);
-			this.icon = null;
-		}
-		message.setText(tpMessage.getText());
-		if(tfToUser.getText() != null){
-			String[] person = new String[1];
-			person[0] = tfToUser.getText();
-			message.setRecipients(person);
-			message.setSender(controller.getUserName());
-			controller.send(message);
-		}
+		controller.sendOfflineMessage(tfToUser.getText(), tpMessage.getText(), this.icon);
+		this.icon = null;
 		frame.setVisible(false);
 	}
 	
